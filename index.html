@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ummah Brief — Knowledge is How the Ummah Rises</title>
+<meta name="color-scheme" content="dark">
+<meta name="description" content="The Ummah Brief provides practical, principled guidance for Muslims who want to build something real — in their finances, their families, and their faith.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html, body { background-color: #080808 !important; color: #FFFFFF !important; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #080808;
+  --ink2: #111111;
+  --ink3: #181818;
+  --gold: #C9A84C;
+  --gold2: #E2BA58;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.25);
+  --white: #FFFFFF;
+  --off-white: #F0EBE0;
+  --light: #CCCCCC;
+  --grey: #999999;
+}
+html { scroll-behavior: smooth; background: #080808; }
+body { font-family: 'Jost', sans-serif; background: #080808 !important; color: #FFFFFF !important; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.3s, padding 0.3s; }
+nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); padding: 14px 40px; border-bottom: 0.5px solid rgba(201,168,76,0.1); }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); letter-spacing: 0.04em; text-decoration: none; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 8px 20px !important; border-radius: 3px !important; font-weight: 600 !important; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 100px; position: relative; overflow: hidden; }
+.hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px); background-size: 80px 80px; }
+.hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.1s; }
+.hero-kicker::before, .hero-kicker::after { content: ''; width: 28px; height: 0.5px; background: var(--gold); opacity: 0.5; }
+.hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 8vw, 82px); font-weight: 300; line-height: 1.06; color: var(--white); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.3s; }
+.hero-h1 em { font-style: italic; color: var(--gold); }
+.hero-h1-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 38px); font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.2; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.8s ease forwards 0.45s; }
+.hero-sub { font-size: 15px; color: var(--light); line-height: 1.8; max-width: 540px; margin: 0 auto 44px; font-weight: 300; opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s; }
+.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s; }
+
+/* BUTTONS */
+.btn-primary { display: inline-block; background: var(--gold); color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 34px; border-radius: 3px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-ghost { display: inline-block; background: transparent; color: var(--light); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 15px 34px; border-radius: 3px; text-decoration: none; border: 0.5px solid rgba(255,255,255,0.2); transition: border-color 0.2s, color 0.2s; }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* PROOF BAR */
+.proof-bar { background: var(--ink2); border-top: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06); padding: 20px 40px; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.proof-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.proof-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--gold); line-height: 1; }
+.proof-label { font-size: 9px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.proof-divider { width: 0.5px; height: 36px; background: rgba(255,255,255,0.08); }
+
+/* SECTIONS */
+.section { padding: 90px 40px; }
+.section-dark { background: var(--ink2); }
+.section-darker { background: var(--ink); }
+.section-inner { max-width: 1000px; margin: 0 auto; }
+.section-inner-narrow { max-width: 680px; margin: 0 auto; }
+.section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+.section-label::after { content: ''; flex: 1; height: 0.5px; background: rgba(201,168,76,0.2); max-width: 80px; }
+.section-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 16px; }
+.section-h2 em { font-style: italic; color: var(--gold); }
+.section-body { font-size: 14px; color: var(--light); line-height: 1.85; font-weight: 300; margin-bottom: 20px; }
+
+/* PRODUCT */
+.product-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: center; }
+.book-wrap { position: relative; }
+.book-3d { width: 220px; aspect-ratio: 2/3; border-radius: 3px 10px 10px 3px; box-shadow: -6px 0 0 #030308, -8px 4px 24px rgba(0,0,0,0.9), 8px 12px 48px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(201,168,76,0.2); overflow: hidden; position: relative; }
+.book-3d img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.book-shadow { position: absolute; bottom: -20px; left: 10%; width: 80%; height: 24px; background: radial-gradient(ellipse, rgba(201,168,76,0.18) 0%, transparent 70%); filter: blur(8px); }
+.product-tag { display: inline-block; background: var(--gold-dim); border: 0.5px solid var(--gold-border); color: var(--gold); font-size: 9px; font-weight: 600; padding: 4px 12px; border-radius: 2px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.product-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 46px); font-weight: 600; line-height: 1.1; color: var(--white); margin-bottom: 14px; }
+.product-title em { font-style: italic; color: var(--gold); }
+.product-desc { font-size: 14px; color: var(--light); line-height: 1.85; margin-bottom: 24px; font-weight: 300; }
+.product-features { list-style: none; margin-bottom: 28px; }
+.product-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--light); margin-bottom: 10px; font-weight: 300; line-height: 1.5; }
+.product-features li::before { content: '✓'; color: var(--gold); font-size: 11px; margin-top: 2px; flex-shrink: 0; font-weight: 600; }
+.product-price-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding: 16px 0; border-top: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.price-big { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--gold); font-weight: 600; line-height: 1; }
+.price-note { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+/* PILLARS */
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; margin-top: 40px; }
+.pillar { padding: 32px 24px; background: var(--ink2); text-align: center; transition: background 0.3s; }
+.pillar:hover { background: rgba(201,168,76,0.04); }
+.pillar-icon { font-size: 22px; margin-bottom: 12px; }
+.pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+.pillar-text { font-size: 12px; color: var(--light); line-height: 1.65; font-weight: 300; }
+
+/* COMING SOON */
+.coming-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+.coming-card { background: rgba(255,255,255,0.02); border: 0.5px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 24px; transition: border-color 0.3s; position: relative; overflow: hidden; }
+.coming-card:hover { border-color: rgba(201,168,76,0.2); }
+.coming-badge { display: inline-block; background: rgba(201,168,76,0.08); border: 0.5px solid rgba(201,168,76,0.2); color: rgba(201,168,76,0.7); font-size: 8px; font-weight: 600; padding: 3px 10px; border-radius: 2px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.coming-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+.coming-text { font-size: 12px; color: var(--light); line-height: 1.65; font-weight: 300; }
+
+/* NEWSLETTER */
+.nl-section { text-align: center; }
+.nl-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 300; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+.nl-h2 em { font-style: italic; color: var(--gold); }
+.nl-sub { font-size: 14px; color: var(--light); line-height: 1.8; margin-bottom: 32px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
+.nl-form { display: flex; max-width: 460px; margin: 0 auto 12px; border: 0.5px solid rgba(201,168,76,0.3); border-radius: 3px; overflow: hidden; }
+.nl-input { flex: 1; background: rgba(255,255,255,0.04); border: none; padding: 15px 20px; font-size: 14px; color: var(--white); font-family: 'Jost', sans-serif; outline: none; }
+.nl-input::placeholder { color: rgba(255,255,255,0.25); }
+.nl-btn { background: var(--gold); color: var(--ink); border: none; padding: 15px 24px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; transition: opacity 0.2s; white-space: nowrap; }
+.nl-btn:hover { opacity: 0.88; }
+.nl-note { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; margin-bottom: 36px; }
+
+/* IG STRIP */
+.ig-strip { border: 0.5px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 460px; margin: 0 auto; background: rgba(255,255,255,0.02); }
+.ig-count { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.ig-label { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
+.ig-handle { font-size: 13px; color: var(--light); margin-top: 4px; }
+.ig-btn { display: inline-block; background: transparent; color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 18px; border-radius: 3px; text-decoration: none; border: 0.5px solid var(--gold-border); transition: background 0.2s, color 0.2s; white-space: nowrap; }
+.ig-btn:hover { background: var(--gold); color: var(--ink); }
+
+/* FOOTER */
+footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.footer-brand span { color: var(--gold); }
+.footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 10px; color: rgba(255,255,255,0.12); width: 100%; text-align: center; padding-top: 20px; border-top: 0.5px solid rgba(255,255,255,0.04); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .section { padding: 60px 20px; }
+  .product-grid { grid-template-columns: 1fr; gap: 36px; }
+  .book-3d { width: 180px; margin: 0 auto; }
+  .book-wrap { display: flex; justify-content: center; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .coming-grid { grid-template-columns: 1fr; }
+  .proof-bar { gap: 24px; padding: 16px 20px; }
+  .proof-divider { display: none; }
+  .nl-form { flex-direction: column; }
+  .nl-btn { padding: 13px; }
+  .ig-strip { flex-direction: column; text-align: center; }
+  footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">The Ummah <span>Brief</span></a>
+  <ul class="nav-links">
+    <li><a href="#product">The Rizq Code</a></li>
+    <li><a href="#coming">Coming Soon</a></li>
+    <li><a href="#newsletter">Newsletter</a></li>
+    <li><a href="mailto:salaam@ummahbrief.com">Contact</a></li>
+    <li><a href="rizq-code/index.html" class="nav-cta">Get The Rizq Code — $39</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">One Ummah · One Pulse · One Purpose</div>
+    <h1 class="hero-h1">Knowledge is how<br>the <em>Ummah rises.</em></h1>
+    <p class="hero-h1-sub">Not motivation. Not noise. Something real.</p>
+    <p class="hero-sub">Practical, principled guidance for Muslims who want to build something lasting — in their finances, their families, and their faith.</p>
+    <div class="hero-actions">
+      <a href="rizq-code/index.html" class="btn-primary">Start with The Rizq Code — $39</a>
+      <a href="#newsletter" class="btn-ghost">Join the Free Newsletter</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-item">
+    <!--
+      ====================================================
+      TO UPDATE FOLLOWER COUNT: change the number below
+      ====================================================
+    -->
+    <div class="proof-num" id="follower-count">10,000+</div>
+    <div class="proof-label">Instagram Followers</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">UK · USA · UAE</div>
+    <div class="proof-label">Primary Audience</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">Every Friday</div>
+    <div class="proof-label">Newsletter Drops</div>
+  </div>
+  <div class="proof-divider"></div>
+  <div class="proof-item">
+    <div class="proof-num">$39</div>
+    <div class="proof-label">One-Time · No Subscription</div>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCT -->
+<section class="section section-darker" id="product">
+  <div class="section-inner">
+    <div class="section-label">Available Now</div>
+    <div class="product-grid">
+      <div class="book-wrap">
+        <div class="book-3d">
+          <img src="rizq-code/rizq_cover.jpeg" alt="The Rizq Code" />
+        </div>
+        <div class="book-shadow"></div>
+      </div>
+      <div>
+        <div class="product-tag">Featured Release</div>
+        <h2 class="product-title">The <em>Rizq Code</em></h2>
+        <p class="product-desc">The halal wealth strategy Muslim families were never taught. Built entirely on Quran, Sunnah, and Islamic financial wisdom — written not to impress scholars, but to move people from confusion to clarity and from scarcity to barakah.</p>
+        <ul class="product-features">
+          <li>The Law of Rizq — how provision actually flows in Islam</li>
+          <li>10 halal income pathways rooted in Islamic principles</li>
+          <li>The Halal Wealth Mindset — from fear and guilt to barakah</li>
+          <li>Rebuilding Ummah economics — your wealth isn't just yours</li>
+          <li>The Rizq Insider — exclusive weekly email for buyers only</li>
+        </ul>
+        <div class="product-price-row">
+          <div class="price-big">$39</div>
+          <div class="price-note">One-time payment<br>Instant download · Yours forever</div>
+        </div>
+        <a href="rizq-code/index.html" class="btn-primary">Get The Rizq Code →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE COVER -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-label">What We Cover</div>
+    <h2 class="section-h2">Every dimension of<br><em>Muslim life that matters.</em></h2>
+    <p class="section-body">The Ummah Brief was built for the whole Muslim — not just their wallet. We cover the full picture of what it means to build a life of purpose rooted in faith. Wealth is where we start. It is not where we stop.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon">💰</div>
+        <div class="pillar-title">Wealth</div>
+        <div class="pillar-text">Halal strategies for provision, income, and financial freedom — rooted in Quran and Sunnah</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🏠</div>
+        <div class="pillar-title">Family</div>
+        <div class="pillar-text">Building households of purpose, raising children with values, and protecting what matters most</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">❤️</div>
+        <div class="pillar-title">Health</div>
+        <div class="pillar-text">Physical and mental wellbeing through an Islamic lens — the body is an amanah</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📖</div>
+        <div class="pillar-title">Knowledge</div>
+        <div class="pillar-text">Practical Islamic wisdom that translates into real decisions in modern Muslim life</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🕌</div>
+        <div class="pillar-title">Community</div>
+        <div class="pillar-text">Strengthening the Ummah one household, one neighbourhood, one decision at a time</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌍</div>
+        <div class="pillar-title">Revival</div>
+        <div class="pillar-text">The long game — building toward an Ummah that leads, not just survives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section class="section section-darker" id="coming">
+  <div class="section-inner">
+    <div class="section-label">What's Coming</div>
+    <h2 class="section-h2">The Rizq Code is<br><em>just the beginning.</em></h2>
+    <p class="section-body">The Ummah Brief is building a full ecosystem of knowledge, community, and resources for Muslim families. Here is what is on the horizon.</p>
+    <div class="coming-grid">
+      <div class="coming-card">
+        <div class="coming-badge">Coming Soon</div>
+        <div class="coming-title">Advanced Halal Wealth Mastery</div>
+        <div class="coming-text">A deep-dive programme taking Muslims beyond the foundations — into advanced halal investment, building generational wealth, and creating income that outlasts you.</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-badge">Coming Soon</div>
+        <div class="coming-title">The Muslim Family Blueprint</div>
+        <div class="coming-text">A comprehensive guide to building a household rooted in Islamic values — covering marriage, parenting, roles, finances, and raising children who carry the deen forward.</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-badge">Coming Soon</div>
+        <div class="coming-title">The Inner Circle Membership</div>
+        <div class="coming-text">An exclusive private community for Muslims serious about building — with monthly deep dives, live sessions, accountability, and access to everything The Ummah Brief produces.</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-badge">Coming Soon</div>
+        <div class="coming-title">Islamic Health and Wellbeing</div>
+        <div class="coming-text">A practical guide to physical and mental health through an Islamic lens — understanding the body as amanah and building sustainable habits rooted in prophetic guidance.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section section-dark" id="newsletter">
+  <div class="section-inner-narrow nl-section">
+    <div class="section-label" style="justify-content:center;margin-bottom:20px;">Free · Every Friday</div>
+    <h2 class="nl-h2">The Ummah Brief<br><em>Newsletter</em></h2>
+    <p class="nl-sub">Weekly knowledge on wealth, family, faith, and community. No noise. No filler. Read by Muslims across the UK, USA, UAE, and beyond. Always free.</p>
+    <div class="nl-form">
+      <input class="nl-input" type="email" placeholder="Your email address" />
+      <button class="nl-btn">Subscribe Free</button>
+    </div>
+    <div class="nl-note">Free · Every Friday · Unsubscribe anytime</div>
+    <div class="ig-strip">
+      <div class="ig-left">
+        <!--
+          ====================================================
+          TO UPDATE FOLLOWER COUNT: change the number below
+          ====================================================
+        -->
+        <div class="ig-count">10,000+</div>
+        <div class="ig-label">Followers on Instagram</div>
+        <div class="ig-handle">@the_ummah_brief</div>
+      </div>
+      <a href="https://instagram.com/the_ummah_brief" target="_blank" class="ig-btn">Follow Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">The Ummah <span>Brief</span></div>
+    <div class="footer-tagline">One Ummah. One Pulse. One Purpose.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#product">The Rizq Code</a></li>
+    <li><a href="#coming">Coming Soon</a></li>
+    <li><a href="#newsletter">Newsletter</a></li>
+    <li><a href="mailto:salaam@ummahbrief.com">Contact</a></li>
+    <li><a href="https://instagram.com/the_ummah_brief" target="_blank">Instagram</a></li>
+  </ul>
+  <div class="footer-copy">2025 The Ummah Brief · salaam@ummahbrief.com</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+</script>
+</body>
+</html>
