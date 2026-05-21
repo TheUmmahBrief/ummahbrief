@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rizq Code — The Halal Wealth Strategy for Muslim Families</title>
+<meta name="description" content="The Rizq Code is a 190-page halal wealth strategy built on Quran and Sunnah. For Muslim families ready to align their finances with their faith.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0D0D0D;
+  --ink2: #1A1A1A;
+  --gold: #C9A84C;
+  --gold-light: #E8C96A;
+  --gold-pale: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.3);
+  --white: #FFFFFF;
+  --cream: #FAF6EE;
+  --warm: #F2EDE3;
+  --grey: #888888;
+  --text: #1A1A1A;
+  --text-mid: #444444;
+  --text-light: #666666;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--ink);
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+/* STICKY NAV */
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--ink);
+  border-bottom: 1px solid #222;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sticky-brand {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sticky-btn {
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 6px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* URGENCY BAR */
+.urgency-bar {
+  background: var(--ink2);
+  border-bottom: 1px solid #2a2a2a;
+  padding: 9px 20px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+/* HERO */
+.hero {
+  background: var(--ink);
+  padding: 40px 20px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 0%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.h-kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.h-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.h-headline em { font-style: italic; color: var(--gold-light); }
+
+.social-proof-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sp-stars { color: var(--gold); font-size: 13px; }
+.sp-text { font-size: 11px; color: #777; }
+.sp-text strong { color: #aaa; }
+
+.h-sub {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.h-sub strong { color: #ddd; font-weight: 500; }
+
+.h-cta {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.h-cta-sub {
+  font-size: 10px;
+  color: #555;
+  text-align: center;
+}
+
+/* BOOK MOCKUP */
+.book-mockup {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border-radius: 4px 8px 8px 4px;
+  box-shadow: -4px 0 0 #111, 4px 6px 20px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(201,168,76,0.2);
+  overflow: hidden;
+}
+
+.book-mockup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* GOLD LINE */
+.g-line { height: 2px; background: var(--gold); }
+
+/* VALUE STACK */
+.value-stack {
+  background: var(--warm);
+  padding: 28px 20px;
+}
+
+.vs-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.vs-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+  gap: 12px;
+}
+
+.vs-item:last-child { border-bottom: none; }
+.vs-item-left { flex: 1; }
+.vs-item-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.vs-item-desc { font-size: 11px; color: var(--text-light); line-height: 1.4; }
+.vs-item-val { font-size: 13px; font-weight: 700; color: var(--text-mid); white-space: nowrap; }
+.vs-item-val.free { color: #2D6A4F; }
+
+.vs-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0 0;
+}
+
+.vs-total-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.vs-total-val { font-size: 13px; color: var(--text-light); text-decoration: line-through; }
+.vs-total-price { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); font-weight: 700; }
+
+.vs-cta {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  margin-top: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.vs-cta span { color: var(--gold); }
+
+/* SECTIONS */
+.s { padding: 36px 20px; }
+.s-dark { background: var(--ink2); }
+.s-cream { background: var(--cream); }
+.s-white { background: var(--white); }
+.s-warm { background: var(--warm); }
+.s-navy { background: var(--ink); }
+
+.s-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.s-kicker-dark { color: #555; }
+
+.s-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.s-dark .s-h2, .s-navy .s-h2 { color: var(--white); }
+.s-cream .s-h2, .s-white .s-h2, .s-warm .s-h2 { color: var(--ink); }
+
+.s-body {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.s-dark .s-body, .s-navy .s-body { color: #999; }
+.s-dark .s-body strong, .s-navy .s-body strong { color: #ddd; }
+.s-cream .s-body, .s-white .s-body, .s-warm .s-body { color: var(--text-light); }
+
+.quote-block {
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.06);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--gold-light);
+  line-height: 1.5;
+}
+
+/* FEATURES */
+.feat { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 0.5px solid rgba(0,0,0,0.07); }
+.s-white .feat { border-bottom-color: rgba(0,0,0,0.07); }
+.feat:last-child { border-bottom: none; }
+
+.feat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  color: var(--gold);
+  font-weight: 700;
+  min-width: 30px;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.feat-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+.feat-text { font-size: 12px; color: var(--text-light); line-height: 1.6; }
+
+/* INSIDER */
+.insider {
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.i-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 8px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.i-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.i-text { font-size: 12px; color: #777; line-height: 1.7; }
+
+/* GUARANTEE */
+.guarantee {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.g-icon { font-size: 28px; min-width: 36px; }
+.g-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.g-text { font-size: 12px; color: var(--text-light); line-height: 1.65; }
+
+/* PRICE */
+.price-wrap {
+  background: var(--ink);
+  padding: 36px 20px;
+  text-align: center;
+}
+
+.p-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--white);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.p-sub { font-size: 12px; color: #555; margin-bottom: 24px; }
+
+.price-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 14px;
+  padding: 26px 20px;
+  margin-bottom: 0;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.p-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #555; margin-bottom: 4px; }
+.p-amount { font-family: 'Cormorant Garamond', serif; font-size: 52px; color: var(--gold); line-height: 1; font-weight: 700; margin-bottom: 4px; }
+.p-desc { font-size: 11px; color: #555; margin-bottom: 20px; }
+
+.p-cta {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.p-secure { font-size: 10px; color: #444; margin-bottom: 18px; }
+
+.p-includes { text-align: left; }
+.p-inc-title { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #555; margin-bottom: 10px; text-align: center; }
+
+.p-inc { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; }
+.tick { width: 16px; height: 16px; min-width: 16px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.tick::after { content: '✓'; font-size: 8px; color: var(--ink); font-weight: 700; }
+.p-inc-text { font-size: 12px; color: #aaa; line-height: 1.5; }
+
+/* TESTIMONIALS PLACEHOLDER */
+.t-pending {
+  font-size: 12px;
+  color: #444;
+  text-align: center;
+  padding: 20px;
+  border: 1px dashed #333;
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+/* FAQ */
+.faq { padding: 16px 0; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+.faq:last-child { border-bottom: none; }
+.faq-q { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+.faq-a { font-size: 12px; color: var(--text-light); line-height: 1.7; }
+
+/* FOOTER */
+.footer { background: var(--ink2); padding: 24px 20px; text-align: center; border-top: 1px solid rgba(201,168,76,0.1); }
+.f-brand { font-size: 9px; letter-spacing: 0.2em; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+.f-tag { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: #444; margin-bottom: 6px; }
+.f-links { font-size: 10px; color: #333; }
+
+@media (max-width: 480px) {
+  .h-headline { font-size: 24px; }
+  .hero-grid { grid-template-columns: 1fr 120px; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<div class="sticky-bar">
+  <div class="sticky-brand">The Ummah Brief</div>
+  <a href="order.html" class="sticky-btn">Get It — $39 →</a>
+</div>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  📦 The Rizq Code + The Rizq Insider weekly email — $39 one time, instant download
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="h-kicker">Halal Wealth Strategy</div>
+      <h1 class="h-headline">You pray. You work. You give.<br><em>So why does money still feel like a test you're failing?</em></h1>
+      <div class="social-proof-mini">
+        <div class="sp-stars">★★★★★</div>
+        <div class="sp-text">Loved by <strong>Muslim families</strong> in UK, USA & UAE</div>
+      </div>
+      <p class="h-sub">You're not irresponsible. But somewhere between the duas and the daily grind, something isn't connecting. <strong>The income comes in. The stress doesn't leave.</strong> The Rizq Code is the book that changes that.</p>
+      <a href="order.html" class="h-cta">Get The Rizq Code + Rizq Insider — $39 →</a>
+      <div class="h-cta-sub">🔒 Secure payment · Instant download · No subscription</div>
+    </div>
+    <div>
+      <div class="book-mockup">
+        <img src="rizq_cover.jpeg" alt="The Rizq Code" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="g-line"></div>
+
+<!-- VALUE STACK -->
+<div class="value-stack">
+  <div class="vs-title">What you get for $39</div>
+  <div class="vs-item">
+    <div class="vs-item-left">
+      <div class="vs-item-name">📖 The Rizq Code</div>
+      <div class="vs-item-desc">190-page halal wealth strategy. Instant PDF download.</div>
+    </div>
+    <div class="vs-item-val">$39</div>
+  </div>
+  <div class="vs-item">
+    <div class="vs-item-left">
+      <div class="vs-item-name">✉️ The Rizq Insider</div>
+      <div class="vs-item-desc">Private weekly email for buyers only. Deeper halal wealth strategies every Friday.</div>
+    </div>
+    <div class="vs-item-val free">FREE</div>
+  </div>
+  <div class="vs-item">
+    <div class="vs-item-left">
+      <div class="vs-item-name">⚡ Instant Access</div>
+      <div class="vs-item-desc">Download immediately after payment. Any device, forever.</div>
+    </div>
+    <div class="vs-item-val free">FREE</div>
+  </div>
+  <div class="vs-total">
+    <div>
+      <div class="vs-total-label">Your total today</div>
+      <div style="font-size:11px;color:#999;margin-top:2px;">Real value: <span class="vs-total-val">$78+</span></div>
+    </div>
+    <div class="vs-total-price">$39</div>
+  </div>
+  <a href="order.html" class="vs-cta">Get Everything — <span>$39</span> →</a>
+</div>
+
+<!-- PAIN -->
+<div class="s s-dark">
+  <div class="s-kicker">The truth nobody says out loud</div>
+  <h2 class="s-h2">You already know something isn't adding up.</h2>
+  <p class="s-body">You make halal income. You avoid what Allah prohibited. You give sadaqah. You make shukr. And yet — <strong>the account never quite gets ahead.</strong> The anxiety doesn't lift. Every big expense feels like a setback.</p>
+  <div class="quote-block">"Am I doing something wrong? Is Allah withholding from me?"</div>
+  <p class="s-body">You're not alone. The problem isn't your imaan. <strong>Nobody ever taught you a wealth strategy that speaks your language</strong> — one built on your values, your deen, your understanding of rizq. The Rizq Code is that strategy.</p>
+</div>
+
+<!-- WHAT'S INSIDE -->
+<div class="s s-white">
+  <div class="s-kicker s-kicker-dark">Inside the Rizq Code</div>
+  <h2 class="s-h2">Open it and find:</h2>
+  <div class="feat">
+    <div class="feat-num">01</div>
+    <div><div class="feat-title">The Law of Rizq</div><div class="feat-text">How provision actually flows in Islam. Once you see it you can't unsee it. Most Muslims are unknowingly working against it every single day.</div></div>
+  </div>
+  <div class="feat">
+    <div class="feat-num">02</div>
+    <div><div class="feat-title">10 Halal Income Pathways</div><div class="feat-text">Actual routes to income built on Islamic principles. No compromising your deen. No retrofitted Western advice.</div></div>
+  </div>
+  <div class="feat">
+    <div class="feat-num">03</div>
+    <div><div class="feat-title">The Halal Wealth Mindset</div><div class="feat-text">The fear, guilt, scarcity — none of that came from Allah. This section dismantles it and replaces it with what the Prophet ﷺ modelled.</div></div>
+  </div>
+  <div class="feat">
+    <div class="feat-num">04</div>
+    <div><div class="feat-title">Rebuilding Ummah Economics</div><div class="feat-text">Your wealth isn't just yours. This chapter will change how you see every financial decision for the rest of your life.</div></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="s s-dark">
+  <div class="s-kicker">What readers say</div>
+  <h2 class="s-h2">Real Muslims. Real results.</h2>
+  <div class="t-pending">
+    ⭐ Be among our founding readers.<br><br>
+    Read the Rizq Code and email your experience to salaam@ummahbrief.com — we'd love to hear what shifted for you.
+  </div>
+</div>
+
+<!-- INSIDER -->
+<div class="s s-dark" style="padding-top:0;">
+  <div class="s-kicker">Exclusive bonus</div>
+  <h2 class="s-h2">Buy once. Stay connected for life.</h2>
+  <p class="s-body" style="margin-bottom:14px;">Every buyer gets something no newsletter subscriber gets.</p>
+  <div class="insider">
+    <div class="i-tag">Buyers Only</div>
+    <div class="i-title">The Rizq Insider</div>
+    <p class="i-text">A private weekly email going deeper — practical halal wealth, Islamic financial wisdom, real talk about money. Not The Ummah Brief. This is just for people who invested in the Rizq Code.</p>
+  </div>
+</div>
+
+<!-- GUARANTEE -->
+<div class="s s-warm">
+  <div class="s-kicker s-kicker-dark">Risk-free purchase</div>
+  <h2 class="s-h2">Read it with confidence.</h2>
+  <div class="guarantee">
+    <div class="g-icon">🤝</div>
+    <div>
+      <div class="g-title">Our Sincerity Guarantee</div>
+      <div class="g-text">This book was written to genuinely serve the Muslim community — not to make a quick sale. If you read it and feel it didn't deliver real value, contact us at salaam@ummahbrief.com. We'll make it right.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICE -->
+<div class="price-wrap">
+  <div class="p-h2">One decision. One download.</div>
+  <div class="p-sub">The halal wealth strategy your family has been waiting for.</div>
+  <div class="price-box">
+    <div class="p-label">One-time payment</div>
+    <div class="p-amount">$39</div>
+    <div class="p-desc">No subscription. No upsells. Yours forever.</div>
+    <a href="order.html" class="p-cta">Get The Rizq Code Now →</a>
+    <div class="p-secure">🔒 Secure checkout · Instant download after payment</div>
+    <div class="p-includes">
+      <div class="p-inc-title">Everything included</div>
+      <div class="p-inc"><div class="tick"></div><div class="p-inc-text">The Rizq Code — 190-page halal wealth strategy (PDF)</div></div>
+      <div class="p-inc"><div class="tick"></div><div class="p-inc-text">The Rizq Insider — exclusive weekly email, buyers only</div></div>
+      <div class="p-inc"><div class="tick"></div><div class="p-inc-text">Instant download — any device, forever</div></div>
+      <div class="p-inc"><div class="tick"></div><div class="p-inc-text">Sincerity guarantee — we stand behind this</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="s s-cream">
+  <div class="s-kicker s-kicker-dark">Still on the fence?</div>
+  <h2 class="s-h2">Let's be honest.</h2>
+  <div class="faq">
+    <div class="faq-q">"Is this just Islamic quotes on a self-help book?"</div>
+    <div class="faq-a">No. Built from the ground up on Islamic principles. Starts with Quran and Sunnah — not Western finance with a bismillah added.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">"I don't earn enough for a wealth strategy to matter."</div>
+    <div class="faq-a">That's exactly the thinking this book addresses first. Rizq isn't about how much you earn — it's about understanding how provision works at any income level.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">"What's The Rizq Insider exactly?"</div>
+    <div class="faq-a">A private weekly email exclusively for Rizq Code buyers — going deeper on halal wealth, Islamic financial strategy, and practical steps not in the newsletter.</div>
+  </div>
+  <div class="faq">
+    <div class="faq-q">"What if it doesn't work for me?"</div>
+    <div class="faq-a">If you're a Muslim who earns, spends, and wants it all to make sense through the lens of your faith — this was written specifically for you.</div>
+  </div>
+  <div style="margin-top:24px;">
+    <a href="order.html" class="p-cta" style="background:var(--ink);color:var(--white);display:block;text-align:center;padding:14px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;">Get The Rizq Code — $39 →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="f-brand">THE UMMAH BRIEF</div>
+  <div class="f-tag">One Ummah. One Pulse. One Purpose.</div>
+  <div class="f-links">salaam@ummahbrief.com · @the_ummah_brief · ummahbrief.com</div>
+</div>
+
+</body>
+</html>
