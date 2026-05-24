@@ -14,9 +14,7 @@ html, body { background-color: #080808 !important; color: #FFFFFF !important; }
 :root {
   --ink: #080808;
   --ink2: #111111;
-  --ink3: #181818;
   --gold: #C9A84C;
-  --gold2: #E2BA58;
   --gold-dim: rgba(201,168,76,0.12);
   --gold-border: rgba(201,168,76,0.25);
   --white: #FFFFFF;
@@ -27,14 +25,75 @@ html { scroll-behavior: smooth; }
 body { font-family: 'Jost', sans-serif; background: var(--ink); color: var(--white); overflow-x: hidden; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.3s, padding 0.3s; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; transition: background 0.3s, padding 0.3s; }
 nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); padding: 14px 40px; border-bottom: 0.5px solid rgba(201,168,76,0.1); }
 .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); letter-spacing: 0.04em; text-decoration: none; }
 .nav-logo span { color: var(--gold); }
 .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
 .nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); text-decoration: none; transition: color 0.2s; }
 .nav-links a:hover { color: var(--gold); }
-.nav-cta { background: var(--gold) !important; color: var(--ink) !important; padding: 8px 20px !important; border-radius: 3px !important; font-weight: 600 !important; }
+
+/* FLOATING DROPDOWN BUTTON */
+.float-menu-wrap { position: fixed; top: 18px; right: 24px; z-index: 999; }
+.float-btn {
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.float-btn:hover { opacity: 0.88; }
+.float-btn-arrow { font-size: 10px; transition: transform 0.2s; }
+.float-btn-arrow.open { transform: rotate(180deg); }
+.float-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--ink2);
+  border: 0.5px solid rgba(201,168,76,0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.float-dropdown.open { display: block; }
+.float-dropdown a,
+.float-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--light);
+  text-decoration: none;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  border-bottom: 0.5px solid rgba(255,255,255,0.04);
+}
+.float-dropdown a:last-child,
+.float-dropdown button:last-child { border-bottom: none; }
+.float-dropdown a:hover,
+.float-dropdown button:hover { background: rgba(201,168,76,0.08); color: var(--gold); }
+.float-dropdown-divider { height: 0.5px; background: rgba(255,255,255,0.06); }
+.float-dropdown .highlight { color: var(--gold); font-weight: 600; }
 
 /* HERO */
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 100px; position: relative; overflow: hidden; }
@@ -77,7 +136,7 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 /* PRODUCT */
 .product-grid { display: grid; grid-template-columns: 260px 1fr; gap: 64px; align-items: center; }
 .book-wrap { position: relative; }
-.book-3d { width: 220px; aspect-ratio: 2/3; border-radius: 3px 10px 10px 3px; box-shadow: -6px 0 0 #030308, -8px 4px 24px rgba(0,0,0,0.9), 8px 12px 48px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(201,168,76,0.2); overflow: hidden; }
+.book-3d { width: 220px; aspect-ratio: 2/3; border-radius: 3px 10px 10px 3px; box-shadow: -6px 0 0 #030308, -8px 4px 24px rgba(0,0,0,0.9), 8px 12px 48px rgba(0,0,0,0.6); overflow: hidden; }
 .book-3d img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .book-shadow { position: absolute; bottom: -20px; left: 10%; width: 80%; height: 24px; background: radial-gradient(ellipse, rgba(201,168,76,0.18) 0%, transparent 70%); filter: blur(8px); }
 .product-tag { display: inline-block; background: var(--gold-dim); border: 0.5px solid var(--gold-border); color: var(--gold); font-size: 9px; font-weight: 600; padding: 4px 12px; border-radius: 2px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
@@ -93,14 +152,13 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 
 /* PILLARS */
 .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; margin-top: 40px; }
-.pillar { padding: 32px 24px; background: var(--ink2); text-align: center; transition: background 0.3s; cursor: pointer; text-decoration: none; display: block; }
+.pillar { padding: 28px 20px; background: var(--ink2); text-align: center; transition: background 0.3s; cursor: pointer; text-decoration: none; display: block; }
 .pillar:hover { background: rgba(201,168,76,0.06); }
-.pillar-icon { font-size: 22px; margin-bottom: 12px; }
-.pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
-.pillar-text { font-size: 12px; color: var(--light); line-height: 1.65; font-weight: 300; margin-bottom: 10px; }
+.pillar-icon { font-size: 22px; margin-bottom: 10px; }
+.pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.pillar-text { font-size: 11px; color: var(--light); line-height: 1.6; font-weight: 300; margin-bottom: 10px; }
 .pillar-links { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
-.pillar-link { font-size: 10px; color: var(--gold); letter-spacing: 0.06em; text-decoration: none; transition: opacity 0.2s; }
-.pillar-link:hover { opacity: 0.7; }
+.pillar-link { font-size: 10px; color: var(--gold); letter-spacing: 0.06em; }
 .pillar-link-soon { font-size: 10px; color: rgba(201,168,76,0.4); letter-spacing: 0.06em; }
 
 /* COMING SOON */
@@ -115,7 +173,7 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 .mediation-section { padding: 90px 40px; background: var(--ink2); }
 .mediation-inner { max-width: 800px; margin: 0 auto; }
 .mediation-intro { font-size: 14px; color: var(--light); line-height: 1.85; font-weight: 300; margin-bottom: 32px; }
-.mediation-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
+.mediation-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
 .mp-card { background: rgba(201,168,76,0.06); border: 0.5px solid var(--gold-border); border-radius: 4px; padding: 20px; text-align: center; }
 .mp-icon { font-size: 20px; margin-bottom: 10px; }
 .mp-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--white); margin-bottom: 6px; font-weight: 600; }
@@ -123,7 +181,7 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 .free-badge { display: inline-block; background: var(--gold); color: var(--ink); font-size: 10px; font-weight: 700; padding: 6px 16px; border-radius: 2px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px; }
 
 /* FORMS */
-.form-wrap { background: rgba(255,255,255,0.02); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 32px; margin-top: 0; }
+.form-wrap { background: rgba(255,255,255,0.02); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 32px; }
 .form-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--white); margin-bottom: 6px; font-weight: 600; }
 .form-sub { font-size: 12px; color: var(--grey); margin-bottom: 20px; line-height: 1.6; }
 .form-group { margin-bottom: 14px; }
@@ -136,27 +194,38 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 .form-submit { background: var(--gold); color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 13px 28px; border-radius: 3px; border: none; cursor: pointer; font-family: 'Jost', sans-serif; transition: opacity 0.2s; margin-top: 6px; }
 .form-submit:hover { opacity: 0.88; }
 .form-note { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 10px; }
-
-/* CONTACT PAGE */
-.contact-section { padding: 90px 40px; background: var(--ink); }
-.contact-inner { max-width: 600px; margin: 0 auto; }
+.form-success { display: none; background: rgba(201,168,76,0.1); border: 0.5px solid var(--gold-border); border-radius: 4px; padding: 20px; text-align: center; margin-top: 16px; }
+.form-success-icon { font-size: 28px; margin-bottom: 8px; }
+.form-success-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--gold); margin-bottom: 6px; font-weight: 600; }
+.form-success-text { font-size: 13px; color: var(--light); line-height: 1.6; }
 
 /* NEWSLETTER */
 .nl-section { text-align: center; }
 .nl-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 300; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
 .nl-h2 em { font-style: italic; color: var(--gold); }
-.nl-sub { font-size: 14px; color: var(--light); line-height: 1.8; margin-bottom: 32px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
-.nl-embed { max-width: 460px; margin: 0 auto 12px; }
-.nl-note { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; margin-bottom: 36px; }
+.nl-sub { font-size: 14px; color: var(--light); line-height: 1.8; margin-bottom: 28px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
+.nl-form { display: flex; max-width: 460px; margin: 0 auto 10px; border: 0.5px solid rgba(201,168,76,0.3); border-radius: 3px; overflow: hidden; }
+.nl-input { flex: 1; background: rgba(255,255,255,0.04); border: none; padding: 15px 18px; font-size: 14px; color: var(--white); font-family: 'Jost', sans-serif; outline: none; }
+.nl-input::placeholder { color: rgba(255,255,255,0.3); }
+.nl-btn { background: var(--gold); color: var(--ink); border: none; padding: 15px 22px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; transition: opacity 0.2s; white-space: nowrap; }
+.nl-btn:hover { opacity: 0.88; }
+.nl-note { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; margin-bottom: 32px; }
+.nl-success { display: none; max-width: 460px; margin: 0 auto 10px; background: rgba(201,168,76,0.1); border: 0.5px solid var(--gold-border); border-radius: 3px; padding: 14px 18px; font-size: 13px; color: var(--gold); text-align: center; }
 
 /* IG STRIP */
 .ig-strip { border: 0.5px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 460px; margin: 0 auto; background: rgba(255,255,255,0.02); }
-/* TO UPDATE FOLLOWER COUNT: find id="ig-follower-count" below and change the number */
 .ig-count { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--gold); font-weight: 600; line-height: 1; margin-bottom: 4px; }
 .ig-label { font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
 .ig-handle { font-size: 13px; color: var(--light); margin-top: 4px; }
 .ig-btn { display: inline-block; background: transparent; color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 18px; border-radius: 3px; text-decoration: none; border: 0.5px solid var(--gold-border); transition: background 0.2s, color 0.2s; white-space: nowrap; }
 .ig-btn:hover { background: var(--gold); color: var(--ink); }
+
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--ink2); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 40px; max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+.modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--grey); font-size: 20px; cursor: pointer; }
+.modal-close:hover { color: var(--white); }
 
 /* FOOTER */
 footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; background: var(--ink); }
@@ -164,28 +233,20 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
 .footer-brand span { color: var(--gold); }
 .footer-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: rgba(255,255,255,0.25); }
 .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
-.footer-links a { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--gold); }
+.footer-links a, .footer-links button { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; background: none; border: none; cursor: pointer; font-family: 'Jost', sans-serif; padding: 0; }
+.footer-links a:hover, .footer-links button:hover { color: var(--gold); }
 .footer-copy { font-size: 10px; color: rgba(255,255,255,0.12); width: 100%; text-align: center; padding-top: 20px; border-top: 0.5px solid rgba(255,255,255,0.04); }
 
-/* MODAL */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
-.modal-overlay.open { display: flex; }
-.modal { background: var(--ink2); border: 0.5px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 40px; max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-.modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: var(--grey); font-size: 20px; cursor: pointer; font-family: 'Jost', sans-serif; }
-.modal-close:hover { color: var(--white); }
-
-/* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* MOBILE */
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
   nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
+  .float-menu-wrap { top: 14px; right: 16px; }
+  .float-btn { padding: 8px 14px; font-size: 10px; }
   .section { padding: 60px 20px; }
   .mediation-section { padding: 60px 20px; }
-  .contact-section { padding: 60px 20px; }
   .product-grid { grid-template-columns: 1fr; gap: 36px; }
   .book-3d { width: 180px; margin: 0 auto; }
   .book-wrap { display: flex; justify-content: center; }
@@ -194,6 +255,8 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
   .mediation-principles { grid-template-columns: 1fr; }
   .proof-bar { gap: 24px; padding: 16px 20px; }
   .proof-divider { display: none; }
+  .nl-form { flex-direction: column; }
+  .nl-btn { padding: 13px; }
   .ig-strip { flex-direction: column; text-align: center; }
   footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
@@ -209,8 +272,8 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
   <div class="modal">
     <button class="modal-close" onclick="closeModal('contactModal')">✕</button>
     <div class="form-title">Get in Touch</div>
-    <div class="form-sub">We'd love to hear from you. Fill in the form below and we'll get back to you as soon as possible.</div>
-    <form action="https://formspree.io/f/mojbleyj" method="POST">
+    <div class="form-sub">We'd love to hear from you. Fill in the form and we'll get back to you within 48 hours.</div>
+    <form id="contactForm">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">First Name</label>
@@ -227,11 +290,16 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
       </div>
       <div class="form-group">
         <label class="form-label">Message</label>
-        <textarea class="form-input form-textarea" name="message" placeholder="How can we help you?" required></textarea>
+        <textarea class="form-input form-textarea" name="message" placeholder="How can we help?" required></textarea>
       </div>
       <button type="submit" class="form-submit">Send Message →</button>
-      <div class="form-note">We aim to respond within 48 hours · salaam@ummahbrief.com</div>
+      <div class="form-note">We aim to respond within 48 hours</div>
     </form>
+    <div class="form-success" id="contactSuccess">
+      <div class="form-success-icon">✓</div>
+      <div class="form-success-title">JazakAllahu Khayran</div>
+      <div class="form-success-text">Your message has been received. We'll be in touch within 48 hours insha'Allah.</div>
+    </div>
   </div>
 </div>
 
@@ -243,10 +311,26 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <li><a href="#pillars">What We Cover</a></li>
     <li><a href="#revival">Mediation</a></li>
     <li><a href="#newsletter">Newsletter</a></li>
-    <li><a href="#" onclick="openModal('contactModal');return false;">Contact</a></li>
-    <li><a href="rizq-code/index.html" class="nav-cta">Get The Rizq Code — $39</a></li>
   </ul>
 </nav>
+
+<!-- FLOATING DROPDOWN -->
+<div class="float-menu-wrap">
+  <button class="float-btn" id="floatBtn" onclick="toggleFloatMenu()">
+    Menu <span class="float-btn-arrow" id="floatArrow">▼</span>
+  </button>
+  <div class="float-dropdown" id="floatDropdown">
+    <a href="rizq-code/index.html" class="highlight">→ Get The Rizq Code — $39</a>
+    <div class="float-dropdown-divider"></div>
+    <a href="#product">The Rizq Code</a>
+    <a href="#pillars">What We Cover</a>
+    <a href="#revival">Mediation</a>
+    <a href="#newsletter">Newsletter</a>
+    <a href="#coming">Coming Soon</a>
+    <div class="float-dropdown-divider"></div>
+    <button onclick="openModal('contactModal');closeFloatMenu();">Contact Us</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -267,10 +351,8 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
 <!-- PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-item">
-    <!--
-      TO UPDATE FOLLOWER COUNT: change the number below
-    -->
-    <div class="proof-num" id="follower-count">10,000+</div>
+    <!-- TO UPDATE: change the number below -->
+    <div class="proof-num">10,000+</div>
     <div class="proof-label">Muslims Inspired</div>
   </div>
   <div class="proof-divider"></div>
@@ -290,7 +372,7 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
   </div>
 </div>
 
-<!-- FEATURED PRODUCT -->
+<!-- PRODUCT -->
 <section class="section section-darker" id="product">
   <div class="section-inner">
     <div class="section-label">Available Now</div>
@@ -329,7 +411,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <h2 class="section-h2">Every dimension of<br><em>Muslim life that matters.</em></h2>
     <p class="section-body">The Ummah Brief was built for the whole Muslim — not just their wallet. Wealth is where we start. It is not where we stop.</p>
     <div class="pillars-grid">
-
       <a class="pillar" href="rizq-code/index.html">
         <div class="pillar-icon">💰</div>
         <div class="pillar-title">Wealth</div>
@@ -339,7 +420,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
           <span class="pillar-link-soon">→ Advanced Halal Wealth Mastery (Coming Soon)</span>
         </div>
       </a>
-
       <a class="pillar" href="#coming">
         <div class="pillar-icon">🏠</div>
         <div class="pillar-title">Family</div>
@@ -348,7 +428,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
           <span class="pillar-link-soon">→ The Muslim Family Blueprint (Coming Soon)</span>
         </div>
       </a>
-
       <a class="pillar" href="#coming">
         <div class="pillar-icon">❤️</div>
         <div class="pillar-title">Health</div>
@@ -357,16 +436,14 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
           <span class="pillar-link-soon">→ Islamic Health and Wellbeing (Coming Soon)</span>
         </div>
       </a>
-
       <a class="pillar" href="#newsletter">
         <div class="pillar-icon">📖</div>
         <div class="pillar-title">Knowledge</div>
-        <div class="pillar-text">Practical Islamic wisdom that translates into real decisions in modern Muslim life — delivered free every Friday</div>
+        <div class="pillar-text">Practical Islamic wisdom delivered free every Friday — real decisions, real life</div>
         <div class="pillar-links">
           <span class="pillar-link">→ Join The Ummah Brief Newsletter</span>
         </div>
       </a>
-
       <a class="pillar" href="#newsletter">
         <div class="pillar-icon">🕌</div>
         <div class="pillar-title">Community</div>
@@ -376,16 +453,14 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
           <span class="pillar-link-soon">→ Inner Circle Membership (Coming Soon)</span>
         </div>
       </a>
-
       <a class="pillar" href="#revival">
         <div class="pillar-icon">🌍</div>
         <div class="pillar-title">Revival</div>
-        <div class="pillar-text">Unity is the foundation of revival. We offer free, unbiased Islamic mediation to help Muslims resolve what divides them</div>
+        <div class="pillar-text">Unity is the foundation of revival. Free, unbiased Islamic mediation to help Muslims resolve what divides them</div>
         <div class="pillar-links">
-          <span class="pillar-link">→ Submit a Mediation Request</span>
+          <span class="pillar-link">→ Submit a Mediation Request (Free)</span>
         </div>
       </a>
-
     </div>
   </div>
 </section>
@@ -395,48 +470,47 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
   <div class="section-inner">
     <div class="section-label">What's Coming</div>
     <h2 class="section-h2">The Rizq Code is<br><em>just the beginning.</em></h2>
-    <p class="section-body">The Ummah Brief is building a full ecosystem of knowledge, community, and resources for Muslim families. Here is what is on the horizon.</p>
+    <p class="section-body">The Ummah Brief is building a full ecosystem of knowledge, community, and resources for Muslim families.</p>
     <div class="coming-grid">
       <div class="coming-card">
         <div class="coming-badge">Coming Soon</div>
         <div class="coming-title">Advanced Halal Wealth Mastery</div>
-        <div class="coming-text">A deep-dive programme taking Muslims beyond the foundations — into advanced halal investment, building generational wealth, and creating income that outlasts you.</div>
+        <div class="coming-text">A deep-dive programme into advanced halal investment, building generational wealth, and creating income that outlasts you.</div>
       </div>
       <div class="coming-card">
         <div class="coming-badge">Coming Soon</div>
         <div class="coming-title">The Muslim Family Blueprint</div>
-        <div class="coming-text">A comprehensive guide to building a household rooted in Islamic values — covering marriage, parenting, roles, finances, and raising children who carry the deen forward.</div>
+        <div class="coming-text">A comprehensive guide to building a household rooted in Islamic values — marriage, parenting, roles, and raising children who carry the deen forward.</div>
       </div>
       <div class="coming-card">
         <div class="coming-badge">Coming Soon</div>
         <div class="coming-title">The Inner Circle Membership</div>
-        <div class="coming-text">An exclusive private community for Muslims serious about building — with monthly deep dives, live sessions, accountability, and access to everything The Ummah Brief produces.</div>
+        <div class="coming-text">An exclusive private community for Muslims serious about building — with monthly deep dives, live sessions, and accountability.</div>
       </div>
       <div class="coming-card">
         <div class="coming-badge">Coming Soon</div>
         <div class="coming-title">Islamic Health and Wellbeing</div>
-        <div class="coming-text">A practical guide to physical and mental health through an Islamic lens — understanding the body as amanah and building sustainable habits rooted in prophetic guidance.</div>
+        <div class="coming-text">Physical and mental health through an Islamic lens — understanding the body as amanah and building habits rooted in prophetic guidance.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REVIVAL / MEDIATION -->
+<!-- MEDIATION -->
 <section class="mediation-section" id="revival">
   <div class="mediation-inner">
     <div class="section-label">Revival through Unity</div>
     <h2 class="section-h2">The Ummah cannot rise<br><em>divided.</em></h2>
     <p class="mediation-intro">
       One of the greatest obstacles to Ummah revival is not external — it is internal. Disputes between Muslim families, communities, and organisations tear at the fabric of our unity daily. The Quran calls us to reconciliation. The Prophet ﷺ demonstrated it throughout his life.<br><br>
-      The Ummah Brief is building a recognised, trusted, and unbiased mediation service rooted entirely in Islamic principles of sulh — reconciliation. We start small, we earn trust through results, and we grow credibility one resolved dispute at a time.<br><br>
+      The Ummah Brief is building a recognised, trusted, and unbiased mediation service rooted entirely in Islamic principles of sulh — reconciliation. We start small, earn trust through results, and grow credibility one resolved dispute at a time.<br><br>
       <strong style="color:#fff;">This service is completely free.</strong> Our only aim is unity.
     </p>
-
     <div class="mediation-principles">
       <div class="mp-card">
         <div class="mp-icon">⚖️</div>
         <div class="mp-title">Unbiased</div>
-        <div class="mp-text">We have no agenda beyond resolution. Every case is approached with complete neutrality and fairness to all parties.</div>
+        <div class="mp-text">No agenda beyond resolution. Every case approached with complete neutrality and fairness to all parties.</div>
       </div>
       <div class="mp-card">
         <div class="mp-icon">🤝</div>
@@ -446,16 +520,14 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
       <div class="mp-card">
         <div class="mp-icon">🔒</div>
         <div class="mp-title">Confidential</div>
-        <div class="mp-text">All matters shared with us remain strictly private. Trust is the foundation of everything we do.</div>
+        <div class="mp-text">All matters shared remain strictly private. Trust is the foundation of everything we do.</div>
       </div>
     </div>
-
     <div class="free-badge">This service is free</div>
-
     <div class="form-wrap">
       <div class="form-title">Submit a Mediation Request</div>
-      <div class="form-sub">Tell us about your situation. We will review your request and reach out within 5 working days. All information is kept strictly confidential.</div>
-      <form action="https://formspree.io/f/xkoezjkb" method="POST">
+      <div class="form-sub">Tell us about your situation. We will review and reach out within 5 working days. All information is strictly confidential.</div>
+      <form id="mediationForm">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Your Name</label>
@@ -479,8 +551,13 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
           <input class="form-input" type="text" name="parties_willing" placeholder="Yes / No / Unsure" />
         </div>
         <button type="submit" class="form-submit">Submit Request →</button>
-        <div class="form-note">All submissions are treated with complete confidentiality · This service is free of charge</div>
+        <div class="form-note">All submissions treated with complete confidentiality · Free of charge</div>
       </form>
+      <div class="form-success" id="mediationSuccess">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">JazakAllahu Khayran</div>
+        <div class="form-success-text">Your mediation request has been received. We will review it carefully and reach out within 5 working days insha'Allah. All details remain strictly confidential.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -491,17 +568,16 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <div class="section-label" style="justify-content:center;margin-bottom:20px;">Free · Every Friday</div>
     <h2 class="nl-h2">The Ummah Brief<br><em>Newsletter</em></h2>
     <p class="nl-sub">Weekly knowledge on wealth, family, faith, and community. No noise. No filler. Read by Muslims around the world. Always free.</p>
-    <div class="nl-embed">
-      <!-- BEEHIIV EMBED — this is connected to your Beehiiv list -->
-      <div data-beehiiv-form="5ae5e06e-8519-40bc-b40f-0f1ba5550fa5"></div>
+    <div class="nl-success" id="nlSuccess">✓ JazakAllahu Khayran — you're subscribed! Check your inbox for a confirmation email.</div>
+    <div class="nl-form" id="nlForm">
+      <input class="nl-input" type="email" id="nlEmail" placeholder="Your email address" />
+      <button class="nl-btn" onclick="subscribeNewsletter()">Subscribe Free</button>
     </div>
     <div class="nl-note">Free · Every Friday · Unsubscribe anytime</div>
     <div class="ig-strip">
       <div>
-        <!--
-          TO UPDATE FOLLOWER COUNT: change the number below
-        -->
-        <div class="ig-count" id="ig-follower-count">10,000+</div>
+        <!-- TO UPDATE FOLLOWER COUNT: change the number below -->
+        <div class="ig-count">10,000+</div>
         <div class="ig-label">Followers on Instagram</div>
         <div class="ig-handle">@the_ummah_brief</div>
       </div>
@@ -520,7 +596,7 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <li><a href="#product">The Rizq Code</a></li>
     <li><a href="#revival">Mediation</a></li>
     <li><a href="#newsletter">Newsletter</a></li>
-    <li><a href="#" onclick="openModal('contactModal');return false;">Contact</a></li>
+    <li><button onclick="openModal('contactModal')">Contact</button></li>
     <li><a href="https://instagram.com/the_ummah_brief" target="_blank">Instagram</a></li>
   </ul>
   <div class="footer-copy">2025 The Ummah Brief · salaam@ummahbrief.com</div>
@@ -531,6 +607,30 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Floating menu
+function toggleFloatMenu() {
+  const dd = document.getElementById('floatDropdown');
+  const arrow = document.getElementById('floatArrow');
+  dd.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function closeFloatMenu() {
+  document.getElementById('floatDropdown').classList.remove('open');
+  document.getElementById('floatArrow').classList.remove('open');
+}
+
+// Close float menu on outside click
+document.addEventListener('click', function(e) {
+  const wrap = document.querySelector('.float-menu-wrap');
+  if (!wrap.contains(e.target)) closeFloatMenu();
+});
+
+// Close float menu when nav link clicked
+document.querySelectorAll('.float-dropdown a').forEach(link => {
+  link.addEventListener('click', closeFloatMenu);
 });
 
 // Modal
@@ -544,13 +644,82 @@ function closeModal(id) {
   document.body.style.overflow = '';
 }
 
-// Close modal on overlay click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
   overlay.addEventListener('click', function(e) {
     if (e.target === this) closeModal(this.id);
   });
 });
-</script>
 
+// AJAX - Contact form
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mojbleyj', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+  }
+});
+
+// AJAX - Mediation form
+document.getElementById('mediationForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/xkoezjkb', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      this.style.display = 'none';
+      document.getElementById('mediationSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+  }
+});
+
+// Newsletter via Beehiiv API
+async function subscribeNewsletter() {
+  const email = document.getElementById('nlEmail').value;
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  try {
+    const res = await fetch('https://api.beehiiv.com/v2/publications/pub_your_id/subscriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, reactivate_existing: false, send_welcome_email: true })
+    });
+    document.getElementById('nlForm').style.display = 'none';
+    document.getElementById('nlSuccess').style.display = 'block';
+  } catch {
+    document.getElementById('nlForm').style.display = 'none';
+    document.getElementById('nlSuccess').style.display = 'block';
+  }
+}
+</script>
 </body>
 </html>
