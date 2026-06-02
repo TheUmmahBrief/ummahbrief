@@ -571,21 +571,36 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <p class="nl-sub">Weekly knowledge on wealth, family, faith, and community. No noise. No filler. Read by Muslims around the world. Always free.</p>
 
     <!-- NEWSLETTER SIGNUP — links to Beehiiv subscribe page -->
-    <div class="nl-form" id="nlForm">
-      <input class="nl-input" type="email" id="nlEmail" placeholder="Your email address" />
-      <button class="nl-btn" onclick="goSubscribe()">Subscribe Free</button>
-    </div>
+    <form class="nl-form" id="nlForm" action="https://formspree.io/f/xnjyanyb" method="POST">
+      <input class="nl-input" type="email" name="email" placeholder="Your email address" required />
+      <button class="nl-btn" type="submit">Subscribe Free</button>
+    </form>
+    <div class="nl-success" id="nlSuccess" style="display:none;">✓ JazakAllahu Khayran — you're on the list! We'll see you every Friday insha'Allah.</div>
     <script>
-    function goSubscribe() {
-      var email = document.getElementById('nlEmail').value;
-      if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-      var base = 'https://the-ummah-brief.beehiiv.com/subscribe';
-      window.open(base + '?email=' + encodeURIComponent(email), '_blank');
-      document.getElementById('nlForm').style.display = 'none';
-      document.getElementById('nlSuccess').style.display = 'block';
-    }
+    document.getElementById('nlForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = this.querySelector('.nl-btn');
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
+      try {
+        var res = await fetch(this.action, {
+          method: 'POST',
+          body: new FormData(this),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          this.style.display = 'none';
+          document.getElementById('nlSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    });
     </script>
-    <div class="nl-success" id="nlSuccess" style="display:none;">✓ JazakAllahu Khayran — check the new tab to confirm your subscription!</div>
 
     <div class="nl-note">Free · Every Friday · Unsubscribe anytime</div>
     <div class="ig-strip">
