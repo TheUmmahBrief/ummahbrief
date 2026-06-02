@@ -204,13 +204,11 @@ nav.scrolled { background: rgba(8,8,8,0.96); backdrop-filter: blur(16px); paddin
 .nl-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 300; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
 .nl-h2 em { font-style: italic; color: var(--gold); }
 .nl-sub { font-size: 14px; color: var(--light); line-height: 1.8; margin-bottom: 28px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
-.nl-form { display: flex; max-width: 460px; margin: 0 auto 10px; border: 0.5px solid rgba(201,168,76,0.3); border-radius: 3px; overflow: hidden; }
-.nl-input { flex: 1; background: rgba(255,255,255,0.04); border: none; padding: 15px 18px; font-size: 14px; color: var(--white); font-family: 'Jost', sans-serif; outline: none; }
-.nl-input::placeholder { color: rgba(255,255,255,0.3); }
-.nl-btn { background: var(--gold); color: var(--ink); border: none; padding: 15px 22px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; transition: opacity 0.2s; white-space: nowrap; }
-.nl-btn:hover { opacity: 0.88; }
 .nl-note { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em; margin-bottom: 32px; }
-.nl-success { display: none; max-width: 460px; margin: 0 auto 10px; background: rgba(201,168,76,0.1); border: 0.5px solid var(--gold-border); border-radius: 3px; padding: 14px 18px; font-size: 13px; color: var(--gold); text-align: center; }
+
+/* Beehiiv embed overrides — make it match the site */
+.beehiiv-embed-wrap { max-width: 460px; margin: 0 auto 10px; }
+.beehiiv-embed-wrap iframe { border-radius: 3px; }
 
 /* IG STRIP */
 .ig-strip { border: 0.5px solid rgba(255,255,255,0.07); border-radius: 4px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 460px; margin: 0 auto; background: rgba(255,255,255,0.02); }
@@ -255,8 +253,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
   .mediation-principles { grid-template-columns: 1fr; }
   .proof-bar { gap: 24px; padding: 16px 20px; }
   .proof-divider { display: none; }
-  .nl-form { flex-direction: column; }
-  .nl-btn { padding: 13px; }
   .ig-strip { flex-direction: column; text-align: center; }
   footer { padding: 28px 20px; flex-direction: column; text-align: center; }
   .footer-links { justify-content: center; }
@@ -351,7 +347,6 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
 <!-- PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-item">
-    <!-- TO UPDATE: change the number below -->
     <div class="proof-num">10,000+</div>
     <div class="proof-label">Muslims Inspired</div>
   </div>
@@ -568,15 +563,15 @@ footer { border-top: 0.5px solid rgba(255,255,255,0.06); padding: 40px; display:
     <div class="section-label" style="justify-content:center;margin-bottom:20px;">Free · Every Friday</div>
     <h2 class="nl-h2">The Ummah Brief<br><em>Newsletter</em></h2>
     <p class="nl-sub">Weekly knowledge on wealth, family, faith, and community. No noise. No filler. Read by Muslims around the world. Always free.</p>
-    <div class="nl-success" id="nlSuccess">✓ JazakAllahu Khayran — you're subscribed! Check your inbox for a confirmation email.</div>
-    <div class="nl-form" id="nlForm">
-      <input class="nl-input" type="email" id="nlEmail" placeholder="Your email address" />
-      <button class="nl-btn" onclick="subscribeNewsletter()">Subscribe Free</button>
+
+    <!-- BEEHIIV EMBED FORM — replaces broken custom form -->
+    <div class="beehiiv-embed-wrap">
+      <div data-beehiiv-form="5ae5e06e-8519-40bc-b40f-0f1ba5550fa5"></div>
     </div>
+
     <div class="nl-note">Free · Every Friday · Unsubscribe anytime</div>
     <div class="ig-strip">
       <div>
-        <!-- TO UPDATE FOLLOWER COUNT: change the number below -->
         <div class="ig-count">10,000+</div>
         <div class="ig-label">Followers on Instagram</div>
         <div class="ig-handle">@the_ummah_brief</div>
@@ -622,13 +617,11 @@ function closeFloatMenu() {
   document.getElementById('floatArrow').classList.remove('open');
 }
 
-// Close float menu on outside click
 document.addEventListener('click', function(e) {
   const wrap = document.querySelector('.float-menu-wrap');
   if (!wrap.contains(e.target)) closeFloatMenu();
 });
 
-// Close float menu when nav link clicked
 document.querySelectorAll('.float-dropdown a').forEach(link => {
   link.addEventListener('click', closeFloatMenu);
 });
@@ -699,27 +692,6 @@ document.getElementById('mediationForm').addEventListener('submit', async functi
     btn.disabled = false;
   }
 });
-
-// Newsletter via Beehiiv API
-async function subscribeNewsletter() {
-  const email = document.getElementById('nlEmail').value;
-  if (!email || !email.includes('@')) {
-    alert('Please enter a valid email address.');
-    return;
-  }
-  try {
-    const res = await fetch('https://api.beehiiv.com/v2/publications/pub_your_id/subscriptions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, reactivate_existing: false, send_welcome_email: true })
-    });
-    document.getElementById('nlForm').style.display = 'none';
-    document.getElementById('nlSuccess').style.display = 'block';
-  } catch {
-    document.getElementById('nlForm').style.display = 'none';
-    document.getElementById('nlSuccess').style.display = 'block';
-  }
-}
 </script>
 </body>
 </html>
