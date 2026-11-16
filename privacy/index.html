@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy notice | The Ummah Brief</title>
+<meta name="description" content="Privacy notice for The Ummah Brief.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0F1B3D">
+<meta property="og:title" content="Privacy notice | The Ummah Brief">
+<meta property="og:description" content="Privacy notice for The Ummah Brief.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ummahbrief.com/privacy/">
+<meta property="og:image" content="https://ummahbrief.com/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Bricolage Grotesque'; src: url('../fonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('../fonts/newsreader.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0F1B3D; --deep: #0A1330; --chalk: #F3F5F8; --white: #FFFFFF;
+  --ink: #0E1630; --slate: #4A5672; --rule: rgba(14,22,48,0.16);
+  --action: #F26B21; --action-hi: #FF8440; --mark: #FFE066;
+  --on-navy: #D4DBEC; --on-navy-dim: #9BA7C4;
+  --display: 'Bricolage Grotesque', 'Arial Narrow', Arial, sans-serif;
+  --text: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--text); font-size: 19px; line-height: 1.6; background: var(--chalk); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; }
+h2 { font-size: clamp(32px, 6.4vw, 56px); margin-bottom: 18px; }
+h3 { font-size: 22px; letter-spacing: -0.015em; line-height: 1.2; }
+p { max-width: 36em; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+.ui { font-family: var(--display); }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; border-radius: 4px; }
+section { padding: 76px 0; }
+.navy { background: var(--navy); color: var(--white); }
+.navy p { color: var(--on-navy); }
+.white { background: var(--white); }
+.lede { font-size: clamp(20px, 2.6vw, 23px); line-height: 1.5; color: var(--slate); }
+.navy .lede { color: var(--on-navy); }
+.small { font-family: var(--display); font-size: 14.5px; font-weight: 500; color: var(--slate); line-height: 1.5; }
+.navy .small { color: var(--on-navy-dim); }
+
+/* buttons: orange is used for the main action and nothing else */
+.btn { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: -0.005em; text-decoration: none; text-align: center; cursor: pointer; border: 2px solid transparent; border-radius: 12px; padding: 15px 26px; transition: background .15s, transform .15s, border-color .15s; }
+.btn-act { background: var(--action); color: var(--ink); }
+.btn-act:hover { background: var(--action-hi); transform: translateY(-2px); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.navy .btn-line { color: var(--white); border-color: rgba(255,255,255,0.7); }
+.navy .btn-line:hover { background: var(--white); color: var(--navy); }
+.btn-sm { font-size: 15px; padding: 9px 16px; border-radius: 10px; }
+.btn-block { display: block; width: 100%; }
+.link { font-family: var(--display); font-weight: 600; font-size: 16px; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--white); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 62px; }
+.wordmark { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.03em; text-decoration: none; white-space: nowrap; }
+.nav .btn { white-space: nowrap; }
+@media (max-width: 400px) { .wordmark { font-size: 18px; } .nav .btn-sm { padding: 9px 12px; } .menu summary { padding: 9px 11px; } }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a.t { font-family: var(--display); font-weight: 600; font-size: 15.5px; text-decoration: none; color: var(--on-navy); }
+.nav-links a.t:hover { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.menu { display: none; position: relative; }
+.menu summary { list-style: none; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 15px; padding: 9px 14px; border: 2px solid rgba(255,255,255,0.45); border-radius: 10px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu[open] summary { background: var(--white); color: var(--navy); border-color: var(--white); }
+.menu-list { position: absolute; right: 0; top: calc(100% + 10px); width: min(78vw, 290px); background: var(--white); color: var(--ink); border-radius: 14px; padding: 8px; box-shadow: 0 24px 60px rgba(4,9,26,0.45); }
+.menu-list a { display: block; font-family: var(--display); font-weight: 700; font-size: 18px; text-decoration: none; padding: 13px 14px; border-radius: 9px; }
+.menu-list a:hover, .menu-list a:focus-visible { background: var(--chalk); }
+@media (max-width: 820px) { .nav-links a.t { display: none; } .menu { display: block; } }
+
+/* forms */
+.row-form { display: flex; gap: 10px; max-width: 540px; }
+.row-form input[type=email] { flex: 1; min-width: 0; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; }
+.navy .row-form input[type=email] { border-color: var(--white); }
+.row-form input:focus { outline: 3px solid var(--action); outline-offset: 2px; }
+.ok { display: none; max-width: 540px; font-family: var(--display); font-weight: 600; font-size: 17px; background: var(--mark); color: var(--ink); border-radius: 12px; padding: 16px 18px; }
+@media (max-width: 560px) { .row-form { flex-direction: column; } }
+
+/* sleeves: the square covers of the Briefs */
+.sleeve { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; border-radius: 6px; padding: 16px; text-decoration: none; background: var(--c); color: var(--t); box-shadow: 0 14px 30px rgba(4,9,26,0.28); }
+.sleeve .no { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; opacity: 0.92; display: flex; justify-content: space-between; align-items: center; }
+.sleeve .ti { font-family: var(--display); font-weight: 800; font-size: clamp(21px, 2.3vw, 27px); line-height: 0.98; letter-spacing: -0.035em; }
+.sleeve .play { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; position: relative; }
+.sleeve .soon { font-size: 12px; font-weight: 700; border: 1.5px solid currentColor; border-radius: 40px; padding: 1px 9px; }
+.sleeve .play::after { content: ''; position: absolute; left: 9px; top: 6px; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+/* highlighter: the yellow marker draws across the words when they scroll into view */
+mark.hl { background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 0 / 100% 100%; }
+.js mark.hl { background-size: 0% 100%; transition: background-size .9s cubic-bezier(.2,.7,.2,1) .2s; }
+.js mark.hl.on { background-size: 100% 100%; }
+
+/* footer */
+footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104px; }
+.foot { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.foot .wordmark { color: var(--white); font-size: 24px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 10px 24px; max-width: 560px; }
+.foot-links a { font-family: var(--display); font-weight: 600; font-size: 15.5px; color: var(--on-navy); text-decoration: none; }
+.foot-links a:hover { color: var(--white); text-decoration: underline; }
+.legal { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--display); font-size: 14px; line-height: 1.6; }
+.legal p { max-width: none; }
+
+/* sticky phone button */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--deep); padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); transform: translateY(110%); transition: transform .25s ease; }
+.sticky.show { transform: translateY(0); }
+@media (min-width: 821px) { .sticky { display: none; } footer { padding-bottom: 46px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .sticky, .sleeve { transition: none !important; animation: none !important; } .js mark.hl { transition: none; background-size: 100% 100%; } }
+
+main { padding: 54px 0 80px; }
+main .wrap { max-width: 760px; }
+main h1 { font-size: clamp(40px, 9vw, 72px); letter-spacing: -0.045em; line-height: 0.96; margin-bottom: 10px; }
+main h2 { font-size: 26px; letter-spacing: -0.025em; line-height: 1.15; margin: 38px 0 8px; }
+main p, main li { margin-bottom: 12px; }
+main ul { padding-left: 22px; }
+main .small { margin-bottom: 30px; }
+footer { padding-bottom: 46px; }
+</style>
+</head>
+<body>
+
+<!-- DRAFT written November 2026. Read it, correct anything that is not true of how you operate, and have it checked before relying on it. -->
+<nav class="nav"><div class="wrap nav-in">
+  <a class="wordmark" href="../">The Ummah Brief</a>
+  <div class="nav-links"><a class="t" href="../#briefs">The Briefs</a><a class="t" href="../rizq-code/">The Rizq Code</a><a class="t" href="../mediation/">Mediation</a><a class="t" href="../#newsletter">Newsletter</a></div>
+  <div class="nav-right">
+    
+    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="../#briefs">The Briefs</a><a href="../rizq-code/">The Rizq Code</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a></div></details>
+  </div>
+</div></nav>
+<main><div class="wrap"><h1>Privacy notice</h1><p class="small">Last updated 15 November 2026</p>
+<p>The Ummah Brief respects your privacy. This notice explains what we collect, why, and the choices you have.</p>
+<h2>Who we are</h2>
+<p>The Ummah Brief publishes educational content and digital products at ummahbrief.com. You can reach us at <a href="mailto:salaam@ummahbrief.com">salaam@ummahbrief.com</a>.</p>
+<h2>What we collect</h2>
+<ul>
+<li><strong>Newsletter, free guide and waiting lists:</strong> your email address, and your first name if you give it.</li>
+<li><strong>Purchases:</strong> your name, email address and order details. Payment is handled by PayPal. We never see or store your card details.</li>
+<li><strong>Mediation requests:</strong> your name, email address and what you choose to tell us about the dispute.</li>
+<li><strong>Messages:</strong> whatever you send us by email.</li>
+</ul>
+<h2>How we use it</h2>
+<ul>
+<li>To send what you asked for: the guide, the newsletter, your purchase.</li>
+<li>To reply to your mediation request or message.</li>
+<li>To tell you about our own products. Every email has an unsubscribe link.</li>
+</ul>
+<p>We do not sell your information, and we do not share it with other organisations for their marketing.</p>
+<h2>Mediation requests</h2>
+<p>What you share in a mediation request is treated as confidential. It is read only for the purpose of responding to you, it is never used for marketing, and it is never published.</p>
+<h2>Services we use</h2>
+<p>We use trusted providers to run the site and deliver email, and they process your information on our behalf: Formspree (forms), Beehiiv and Systeme.io (email and checkout), PayPal (payments), and GitHub Pages and Netlify (hosting). Some of them store data outside your country.</p>
+<h2>How long we keep it</h2>
+<p>We keep your email address until you unsubscribe or ask us to delete it. We keep purchase records for as long as tax law requires. We delete mediation requests once the matter is closed, unless you ask us to keep them.</p>
+<h2>Your rights</h2>
+<p>You can ask to see, correct or delete the information we hold about you, and you can unsubscribe at any time. Email <a href="mailto:salaam@ummahbrief.com">salaam@ummahbrief.com</a> and we will respond within 30 days. Depending on where you live, you also have the right to complain to your data protection regulator.</p>
+<h2>Changes</h2>
+<p>If this notice changes, the new version will be posted here with a new date.</p>
+</div></main>
+<footer><div class="wrap">
+  <div class="foot">
+    <a class="wordmark" href="../">The Ummah Brief</a>
+    <div class="foot-links">
+      <a href="../#briefs">The Briefs</a><a href="../rizq-code/">The Rizq Code</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms and refunds</a>
+    </div>
+  </div>
+  <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
+</div></footer>
+<script>
+// Sends a form without leaving the page, then shows its confirmation message.
+document.querySelectorAll('form[data-ok]').forEach(function (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]'); var label = btn.textContent;
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (res.ok) { form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return; }
+    } catch (err) {}
+    btn.textContent = 'That did not send. Try again'; btn.disabled = false;
+    setTimeout(function () { btn.textContent = label; }, 4000);
+  });
+});
+// Highlighter: draw the yellow marker when the words come into view.
+(function () {
+  var marks = document.querySelectorAll('mark.hl');
+  if (!marks.length || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, { threshold: 0.9, rootMargin: '0px 0px -12% 0px' });
+  marks.forEach(function (m) { io.observe(m); });
+})();
+// Close the phone menu after a link is tapped.
+document.querySelectorAll('.menu-list a').forEach(function (a) { a.addEventListener('click', function () { a.closest('details').removeAttribute('open'); }); });
+</script>
+</body>
+</html>

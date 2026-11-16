@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Islamic mediation | The Ummah Brief</title>
+<meta name="description" content="If a dispute is dividing your family, your business or your community, The Ummah Brief offers free, confidential Islamic mediation.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0F1B3D">
+<meta property="og:title" content="Free Islamic mediation | The Ummah Brief">
+<meta property="og:description" content="If a dispute is dividing your family, your business or your community, The Ummah Brief offers free, confidential Islamic mediation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ummahbrief.com/mediation/">
+<meta property="og:image" content="https://ummahbrief.com/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Bricolage Grotesque'; src: url('../fonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('../fonts/newsreader.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0F1B3D; --deep: #0A1330; --chalk: #F3F5F8; --white: #FFFFFF;
+  --ink: #0E1630; --slate: #4A5672; --rule: rgba(14,22,48,0.16);
+  --action: #F26B21; --action-hi: #FF8440; --mark: #FFE066;
+  --on-navy: #D4DBEC; --on-navy-dim: #9BA7C4;
+  --display: 'Bricolage Grotesque', 'Arial Narrow', Arial, sans-serif;
+  --text: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--text); font-size: 19px; line-height: 1.6; background: var(--chalk); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; }
+h2 { font-size: clamp(32px, 6.4vw, 56px); margin-bottom: 18px; }
+h3 { font-size: 22px; letter-spacing: -0.015em; line-height: 1.2; }
+p { max-width: 36em; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+.ui { font-family: var(--display); }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; border-radius: 4px; }
+section { padding: 76px 0; }
+.navy { background: var(--navy); color: var(--white); }
+.navy p { color: var(--on-navy); }
+.white { background: var(--white); }
+.lede { font-size: clamp(20px, 2.6vw, 23px); line-height: 1.5; color: var(--slate); }
+.navy .lede { color: var(--on-navy); }
+.small { font-family: var(--display); font-size: 14.5px; font-weight: 500; color: var(--slate); line-height: 1.5; }
+.navy .small { color: var(--on-navy-dim); }
+
+/* buttons: orange is used for the main action and nothing else */
+.btn { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: -0.005em; text-decoration: none; text-align: center; cursor: pointer; border: 2px solid transparent; border-radius: 12px; padding: 15px 26px; transition: background .15s, transform .15s, border-color .15s; }
+.btn-act { background: var(--action); color: var(--ink); }
+.btn-act:hover { background: var(--action-hi); transform: translateY(-2px); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.navy .btn-line { color: var(--white); border-color: rgba(255,255,255,0.7); }
+.navy .btn-line:hover { background: var(--white); color: var(--navy); }
+.btn-sm { font-size: 15px; padding: 9px 16px; border-radius: 10px; }
+.btn-block { display: block; width: 100%; }
+.link { font-family: var(--display); font-weight: 600; font-size: 16px; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--white); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 62px; }
+.wordmark { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.03em; text-decoration: none; white-space: nowrap; }
+.nav .btn { white-space: nowrap; }
+@media (max-width: 400px) { .wordmark { font-size: 18px; } .nav .btn-sm { padding: 9px 12px; } .menu summary { padding: 9px 11px; } }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a.t { font-family: var(--display); font-weight: 600; font-size: 15.5px; text-decoration: none; color: var(--on-navy); }
+.nav-links a.t:hover { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.menu { display: none; position: relative; }
+.menu summary { list-style: none; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 15px; padding: 9px 14px; border: 2px solid rgba(255,255,255,0.45); border-radius: 10px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu[open] summary { background: var(--white); color: var(--navy); border-color: var(--white); }
+.menu-list { position: absolute; right: 0; top: calc(100% + 10px); width: min(78vw, 290px); background: var(--white); color: var(--ink); border-radius: 14px; padding: 8px; box-shadow: 0 24px 60px rgba(4,9,26,0.45); }
+.menu-list a { display: block; font-family: var(--display); font-weight: 700; font-size: 18px; text-decoration: none; padding: 13px 14px; border-radius: 9px; }
+.menu-list a:hover, .menu-list a:focus-visible { background: var(--chalk); }
+@media (max-width: 820px) { .nav-links a.t { display: none; } .menu { display: block; } }
+
+/* forms */
+.row-form { display: flex; gap: 10px; max-width: 540px; }
+.row-form input[type=email] { flex: 1; min-width: 0; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; }
+.navy .row-form input[type=email] { border-color: var(--white); }
+.row-form input:focus { outline: 3px solid var(--action); outline-offset: 2px; }
+.ok { display: none; max-width: 540px; font-family: var(--display); font-weight: 600; font-size: 17px; background: var(--mark); color: var(--ink); border-radius: 12px; padding: 16px 18px; }
+@media (max-width: 560px) { .row-form { flex-direction: column; } }
+
+/* sleeves: the square covers of the Briefs */
+.sleeve { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; border-radius: 6px; padding: 16px; text-decoration: none; background: var(--c); color: var(--t); box-shadow: 0 14px 30px rgba(4,9,26,0.28); }
+.sleeve .no { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; opacity: 0.92; display: flex; justify-content: space-between; align-items: center; }
+.sleeve .ti { font-family: var(--display); font-weight: 800; font-size: clamp(21px, 2.3vw, 27px); line-height: 0.98; letter-spacing: -0.035em; }
+.sleeve .play { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; position: relative; }
+.sleeve .soon { font-size: 12px; font-weight: 700; border: 1.5px solid currentColor; border-radius: 40px; padding: 1px 9px; }
+.sleeve .play::after { content: ''; position: absolute; left: 9px; top: 6px; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+/* highlighter: the yellow marker draws across the words when they scroll into view */
+mark.hl { background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 0 / 100% 100%; }
+.js mark.hl { background-size: 0% 100%; transition: background-size .9s cubic-bezier(.2,.7,.2,1) .2s; }
+.js mark.hl.on { background-size: 100% 100%; }
+
+/* footer */
+footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104px; }
+.foot { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.foot .wordmark { color: var(--white); font-size: 24px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 10px 24px; max-width: 560px; }
+.foot-links a { font-family: var(--display); font-weight: 600; font-size: 15.5px; color: var(--on-navy); text-decoration: none; }
+.foot-links a:hover { color: var(--white); text-decoration: underline; }
+.legal { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--display); font-size: 14px; line-height: 1.6; }
+.legal p { max-width: none; }
+
+/* sticky phone button */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--deep); padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); transform: translateY(110%); transition: transform .25s ease; }
+.sticky.show { transform: translateY(0); }
+@media (min-width: 821px) { .sticky { display: none; } footer { padding-bottom: 46px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .sticky, .sleeve { transition: none !important; animation: none !important; } .js mark.hl { transition: none; background-size: 100% 100%; } }
+
+.hero { padding: 54px 0 70px; }
+.hero h1 { font-size: clamp(44px, 10.5vw, 104px); line-height: 0.94; letter-spacing: -0.045em; max-width: 10em; }
+.hero .lede { margin: 26px 0 30px; max-width: 32em; }
+.principles { border-top: 3px solid var(--ink); margin-top: 34px; }
+.principles li { list-style: none; display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.principles b { font-family: var(--display); font-weight: 800; font-size: clamp(26px, 4.2vw, 36px); letter-spacing: -0.035em; line-height: 1; }
+.principles span { color: var(--slate); }
+.steps { list-style: none; counter-reset: s; margin-top: 30px; max-width: 760px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 62px 1fr; gap: 14px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.steps li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: -0.04em; line-height: 0.9; }
+.steps b { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -0.02em; display: block; margin-bottom: 2px; }
+.steps span { color: var(--slate); }
+.form-card { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 30px; max-width: 760px; margin-top: 30px; }
+.field { margin-bottom: 18px; }
+.field label { display: block; font-family: var(--display); font-weight: 700; font-size: 16px; margin-bottom: 7px; }
+.field input, .field textarea, .field select { width: 100%; min-width: 0; max-width: 100%; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--chalk); border: 2px solid var(--ink); border-radius: 12px; padding: 13px 15px; }
+.field textarea { min-height: 140px; resize: vertical; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: 3px solid var(--action); outline-offset: 2px; }
+.two { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+.form-card form { min-width: 0; }
+.note { border-left: 4px solid var(--ink); padding: 4px 0 4px 18px; margin-top: 30px; color: var(--slate); font-size: 17.5px; max-width: 760px; }
+@media (max-width: 760px) { .principles li { grid-template-columns: 1fr; gap: 8px; } .two { grid-template-columns: 1fr; gap: 0; } .form-card { padding: 22px 18px; } }
+</style>
+</head>
+<body>
+
+<!-- Check the three steps under 'How it works' against how you actually run mediation, and correct them if needed. -->
+<nav class="nav"><div class="wrap nav-in">
+  <a class="wordmark" href="../">The Ummah Brief</a>
+  <div class="nav-links"><a class="t" href="../#briefs">The Briefs</a><a class="t" href="../rizq-code/">The Rizq Code</a><a class="t" href="../mediation/">Mediation</a><a class="t" href="../#newsletter">Newsletter</a></div>
+  <div class="nav-right">
+    <a class="btn btn-act btn-sm" href="#request">Request</a>
+    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="../#briefs">The Briefs</a><a href="../rizq-code/">The Rizq Code</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a></div></details>
+  </div>
+</div></nav>
+
+<header class="hero navy" id="top">
+  <div class="wrap">
+    <h1>The Ummah cannot rise divided.</h1>
+    <p class="lede">If a dispute is dividing your family, your business or your community, we offer Islamic mediation to help resolve it. It is free, and it always will be.</p>
+    <a class="btn btn-act" href="#request">Request mediation</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What you can expect from us.</h2>
+    <ul class="principles">
+      <li><b>Unbiased</b><span>We take no side. We help both parties reach a resolution they both accept.</span></li>
+      <li><b>Islamic</b><span>Guided by the principles of sulh, reconciliation, in Quran and Sunnah.</span></li>
+      <li><b>Confidential</b><span>What you share is read only to respond to you. It is never published and never used for marketing.</span></li>
+      <li><b>Free</b><span>There is no charge, now or later. This service is why The Ummah Brief exists.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>How it works.</h2>
+    <ol class="steps">
+      <li><div><b>You tell us what is happening</b><span>Use the form below. A short description is enough at this stage.</span></div></li>
+      <li><div><b>We reply within 5 working days</b><span>By email, to the address you give us.</span></div></li>
+      <li><div><b>If everyone is willing, we begin</b><span>Mediation only works when all parties agree to take part.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="request">
+  <div class="wrap">
+    <h2>Request mediation.</h2>
+    <p class="lede">Everything on this form is confidential.</p>
+    <div class="form-card">
+      <form id="mediationForm" data-ok="#medOk" action="https://formspree.io/f/xkoezjkb" method="POST">
+        <div class="two">
+          <div class="field"><label for="m-name">Your name</label><input id="m-name" type="text" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="m-email">Email address</label><input id="m-email" type="email" name="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="m-type">What kind of dispute is it?</label><input id="m-type" type="text" name="dispute_type" placeholder="Family, business, community" required></div>
+        <div class="field"><label for="m-desc">Describe it briefly</label><textarea id="m-desc" name="description" placeholder="You do not need to share every detail yet." required></textarea></div>
+        <div class="field"><label for="m-will">Are all parties willing to take part?</label>
+          <select id="m-will" name="parties_willing"><option>Yes</option><option>No</option><option selected>Unsure</option></select></div>
+        <button type="submit" class="btn btn-act btn-block">Send my request</button>
+        <p class="small" style="margin-top:14px">We reply within 5 working days. See our <a href="../privacy/">privacy notice</a> for how your information is handled.</p>
+      </form>
+      <div class="ok" id="medOk" role="status">Your request has been received. We will reply within 5 working days, insha'Allah. JazakAllahu khayran.</div>
+    </div>
+    <p class="note">Mediation is voluntary. It is not legal advice and it does not replace a court, a lawyer or the authorities. If anyone is at risk of harm, contact your local emergency services first.</p>
+  </div>
+</section>
+<footer><div class="wrap">
+  <div class="foot">
+    <a class="wordmark" href="../">The Ummah Brief</a>
+    <div class="foot-links">
+      <a href="../#briefs">The Briefs</a><a href="../rizq-code/">The Rizq Code</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms and refunds</a>
+    </div>
+  </div>
+  <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
+</div></footer>
+<div class="sticky" id="sticky"><a class="btn btn-act btn-block" href="#request">Request mediation</a></div>
+<script>
+(function () {
+  var bar = document.getElementById('sticky'), hero = document.getElementById('top'), stop = document.querySelector('#request');
+  function update() {
+    var past = hero.getBoundingClientRect().bottom < 0;
+    var r = stop.getBoundingClientRect(); var at = r.top < window.innerHeight && r.bottom > 0;
+    bar.classList.toggle('show', past && !at);
+  }
+  window.addEventListener('scroll', update, { passive: true }); update();
+})();
+
+// Sends a form without leaving the page, then shows its confirmation message.
+document.querySelectorAll('form[data-ok]').forEach(function (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]'); var label = btn.textContent;
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (res.ok) { form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return; }
+    } catch (err) {}
+    btn.textContent = 'That did not send. Try again'; btn.disabled = false;
+    setTimeout(function () { btn.textContent = label; }, 4000);
+  });
+});
+// Highlighter: draw the yellow marker when the words come into view.
+(function () {
+  var marks = document.querySelectorAll('mark.hl');
+  if (!marks.length || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, { threshold: 0.9, rootMargin: '0px 0px -12% 0px' });
+  marks.forEach(function (m) { io.observe(m); });
+})();
+// Close the phone menu after a link is tapped.
+document.querySelectorAll('.menu-list a').forEach(function (a) { a.addEventListener('click', function () { a.closest('details').removeAttribute('open'); }); });
+</script>
+</body>
+</html>
