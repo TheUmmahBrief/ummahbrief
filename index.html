@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://ummahbrief.com/share.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face { font-family: 'Bricolage Grotesque'; src: url('fonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
@@ -63,8 +64,11 @@ section { padding: 76px 0; }
 .nav { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--white); }
 .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 62px; }
 .wordmark { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.03em; text-decoration: none; white-space: nowrap; }
+.wordmark { display: inline-flex; align-items: center; }
+.mark { width: 32px; height: 32px; margin-right: 10px; border-radius: 50%; flex: none; }
+.foot .mark { width: 40px; height: 40px; }
 .nav .btn { white-space: nowrap; }
-@media (max-width: 400px) { .wordmark { font-size: 18px; } .nav .btn-sm { padding: 9px 12px; } .menu summary { padding: 9px 11px; } }
+@media (max-width: 440px) { .nav-in { gap: 8px; } .nav-right { gap: 7px; } .wordmark { font-size: 16.5px; } .mark { width: 28px; height: 28px; margin-right: 8px; } .nav .btn-sm { font-size: 14px; } .nav .btn-sm { padding: 8px 10px; } .menu summary { padding: 8px 10px; font-size: 14px; } }
 .nav-links { display: flex; align-items: center; gap: 26px; }
 .nav-links a.t { font-family: var(--display); font-weight: 600; font-size: 15.5px; text-decoration: none; color: var(--on-navy); }
 .nav-links a.t:hover { color: var(--white); }
@@ -178,15 +182,15 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 
 <!--
   EDIT POINTS (all at the bottom of this file)
-  GUIDE_URL       where every "free guide" button goes. Change it to the Riba Check when that is live.
+  GUIDE_URL       where every "free guide" button goes. It points at the guide page on this site.
   BRIEF_ON_SALE   set to true once the Riba Exit Brief can be bought. The waiting list becomes a buy button.
   The forms post to Formspree for now. Replace the form actions when email moves to Systeme.
 -->
 <nav class="nav"><div class="wrap nav-in">
-  <a class="wordmark" href="./">The Ummah Brief</a>
+  <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
   <div class="nav-links"><a class="t" href="#briefs">The Briefs</a><a class="t" href="rizq-code/">The Rizq Code</a><a class="t" href="mediation/">Mediation</a><a class="t" href="#newsletter">Newsletter</a></div>
   <div class="nav-right">
-    <a class="btn btn-act btn-sm js-guide" href="https://guide.ummahbrief.com">Free guide</a>
+    <a class="btn btn-act btn-sm js-guide" href="guide/">Free guide</a>
     <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="#briefs">The Briefs</a><a href="rizq-code/">The Rizq Code</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a></div></details>
   </div>
 </div></nav>
@@ -194,9 +198,9 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 <header class="hero navy" id="top">
   <div class="wrap">
     <h1><span>You earn halal.</span> So why is nothing left at the end of the month?</h1>
-    <p class="lede">It is rarely about how much you earn. The free guide names the three mindset blocks that keep Muslim households stuck.</p>
+    <p class="lede">It is rarely about how much you earn. The free guide shows the five places a halal income disappears, and how to find yours in 15 minutes.</p>
     <div class="hero-actions">
-      <a class="btn btn-act js-guide" href="https://guide.ummahbrief.com">Get the free guide</a>
+      <a class="btn btn-act js-guide" href="guide/">Get the free guide</a>
       <a class="link" href="#briefs">Or see the Briefs</a>
     </div>
     <p class="small">Free, no card needed. The Ummah Brief covers wealth, family, knowledge and unity, rooted in Quran and Sunnah.</p>
@@ -250,7 +254,7 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
       <div><dt>Day 30</dt><dd>You prayed, you gave, you worked hard, and you still feel behind.</dd></div>
     </dl>
     <p class="lede">You are not irresponsible, and you are not lacking in imaan. Nobody ever showed you a halal plan for money.</p>
-    <p style="margin-top:28px"><a class="btn btn-act js-guide" href="https://guide.ummahbrief.com">Get the free guide</a></p>
+    <p style="margin-top:28px"><a class="btn btn-act js-guide" href="guide/">Get the free guide</a></p>
   </div>
 </section>
 
@@ -310,16 +314,16 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 </section>
 <footer><div class="wrap">
   <div class="foot">
-    <a class="wordmark" href="./">The Ummah Brief</a>
+    <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
     <div class="foot-links">
       <a href="#briefs">The Briefs</a><a href="rizq-code/">The Rizq Code</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms and refunds</a>
     </div>
   </div>
   <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
 </div></footer>
-<div class="sticky" id="sticky"><a class="btn btn-act btn-block js-guide" href="https://guide.ummahbrief.com">Get the free guide</a></div>
+<div class="sticky" id="sticky"><a class="btn btn-act btn-block js-guide" href="guide/">Get the free guide</a></div>
 <script>
-var GUIDE_URL = 'https://guide.ummahbrief.com';
+var GUIDE_URL = 'guide/';
 var BRIEF_ON_SALE = false;
 
 document.querySelectorAll('.js-guide').forEach(function (a) { a.href = GUIDE_URL; });
@@ -368,7 +372,10 @@ document.querySelectorAll('form[data-ok]').forEach(function (form) {
     btn.textContent = 'Sending...'; btn.disabled = true;
     try {
       var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-      if (res.ok) { form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return; }
+      if (res.ok) {
+        if (form.dataset.next) { window.location.href = form.dataset.next; return; }
+        form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return;
+      }
     } catch (err) {}
     btn.textContent = 'That did not send. Try again'; btn.disabled = false;
     setTimeout(function () { btn.textContent = label; }, 4000);
