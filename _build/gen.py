@@ -968,6 +968,9 @@ rc_css = """
 .rows span { color: var(--slate); }
 .rows b { font-family: var(--display); font-weight: 800; font-size: clamp(22px, 4.6vw, 30px); letter-spacing: -0.035em; text-align: right; }
 .rows .good b { background: var(--mark); padding: 0 0.16em; }
+.rows .extra { display: inline-flex; align-items: center; gap: 4px; }
+.rows .extra input { width: 7.5em; padding: 4px 8px; font: inherit; font-family: var(--display); font-weight: 700; color: var(--ink); border: 2px solid var(--ink); border-radius: 8px; background: var(--white); }
+.plan .note { color: var(--slate); font-size: 16.5px; margin: 10px 0 0; }
 .order { list-style: none; counter-reset: o; margin: 8px 0 0; }
 .order li { counter-increment: o; display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule); font-family: var(--display); font-weight: 700; font-size: 18px; }
 .order li::before { content: counter(o); font-weight: 800; font-size: 30px; letter-spacing: -0.04em; color: #C92F3A; }
@@ -1012,7 +1015,7 @@ rc += """
       <div class="big">
         <div class="lab">Riba leaving your account every month</div>
         <div class="num" id="perMonth"></div>
-        <div class="sub"><span id="perDay"></span> every day. <span id="perYear"></span> a year.</div>
+        <div class="sub"><span id="perDay"></span> every day. About <span id="perYear"></span> over the next 12 months.</div>
       </div>
 
       <div class="gate" id="gate">
@@ -1030,9 +1033,12 @@ rc += """
         <div class="rows">
           <div><span>Debt-free at your current payments</span><b id="freeNow"></b></div>
           <div><span>Riba still to pay at your current payments</span><b id="ribaNow"></b></div>
-          <div class="good"><span>Debt-free if you follow the exit order and add <span id="extraLab"></span> a month</span><b id="freePlan"></b></div>
-          <div class="good"><span>Riba you would avoid</span><b id="saved"></b></div>
+          <div class="good"><span>Debt-free if you follow the exit order, with no extra money</span><b id="freeRoll"></b></div>
+          <div class="good"><span>Riba that avoids</span><b id="savedRoll"></b></div>
+          <div class="good"><span>Debt-free if you also add <span class="extra"><span id="curLab"></span><input id="extra" type="number" inputmode="decimal" min="0" step="any" aria-label="Extra amount each month"></span> a month</span><b id="freePlan"></b></div>
+          <div class="good"><span>Riba that avoids</span><b id="saved"></b></div>
         </div>
+        <p class="note">Change the extra amount to see how it moves your date. Moving each cleared debt's payment onto the next one saves riba even with no extra money.</p>
         <div class="warn" id="never"></div>
         <h3>Your exit order</h3>
         <p class="lede" style="font-size:18px">Pay the minimum on everything. Put every spare amount on the first debt. When it is gone, move its payment to the next.</p>
@@ -1052,7 +1058,7 @@ rc += """
   <div class="wrap">
     <h2>What the check gives you.</h2>
     <div class="steps3">
-      <div><b>Your number</b><span>The riba leaving your account each month, each day and each year.</span></div>
+      <div><b>Your number</b><span>The riba leaving your account each month and each day, and what it adds up to over the next year.</span></div>
       <div><b>Your date</b><span>When you will be debt-free at your current payments.</span></div>
       <div><b>Your order</b><span>Which debt to clear first, and what that saves you.</span></div>
     </div>
@@ -1066,7 +1072,7 @@ rc += """<script>
   function row() {
     n++;
     var d = document.createElement('div'); d.className = 'debt';
-    d.innerHTML = '<div class="f-name"><label for="n' + n + '">Debt</label><input id="n' + n + '" class="i-name" type="text" placeholder="Credit card"></div>' +
+    d.innerHTML = '<div class="f-name"><label for="n' + n + '">Name it</label><input id="n' + n + '" class="i-name" type="text" placeholder="e.g. Car finance"></div>' +
       '<div><label for="b' + n + '">Balance owed</label><input id="b' + n + '" class="i-bal" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>' +
       '<div><label for="r' + n + '">Rate % a year</label><input id="r' + n + '" class="i-rate" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="0"></div>' +
       '<div><label for="p' + n + '">Monthly payment</label><input id="p' + n + '" class="i-pay" type="number" inputmode="decimal" min="0" step="any" placeholder="0"></div>' +
@@ -1089,7 +1095,7 @@ rc += """<script>
     wrap.querySelectorAll('.debt').forEach(function (d, i) {
       var bal = parseFloat(d.querySelector('.i-bal').value), rate = parseFloat(d.querySelector('.i-rate').value), pay = parseFloat(d.querySelector('.i-pay').value);
       if (!(bal > 0)) return;
-      out.push({ name: d.querySelector('.i-name').value.trim() || ('Debt ' + (i + 1)), bal: bal, rate: rate >= 0 ? rate : 0, pay: pay >= 0 ? pay : 0 });
+      out.push({ name: (function (v) { return v && !/^[\\d\\s.,]+$/.test(v) ? v : 'Debt ' + (i + 1); })(d.querySelector('.i-name').value.trim()), bal: bal, rate: rate >= 0 ? rate : 0, pay: pay >= 0 ? pay : 0 });
     });
     return out;
   }
@@ -1104,7 +1110,9 @@ rc += """<script>
     });
     return { months: months, interest: interest, stuck: stuck };
   }
-  // Exit order: minimums on everything, every spare amount on the highest rate, payments roll over.
+  // Exit order: highest rate first. Where rates are equal, the smaller balance goes first.
+  function rank(x, y) { return (y.r - x.r) || (x.b - y.b); }
+  // Minimums on everything, every spare amount on the first debt in the order, payments roll over.
   function exit(debts, extra) {
     var ds = debts.map(function (d) { return { b: d.bal, r: d.rate / 1200, p: d.pay }; });
     var budget = extra + ds.reduce(function (a, d) { return a + d.p; }, 0), m = 0, interest = 0;
@@ -1112,7 +1120,7 @@ rc += """<script>
       var left = budget;
       ds.forEach(function (d) { if (d.b > 0.005) { var it = d.b * d.r; interest += it; d.b += it; } });
       ds.forEach(function (d) { if (d.b > 0.005) { var pay = Math.min(d.p, d.b, left); d.b -= pay; left -= pay; } });
-      ds.filter(function (d) { return d.b > 0.005; }).sort(function (a, b) { return b.r - a.r; }).forEach(function (d) { var pay = Math.min(left, d.b); d.b -= pay; left -= pay; });
+      ds.filter(function (d) { return d.b > 0.005; }).sort(rank).forEach(function (d) { var pay = Math.min(left, d.b); d.b -= pay; left -= pay; });
       m++;
     }
     return { months: m >= 1200 ? Infinity : m, interest: interest };
@@ -1129,28 +1137,35 @@ rc += """<script>
     var perMonth = debts.reduce(function (a, d) { return a + d.bal * d.rate / 1200; }, 0);
     document.getElementById('perMonth').textContent = money(perMonth);
     document.getElementById('perDay').textContent = money(perMonth * 12 / 365);
-    document.getElementById('perYear').textContent = money(perMonth * 12);
+    var year = debts.reduce(function (a, d) { var b = d.bal, r = d.rate / 1200, t = 0; for (var k = 0; k < 12 && b > 0.005; k++) { var it = b * r; t += it; b = b + it - Math.min(d.pay, b + it); } return a + t; }, 0);
+    document.getElementById('perYear').textContent = money(year);
     document.getElementById('out').classList.add('show');
     if (document.getElementById('plan').classList.contains('show')) plan();
     document.getElementById('out').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   function plan() {
     var debts = last, a = alone(debts), total = debts.reduce(function (x, d) { return x + d.pay; }, 0);
-    var extra = Math.max(Math.round(total * 0.1 / 10) * 10, 10), e = exit(debts, extra);
-    document.getElementById('extraLab').textContent = money(extra);
+    var box = document.getElementById('extra');
+    if (box.value === '' || box.dataset.auto === '1') { box.value = Math.max(Math.round(total * 0.1 / 10) * 10, 10); box.dataset.auto = '1'; }
+    var extra = Math.max(parseFloat(box.value) || 0, 0), e = exit(debts, extra), z = exit(debts, 0);
+    document.getElementById('curLab').textContent = cur();
+    function saving(x) { return isFinite(a.months) && isFinite(x.months) ? money(Math.max(a.interest - x.interest, 0)) : (isFinite(x.months) ? 'All of it' : 'None yet'); }
+    document.getElementById('freeRoll').textContent = isFinite(z.months) ? when(z.months) : 'Never';
+    document.getElementById('savedRoll').textContent = saving(z);
     document.getElementById('freeNow').textContent = isFinite(a.months) ? when(a.months) : 'Never';
     document.getElementById('ribaNow').textContent = isFinite(a.months) ? money(a.interest) : 'No end';
     document.getElementById('freePlan').textContent = isFinite(e.months) ? when(e.months) : 'Never';
-    document.getElementById('saved').textContent = isFinite(a.months) && isFinite(e.months) ? money(Math.max(a.interest - e.interest, 0)) : (isFinite(e.months) ? 'All of it' : 'None yet');
+    document.getElementById('saved').textContent = saving(e);
     var nv = document.getElementById('never');
     if (a.stuck.length) { nv.textContent = 'At the payment you entered, this debt never clears because the payment does not cover its interest: ' + a.stuck.join(', ') + '.'; nv.style.display = 'block'; } else nv.style.display = 'none';
     var ol = document.getElementById('order'); ol.innerHTML = '';
-    debts.slice().sort(function (x, y) { return y.rate - x.rate; }).forEach(function (d) {
+    debts.slice().sort(function (x, y) { return rank({ r: x.rate, b: x.bal }, { r: y.rate, b: y.bal }); }).forEach(function (d) {
       var li = document.createElement('li'), div = document.createElement('div'), sm = document.createElement('small');
       div.textContent = d.name; sm.textContent = d.rate + '% a year, costing ' + money(d.bal * d.rate / 1200) + ' a month in riba'; div.appendChild(sm); li.appendChild(div); ol.appendChild(li);
     });
     document.getElementById('plan').classList.add('show');
   }
+  document.getElementById('extra').addEventListener('input', function () { this.dataset.auto = '0'; if (last) plan(); });
   document.getElementById('gateForm').addEventListener('submit', async function (ev) {
     ev.preventDefault();
     var form = ev.target, btn = form.querySelector('button'), label = btn.textContent;
