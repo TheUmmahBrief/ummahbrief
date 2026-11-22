@@ -522,6 +522,18 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
 .nav-brand { display: inline-flex; align-items: center; text-decoration: none; }
 .mark { width: 30px; height: 30px; margin-right: 9px; border-radius: 50%; flex: none; }
 .stack-name, .feat-title, .bonus-name, .faq-q, .guar-title, .who-tag, .hero-kicker, .section-kicker, .stack-label, .ann, .nav-brand, .footer-brand, .stack-val, .stack-total-lbl, .outcome-pill, .hero-cta-note, .p-secure, .p-note, .p-eyebrow, .p-inc-title, .stars-sub, .footer-links { font-family: var(--display); }
+
+/* ── RIZQ CODE COBALT (Nov 2026): the product's own colour ── */
+.hero { background: #1D3FCB; padding: 56px 24px 60px; }
+.hero-inner { max-width: 1080px; grid-template-columns: minmax(0,1fr) 400px; gap: 40px; align-items: center; }
+.hero-kicker { color: #FFD84D; }
+.hero-sub, .hero-sub strong { color: #EEF1FF; }
+.stars-sub { color: #C9D3FF; } .stars-sub strong { color: #FFFFFF; }
+.hero-cta-note { color: #C9D3FF; }
+.outcome-pill { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.1); }
+.book-wrap { box-shadow: none; border-radius: 0; background: none; height: auto; aspect-ratio: auto; overflow: visible; }
+.book-wrap img { height: auto; object-fit: contain; }
+@media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; gap: 10px; } .hero-inner > div:last-child { order: -1; max-width: 320px; margin: 0 auto; } }
 </style>
 </head>
 <body>
@@ -558,7 +570,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
     </div>
     <div>
       <div class="book-wrap">
-        <img src="rizq_cover.jpeg" alt="The Rizq Code cover" width="742" height="728">
+        <img src="rizq-code-cover.png" alt="The Rizq Code framework with its three companion tools" width="742" height="728">
       </div>
     </div>
   </div>
@@ -573,7 +585,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
     <div class="stack-item">
       <div class="stack-left">
         <div class="stack-name">The Rizq Code: Complete Framework</div>
-        <div class="stack-desc">The full halal wealth framework across 8 chapters. Delivered as a 190-page guide you keep forever, on any device.</div>
+        <div class="stack-desc">The full halal wealth framework across 8 chapters, in 60 focused pages with an action at the end of every chapter. Yours to keep, on any device.</div>
       </div>
       <div class="stack-val">$39</div>
     </div>
@@ -594,7 +606,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
     <div class="stack-item">
       <div class="stack-left">
         <div class="stack-name">The Rizq Pathway Workbook</div>
-        <div class="stack-desc">A 12-page guided workbook mapping all ten halal income pathways from Chapter 6 to your life, with reflection questions and space to identify your specific first step.</div>
+        <div class="stack-desc">A guided workbook mapping all ten halal income pathways from Chapter 6 to your life, with a scorecard, reflection questions and space to identify your specific first step.</div>
       </div>
       <div class="stack-val free">FREE</div>
     </div>
@@ -633,7 +645,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
       "Am I doing something wrong? Is my rizq just not meant to grow?"
     </div>
     <p class="section-body">
-      He is not irresponsible. He is not lacking in tawakkul. <strong>Nobody ever gave him a complete halal wealth framework.</strong> How to invest without riba. How to build while giving. How to earn halal and actually keep it.
+      He is not irresponsible. He is not lacking in tawakkul. <strong>Nobody ever gave him a complete halal wealth framework.</strong> How to grow your income without riba. How to build while giving. How to earn halal and actually keep it.
     </p>
     <p class="section-body">
       The deen was always clear. The strategy was missing. The Rizq Code is that strategy.
@@ -698,7 +710,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
       <div class="feat-num">03</div>
       <div>
         <div class="feat-title">The Halal Wealth Mindset</div>
-        <div class="feat-body">Three layers of building abundance without losing your soul: mindset as inner frequency, motion as outer effort, and meaning as higher purpose. Includes daily practices for morning alignment, gratitude, and evening release that you will return to long after you finish reading.</div>
+        <div class="feat-body">Three layers of building abundance without losing your soul: mindset as your inner climate, motion as outer effort, and meaning as higher purpose. Includes daily practices for morning alignment, gratitude, and evening release that you will return to long after you finish reading.</div>
       </div>
     </div>
     <div class="feat-row">
@@ -711,7 +723,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
     <div class="feat-row">
       <div class="feat-num">05</div>
       <div>
-        <div class="feat-title">Rebuilding Ummah Economics</div>
+        <div class="feat-title">The Ummah Rising</div>
         <div class="feat-body">Your wealth is not just yours. This chapter will change how you see every financial decision you make for the rest of your life.</div>
       </div>
     </div>
@@ -729,7 +741,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
         <div class="bonus-icon">1</div>
         <div>
           <div class="bonus-name">The Rizq Audit Checklist</div>
-          <div class="bonus-desc">A 15-point self-assessment that tells you exactly where your money is leaking and what to address first. Most people find two or three things they have never considered.</div>
+          <div class="bonus-desc">A 15-point self-assessment that tells you exactly where your money is leaking and what to address first. It then points you to the part of the framework to start with.</div>
         </div>
       </div>
       <div class="bonus-item">
@@ -743,7 +755,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
         <div class="bonus-icon">3</div>
         <div>
           <div class="bonus-name">The Rizq Pathway Workbook</div>
-          <div class="bonus-desc">A 12-page guided workbook that walks you through all ten halal income pathways from Chapter 6. Reflection questions, write-in space, and a final decision page to identify your pathway and commit to your first step. This is where the framework becomes a plan.</div>
+          <div class="bonus-desc">A guided workbook that walks you through all ten halal income pathways from Chapter 6. Reflection questions, write-in space, and a final decision page to identify your pathway and commit to your first step. This is where the framework becomes a plan.</div>
         </div>
       </div>
     </div>
@@ -781,10 +793,10 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
       <a href="https://checkout.ummahbrief.com/rizq-code-orderform" class="p-cta">Get instant access for $39</a>
       <div class="p-secure">Secure checkout · Instant delivery · PayPal accepted</div>
       <div class="p-inc-title">Everything included</div>
-      <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Code: the complete halal wealth framework (190-page guide)</div></div>
+      <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Code: the complete halal wealth framework (8 chapters, 60 pages)</div></div>
       <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Audit Checklist: find what is leaking first</div></div>
       <div class="p-inc"><div class="ck"></div><div class="p-inc-text">30-Day Rizq Action Plan: day-by-day implementation</div></div>
-      <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Pathway Workbook: find your halal door (12 pages)</div></div>
+      <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Pathway Workbook: find your halal door</div></div>
       <div class="p-inc"><div class="ck"></div><div class="p-inc-text">The Rizq Insider: private weekly email, buyers only</div></div>
       <div class="p-inc"><div class="ck"></div><div class="p-inc-text">30-day money-back guarantee, no questions asked</div></div>
     </div>
@@ -802,7 +814,7 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
     </div>
     <div class="faq-item">
       <div class="faq-q">I do not earn much. Can this still help me?</div>
-      <div class="faq-a">That is exactly the belief this framework addresses first. Rizq is not about how much you earn. It is about understanding how provision works and how to position yourself at any income level. Most readers are surprised how quickly small shifts compound.</div>
+      <div class="faq-a">That is exactly the belief this framework addresses first. Rizq is not about how much you earn. It is about understanding how provision works and how to position yourself at any income level. It starts with how you think about provision, then gives you a pathway you can begin with whatever you have.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">What is the Rizq Insider exactly?</div>

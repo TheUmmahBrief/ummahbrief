@@ -20,6 +20,7 @@
 <style>
 @font-face { font-family: 'Bricolage Grotesque'; src: url('../../fonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
 @font-face { font-family: 'Newsreader'; src: url('../../fonts/newsreader.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Amiri Words'; src: url('../../fonts/amiri-words.woff2') format('woff2'); font-display: block; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --navy: #0F1B3D; --deep: #0A1330; --chalk: #F3F5F8; --white: #FFFFFF;
@@ -94,6 +95,7 @@ section { padding: 76px 0; }
 /* sleeves: the square covers of the Briefs */
 .sleeve { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; border-radius: 6px; padding: 16px; text-decoration: none; background: var(--c); color: var(--t); box-shadow: 0 14px 30px rgba(4,9,26,0.28); }
 .sleeve .no { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; opacity: 0.92; display: flex; justify-content: space-between; align-items: center; }
+.sleeve .ar { position: absolute; right: 16px; top: 36px; font-family: 'Amiri Words', serif; font-size: clamp(30px, 3.1vw, 42px); line-height: 1.25; direction: rtl; }
 .sleeve .ti { font-family: var(--display); font-weight: 800; font-size: clamp(21px, 2.3vw, 27px); line-height: 0.98; letter-spacing: -0.035em; }
 .sleeve .play { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; position: relative; }
 .sleeve .soon { font-size: 12px; font-weight: 700; border: 1.5px solid currentColor; border-radius: 40px; padding: 1px 9px; }
