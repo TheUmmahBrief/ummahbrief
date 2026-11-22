@@ -522,6 +522,18 @@ a:focus-visible { outline: 3px solid #F26B21; outline-offset: 3px; }
 .nav-brand { display: inline-flex; align-items: center; text-decoration: none; }
 .mark { width: 30px; height: 30px; margin-right: 9px; border-radius: 50%; flex: none; }
 .stack-name, .feat-title, .bonus-name, .faq-q, .guar-title, .who-tag, .hero-kicker, .section-kicker, .stack-label, .ann, .nav-brand, .footer-brand, .stack-val, .stack-total-lbl, .outcome-pill, .hero-cta-note, .p-secure, .p-note, .p-eyebrow, .p-inc-title, .stars-sub, .footer-links { font-family: var(--display); }
+
+/* ── RIZQ CODE COBALT (Nov 2026): the product's own colour ── */
+.hero { background: #1D3FCB; padding: 56px 24px 60px; }
+.hero-inner { max-width: 1080px; grid-template-columns: minmax(0,1fr) 400px; gap: 40px; align-items: center; }
+.hero-kicker { color: #FFD84D; }
+.hero-sub, .hero-sub strong { color: #EEF1FF; }
+.stars-sub { color: #C9D3FF; } .stars-sub strong { color: #FFFFFF; }
+.hero-cta-note { color: #C9D3FF; }
+.outcome-pill { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.1); }
+.book-wrap { box-shadow: none; border-radius: 0; background: none; height: auto; aspect-ratio: auto; overflow: visible; }
+.book-wrap img { height: auto; object-fit: contain; }
+@media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; gap: 10px; } .hero-inner > div:last-child { order: -1; max-width: 320px; margin: 0 auto; } }
 </style>
 </head>
 <body>
