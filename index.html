@@ -190,6 +190,22 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 .price { font-family: var(--display); font-weight: 800; font-size: 60px; letter-spacing: -0.05em; line-height: 1; }
 @media (max-width: 820px) { .rc { grid-template-columns: 1fr; gap: 30px; } .rc img { max-width: 340px; } .buy .btn { flex: 1 1 100%; } }
 
+
+/* the Ramadan Money Pack: four product sleeves fanned together under the season word */
+.rmd { display: grid; grid-template-columns: 420px 1fr; gap: 60px; align-items: center; }
+.fan { position: relative; aspect-ratio: 1 / 1.02; }
+.fan .sleeve { position: absolute; width: 50%; }
+.fan .sleeve .ti { font-size: clamp(17px, 1.9vw, 23px); }
+.fan .sleeve .ar { font-size: clamp(32px, 3.6vw, 48px); top: 32px; right: 12px; }
+.fan .s1 { left: 0; top: 0; transform: rotate(-5deg); }
+.fan .s2 { left: 52%; top: 3%; transform: rotate(4deg); }
+.fan .s3 { left: 1%; top: 51%; transform: rotate(3deg); }
+.fan .s4 { left: 53%; top: 52%; transform: rotate(-4deg); }
+.season { font-family: 'Amiri Words', serif; color: #FFD84D; font-size: clamp(64px, 9vw, 110px); line-height: 1.1; direction: rtl; display: block; margin-bottom: 6px; }
+.rmd ul { list-style: none; margin: 22px 0 26px; }
+.rmd li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.22); }
+.rmd li:first-child { border-top: 1px solid rgba(255,255,255,0.22); }
+@media (max-width: 820px) { .rmd { grid-template-columns: 1fr; gap: 26px; } .fan { max-width: 360px; } }
 .med h2 { font-size: clamp(40px, 9vw, 92px); line-height: 0.95; letter-spacing: -0.045em; max-width: 10em; }
 .med .lede { margin: 24px 0 30px; max-width: 32em; }
 .news h2 { max-width: 12em; }
@@ -207,10 +223,10 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 -->
 <nav class="nav"><div class="wrap nav-in">
   <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
-  <div class="nav-links"><a class="t" href="#briefs">The Briefs</a><a class="t" href="circle/">The Circle</a><a class="t" href="rizq-code/">The Rizq Code</a><a class="t" href="riba-check/">Riba Check</a><a class="t" href="mediation/">Mediation</a><a class="t" href="#newsletter">Newsletter</a></div>
+  <div class="nav-links"><a class="t" href="#briefs">The Briefs</a><a class="t" href="circle/">The Circle</a><a class="t" href="rizq-code/">The Rizq Code</a><a class="t" href="riba-check/">Riba Check</a><a class="t" href="mediation/">Mediation</a><a class="t" href="ramadan/">Ramadan</a></div>
   <div class="nav-right">
     <a class="btn btn-act btn-sm js-guide" href="guide/">Free guide</a>
-    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="#briefs">The Briefs</a><a href="circle/">The Circle</a><a href="rizq-code/">The Rizq Code</a><a href="riba-check/">Riba Check</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a></div></details>
+    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="#briefs">The Briefs</a><a href="circle/">The Circle</a><a href="rizq-code/">The Rizq Code</a><a href="riba-check/">Riba Check</a><a href="mediation/">Mediation</a><a href="ramadan/">Ramadan</a></div></details>
   </div>
 </div></nav>
 
@@ -229,13 +245,7 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 <section class="shelf-sec" id="briefs">
   <div class="wrap">
     <div class="shelf">
-      <a class="sleeve" style="--c:#C92F3A;--t:#FFFFFF" href="briefs/riba-exit/" aria-label="The Riba Exit Brief"><span class="no">Brief 01 <span class="play" aria-hidden="true"></span></span><span class="ar" lang="ar" aria-hidden="true">ربا</span><span class="ti">Riba Exit</span></a>
-      <a class="sleeve js-pick" style="--c:#F2B632;--t:#0E1630" href="#waitlist" data-brief="The Zakat Brief" data-promise="Work out your zakat correctly in one sitting." aria-label="The Zakat Brief, coming soon. Join the waiting list"><span class="no">Brief 02 <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">زكاة</span><span class="ti">Zakat</span></a>
-      <a class="sleeve js-pick" style="--c:#17837C;--t:#FFFFFF" href="#waitlist" data-brief="The Halal Investing Brief" data-promise="Know what to check before you put money anywhere." aria-label="The Halal Investing Brief, coming soon. Join the waiting list"><span class="no">Brief 03 <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">حلال</span><span class="ti">Halal Investing</span></a>
-      <a class="sleeve js-pick" style="--c:#5B2A6E;--t:#FFFFFF" href="#waitlist" data-brief="The Wasiyyah Brief" data-promise="Get your Islamic will started this week." aria-label="The Wasiyyah Brief, coming soon. Join the waiting list"><span class="no">Brief 04 <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">وصية</span><span class="ti">Wasiyyah</span></a>
-      <a class="sleeve js-pick" style="--c:#D9577B;--t:#FFFFFF" href="#waitlist" data-brief="The Marriage Money Brief" data-promise="Talk about money with your spouse without a fight." aria-label="The Marriage Money Brief, coming soon. Join the waiting list"><span class="no">Brief 05 <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">زواج</span><span class="ti">Marriage Money</span></a>
-      <a class="sleeve js-pick" style="--c:#2F7FD1;--t:#FFFFFF" href="#waitlist" data-brief="The Raising Children Brief" data-promise="Teach children money, giving and contentment." aria-label="The Raising Children Brief, coming soon. Join the waiting list"><span class="no">Brief 06 <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">تربية</span><span class="ti">Raising Children</span></a>
-      
+      %(sleeves)s
     </div>
     <div class="briefs-intro">
       <div>
@@ -287,6 +297,34 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
       <li><b>Knowledge</b><span>One short email every Friday. Always free.</span><a class="link" href="#newsletter">Subscribe</a></li>
       <li><b>Unity</b><span>Free mediation for families, businesses and communities in dispute.</span><a class="link" href="mediation/">Request mediation</a></li>
     </ul>
+  </div>
+</section>
+
+
+<section class="navy" id="ramadan">
+  <div class="wrap rmd">
+    <div class="fan" aria-hidden="true">
+      <div class="sleeve s1" style="--c:#C92F3A;--t:#FFFFFF"><span class="no">Brief 01</span><span class="ar" lang="ar">ربا</span><span class="ti">Riba Exit</span></div>
+      <div class="sleeve s2" style="--c:#EDE3D1;--t:#0E1630"><span class="no">Planner</span><span class="ar" lang="ar">زاد</span><span class="ti">Ramadan Money Planner</span></div>
+      <div class="sleeve s3" style="--c:#1D3FCB;--t:#FFFFFF"><span class="no">Framework</span><span class="ar" lang="ar" style="color:#FFD84D">رزق</span><span class="ti">The Rizq Code</span></div>
+      <div class="sleeve s4" style="--c:#0A5640;--t:#FFFFFF"><span class="no">1 month</span><span class="ar" lang="ar" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></div>
+    </div>
+    <div>
+      <span class="season" lang="ar" aria-hidden="true">رمضان</span>
+      <h2>The Ramadan Money Pack</h2>
+      <p class="lede">Enter Ramadan with your money in order: your zakat worked out, your sadaqah planned, your riba on its way out, and an Eid budget decided before Eid.</p>
+      <ul>
+        <li>The Rizq Code, with its three tools</li>
+        <li>The Riba Exit Brief, audio and action sheet</li>
+        <li>The Ramadan Money Planner, to print or fill in</li>
+        <li>Your first month of The Rizq Circle, free</li>
+      </ul>
+      <div class="buy">
+        <div class="price">$49</div>
+        <a class="btn btn-act" href="ramadan/">See the pack</a>
+      </div>
+      <p class="small" style="margin-top:16px">The Rizq Code alone is $39. The pack is available until Eid al-Fitr.</p>
+    </div>
   </div>
 </section>
 
@@ -355,7 +393,7 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
   <div class="foot">
     <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
     <div class="foot-links">
-      <a href="#briefs">The Briefs</a><a href="circle/">The Rizq Circle</a><a href="rizq-code/">The Rizq Code</a><a href="guide/">Free guide</a><a href="riba-check/">Riba Check</a><a href="ledger/">The Ledger</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="sponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms and refunds</a>
+      <a href="#briefs">The Briefs</a><a href="circle/">The Rizq Circle</a><a href="rizq-code/">The Rizq Code</a><a href="guide/">Free guide</a><a href="riba-check/">Riba Check</a><a href="ledger/">The Ledger</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="ramadan/">The Ramadan Money Pack</a><a href="library/">The Library</a><a href="partners/">Become a partner</a><a href="sponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms and refunds</a>
     </div>
   </div>
   <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
