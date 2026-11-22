@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rizq Circle: every Brief, a money plan every month | The Ummah Brief</title>
+<meta name="description" content="For the price of one Brief, every Brief. A money plan every month, answers to your questions, and one membership for your whole household. $9 a month.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0F1B3D">
+<meta property="og:title" content="The Rizq Circle: every Brief, a money plan every month | The Ummah Brief">
+<meta property="og:description" content="For the price of one Brief, every Brief. A money plan every month, answers to your questions, and one membership for your whole household. $9 a month.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ummahbrief.com/circle/">
+<meta property="og:image" content="https://ummahbrief.com/share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Bricolage Grotesque'; src: url('../fonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Newsreader'; src: url('../fonts/newsreader.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Amiri Words'; src: url('../fonts/amiri-words.woff2') format('woff2'); font-display: block; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0F1B3D; --deep: #0A1330; --chalk: #F3F5F8; --white: #FFFFFF;
+  --ink: #0E1630; --slate: #4A5672; --rule: rgba(14,22,48,0.16);
+  --action: #F26B21; --action-hi: #FF8440; --mark: #FFE066;
+  --on-navy: #D4DBEC; --on-navy-dim: #9BA7C4;
+  --display: 'Bricolage Grotesque', 'Arial Narrow', Arial, sans-serif;
+  --text: 'Newsreader', Georgia, 'Times New Roman', serif;
+}
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--text); font-size: 19px; line-height: 1.6; background: var(--chalk); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; }
+h2 { font-size: clamp(32px, 6.4vw, 56px); margin-bottom: 18px; }
+h3 { font-size: 22px; letter-spacing: -0.015em; line-height: 1.2; }
+p { max-width: 36em; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+.ui { font-family: var(--display); }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; border-radius: 4px; }
+section { padding: 76px 0; }
+.navy { background: var(--navy); color: var(--white); }
+.navy p { color: var(--on-navy); }
+.white { background: var(--white); }
+.lede { font-size: clamp(20px, 2.6vw, 23px); line-height: 1.5; color: var(--slate); }
+.navy .lede { color: var(--on-navy); }
+.small { font-family: var(--display); font-size: 14.5px; font-weight: 500; color: var(--slate); line-height: 1.5; }
+.navy .small { color: var(--on-navy-dim); }
+
+/* buttons: orange is used for the main action and nothing else */
+.btn { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: -0.005em; text-decoration: none; text-align: center; cursor: pointer; border: 2px solid transparent; border-radius: 12px; padding: 15px 26px; transition: background .15s, transform .15s, border-color .15s; }
+.btn-act { background: var(--action); color: var(--ink); }
+.btn-act:hover { background: var(--action-hi); transform: translateY(-2px); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.navy .btn-line { color: var(--white); border-color: rgba(255,255,255,0.7); }
+.navy .btn-line:hover { background: var(--white); color: var(--navy); }
+.btn-sm { font-size: 15px; padding: 9px 16px; border-radius: 10px; }
+.btn-block { display: block; width: 100%; }
+.link { font-family: var(--display); font-weight: 600; font-size: 16px; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 50; background: var(--navy); color: var(--white); }
+.nav-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; height: 62px; }
+.wordmark { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.03em; text-decoration: none; white-space: nowrap; }
+.wordmark { display: inline-flex; align-items: center; }
+.mark { width: 32px; height: 32px; margin-right: 10px; border-radius: 50%; flex: none; }
+.foot .mark { width: 40px; height: 40px; }
+.nav .btn { white-space: nowrap; }
+@media (max-width: 440px) { .nav-in { gap: 8px; } .nav-right { gap: 7px; } .wordmark { font-size: 16.5px; } .mark { width: 28px; height: 28px; margin-right: 8px; } .nav .btn-sm { font-size: 14px; } .nav .btn-sm { padding: 8px 10px; } .menu summary { padding: 8px 10px; font-size: 14px; } }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a.t { font-family: var(--display); font-weight: 600; font-size: 15.5px; text-decoration: none; color: var(--on-navy); }
+.nav-links a.t:hover { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.menu { display: none; position: relative; }
+.menu summary { list-style: none; cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 15px; padding: 9px 14px; border: 2px solid rgba(255,255,255,0.45); border-radius: 10px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu[open] summary { background: var(--white); color: var(--navy); border-color: var(--white); }
+.menu-list { position: absolute; right: 0; top: calc(100% + 10px); width: min(78vw, 290px); background: var(--white); color: var(--ink); border-radius: 14px; padding: 8px; box-shadow: 0 24px 60px rgba(4,9,26,0.45); }
+.menu-list a { display: block; font-family: var(--display); font-weight: 700; font-size: 18px; text-decoration: none; padding: 13px 14px; border-radius: 9px; }
+.menu-list a:hover, .menu-list a:focus-visible { background: var(--chalk); }
+@media (max-width: 820px) { .nav-links a.t { display: none; } .menu { display: block; } }
+
+/* forms */
+.row-form { display: flex; gap: 10px; max-width: 540px; }
+.row-form input[type=email] { flex: 1; min-width: 0; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; }
+.navy .row-form input[type=email] { border-color: var(--white); }
+.row-form input:focus { outline: 3px solid var(--action); outline-offset: 2px; }
+.ok { display: none; max-width: 540px; font-family: var(--display); font-weight: 600; font-size: 17px; background: var(--mark); color: var(--ink); border-radius: 12px; padding: 16px 18px; }
+@media (max-width: 560px) { .row-form { flex-direction: column; } }
+
+/* sleeves: the square covers of the Briefs */
+.sleeve { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; border-radius: 6px; padding: 16px; text-decoration: none; background: var(--c); color: var(--t); box-shadow: 0 14px 30px rgba(4,9,26,0.28); }
+.sleeve .no { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; opacity: 0.92; display: flex; justify-content: space-between; align-items: center; }
+.sleeve .ar { position: absolute; right: 16px; top: 36px; font-family: 'Amiri Words', serif; font-size: clamp(30px, 3.1vw, 42px); line-height: 1.25; direction: rtl; }
+.sleeve .ti { font-family: var(--display); font-weight: 800; font-size: clamp(21px, 2.3vw, 27px); line-height: 0.98; letter-spacing: -0.035em; }
+.sleeve .play { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; position: relative; }
+.sleeve .soon { font-size: 12px; font-weight: 700; border: 1.5px solid currentColor; border-radius: 40px; padding: 1px 9px; }
+.sleeve .play::after { content: ''; position: absolute; left: 9px; top: 6px; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+/* highlighter: the yellow marker draws across the words when they scroll into view */
+mark.hl { background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 0 / 100% 100%; }
+.js mark.hl { background-size: 0% 100%; transition: background-size .9s cubic-bezier(.2,.7,.2,1) .2s; }
+.js mark.hl.on { background-size: 100% 100%; }
+
+/* footer */
+footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104px; }
+.foot { display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; }
+.foot .wordmark { color: var(--white); font-size: 24px; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 10px 24px; max-width: 560px; }
+.foot-links a { font-family: var(--display); font-weight: 600; font-size: 15.5px; color: var(--on-navy); text-decoration: none; }
+.foot-links a:hover { color: var(--white); text-decoration: underline; }
+.legal { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--display); font-size: 14px; line-height: 1.6; }
+.legal p { max-width: none; }
+
+/* sticky phone button */
+.sticky { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--deep); padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); transform: translateY(110%); transition: transform .25s ease; }
+.sticky.show { transform: translateY(0); }
+@media (min-width: 821px) { .sticky { display: none; } footer { padding-bottom: 46px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .sticky, .sleeve { transition: none !important; animation: none !important; } .js mark.hl { transition: none; background-size: 100% 100%; } }
+
+.hero { padding: 54px 0 70px; overflow: hidden; }
+.chero { display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(50px, 10vw, 104px); line-height: 0.9; letter-spacing: -0.05em; }
+.hero .lede { margin: 22px 0 26px; max-width: 30em; }
+.kick { font-family: var(--display); font-weight: 700; color: #FFD84D; margin-bottom: 12px; }
+.emerald { background: #0E6B4F; color: #fff; }
+.emerald p, .emerald .lede { color: #E6F5EE; }
+.emerald .small { color: #BFE3D2; }
+.big-sleeve { width: 100%; transform: rotate(3deg); }
+.big-sleeve .ti { font-size: 44px; }
+.big-sleeve .ar { font-size: 120px; top: 64px; right: 28px; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+.compare > div { border: 2px solid var(--ink); border-radius: 18px; padding: 26px; background: var(--white); }
+.compare > div.best { border-color: #0E6B4F; box-shadow: 0 0 0 4px rgba(14,107,79,0.15); }
+.compare h3 { font-size: 24px; letter-spacing: -0.025em; }
+.compare .amt { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: -0.04em; margin: 8px 0 14px; }
+.compare ul { list-style: none; }
+.compare li { padding: 9px 0; border-top: 1px solid var(--rule); }
+.compare li.no { color: var(--slate); text-decoration: line-through; text-decoration-thickness: 1px; }
+.gets { list-style: none; margin-top: 26px; border-top: 3px solid var(--ink); }
+.gets li { display: grid; grid-template-columns: 240px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.gets b { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
+.gets span { color: var(--slate); }
+.year { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 28px; }
+.year > div { background: var(--white); border-radius: 14px; padding: 18px 18px 16px; border-top: 5px solid #0E6B4F; }
+.year .m { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--slate); }
+.year h3 { font-size: 20px; letter-spacing: -0.02em; margin: 4px 0 6px; line-height: 1.1; }
+.year p { font-size: 16px; color: var(--slate); margin: 0; }
+.flow { list-style: none; counter-reset: s; margin-top: 26px; max-width: 780px; border-top: 3px solid #fff; }
+.flow li { counter-increment: s; display: grid; grid-template-columns: 62px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.25); align-items: baseline; }
+.flow li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 0.9; color: #FFD84D; }
+.flow b { font-family: var(--display); font-weight: 700; font-size: 21px; display: block; color: #fff; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+.plan { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; }
+.plan.best { border-color: #0E6B4F; box-shadow: 0 0 0 4px rgba(14,107,79,0.15); }
+.plan .tag { font-family: var(--display); font-weight: 700; font-size: 14px; color: #0E6B4F; min-height: 20px; }
+.plan h3 { font-size: 26px; letter-spacing: -0.025em; margin-top: 4px; }
+.plan .amt { font-family: var(--display); font-weight: 800; font-size: 56px; letter-spacing: -0.05em; line-height: 1; margin: 12px 0 6px; }
+.plan .amt span { font-size: 20px; letter-spacing: -0.01em; color: var(--slate); }
+.plan ul { list-style: none; margin: 14px 0 22px; flex: 1; }
+.plan li { padding: 9px 0; border-top: 1px solid var(--rule); }
+.plan .btn { width: 100%; }
+.faq { margin-top: 26px; max-width: 800px; border-top: 3px solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+.faq summary { font-family: var(--display); font-weight: 700; font-size: 20px; cursor: pointer; letter-spacing: -0.015em; }
+.faq details p { margin: 10px 0 0; color: var(--slate); max-width: 40em; }
+.join { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 30px; max-width: 760px; margin-top: 26px; }
+.join select, .join input[type=email] { width: 100%; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--chalk); border: 2px solid var(--ink); border-radius: 12px; padding: 13px 15px; margin-bottom: 14px; }
+.join label { display: block; font-family: var(--display); font-weight: 700; margin-bottom: 7px; }
+@media (max-width: 860px) {
+  .chero { grid-template-columns: 1fr; gap: 26px; } .big-sleeve { max-width: 250px; order: -1; } .big-sleeve .ti { font-size: 28px; } .big-sleeve .ar { font-size: 70px; top: 46px; right: 16px; }
+  .compare, .plans { grid-template-columns: 1fr; } .gets li { grid-template-columns: 1fr; gap: 6px; } .year { grid-template-columns: 1fr 1fr; } .join { padding: 22px 18px; }
+}
+@media (max-width: 520px) { .year { grid-template-columns: 1fr; } }
+footer { padding-bottom: 46px; }
+</style>
+</head>
+<body>
+
+<!-- EDIT POINTS: when the Circle opens, paste the two Systeme checkout links below.
+     While they are empty, every button sends people to the waiting list. -->
+<nav class="nav"><div class="wrap nav-in">
+  <a class="wordmark" href="../"><img class="mark" src="../brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
+  <div class="nav-links"><a class="t" href="../#briefs">The Briefs</a><a class="t" href="../circle/">The Circle</a><a class="t" href="../rizq-code/">The Rizq Code</a><a class="t" href="../riba-check/">Riba Check</a><a class="t" href="../mediation/">Mediation</a><a class="t" href="../#newsletter">Newsletter</a></div>
+  <div class="nav-right">
+    <a class="btn btn-act btn-sm js-join" href="#join">Join the list</a>
+    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="../#briefs">The Briefs</a><a href="../circle/">The Circle</a><a href="../rizq-code/">The Rizq Code</a><a href="../riba-check/">Riba Check</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a></div></details>
+  </div>
+</div></nav>
+
+<header class="hero emerald" id="top">
+  <div class="wrap chero">
+    <div>
+      <p class="kick">Membership from The Ummah Brief</p>
+      <h1>The Rizq Circle.</h1>
+      <p class="lede">For the price of one Brief, every Brief. A money plan every month, an answer to your questions every month, and a circle of Muslim households working through it with you.</p>
+      <a class="btn btn-act js-join" href="#join">Join the waiting list</a>
+      <p class="small" style="margin-top:14px">$9 a month, or $79 a year with The Rizq Code included. Cancel anytime.</p>
+    </div>
+    <div class="sleeve big-sleeve" style="--c:#0A5640;--t:#FFFFFF" aria-hidden="true"><span class="no">Membership</span><span class="ar" lang="ar" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>For the price of one Brief.</h2>
+    <p class="lede">A Brief solves one problem, once. The Circle keeps solving them, month after month.</p>
+    <div class="compare">
+      <div><h3>One Brief</h3><div class="amt">$9 once</div><ul><li>One audio Brief and its action sheet</li><li class="no">Every other Brief</li><li class="no">A plan every month</li><li class="no">Your questions answered</li><li class="no">Your whole household</li></ul></div>
+      <div class="best"><h3>The Rizq Circle</h3><div class="amt">$9 a month</div><ul><li>Every Brief, and each new one</li><li>A money plan every month</li><li>Your questions answered every month</li><li>The member tools</li><li>Your whole household</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>What members get.</h2>
+    <ul class="gets">
+      <li><b>Every Brief</b><span>The full library of audio Briefs, each with its action sheet and transcript, and every new Brief the day it comes out.</span></li>
+      <li><b>The monthly plan</b><span>On the first of each month: one focus, a short audio of about ten minutes, and a four-week checklist. Small enough to finish, big enough to matter.</span></li>
+      <li><b>The monthly Ask</b><span>Send us your money questions. Once a month we answer the most common ones in an audio for members. Faith questions are checked with a scholar first.</span></li>
+      <li><b>Member tools</b><span>The riba exit tracker, the zakat worksheet and the household budget sheet, ready to fill in.</span></li>
+      <li><b>One household, one price</b><span>Your spouse joins on the same membership. Money changes when the whole house is on the same plan.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>A year in the Circle.</h2>
+    <p class="lede">Twelve months, twelve focuses. Each one builds on the last, and new Briefs arrive alongside them.</p>
+    <div class="year"><div><div class="m">Ramadan</div><h3>Purify and plan</h3><p>Work out your zakat, plan your sadaqah, and enter the month with your money in order.</p></div><div><div class="m">Shawwal</div><h3>The freeze</h3><p>Stop new riba coming in, and put every debt in the order you will clear it.</p></div><div><div class="m">Month 3</div><h3>A job for every rand, dollar or pound</h3><p>Give each part of your income a purpose before payday.</p></div><div><div class="m">Month 4</div><h3>The cushion</h3><p>Build one month of essentials, so the next surprise is not a crisis.</p></div><div><div class="m">Month 5</div><h3>Your wasiyyah</h3><p>Start your Islamic will, with the Wasiyyah Brief.</p></div><div><div class="m">Month 6</div><h3>A second door</h3><p>Choose one halal income pathway and take the first step.</p></div><div><div class="m">Month 7</div><h3>Before you invest</h3><p>Learn what to check before you put money anywhere, with the Halal Investing Brief.</p></div><div><div class="m">Month 8</div><h3>Children and money</h3><p>Teach giving, saving and contentment at home, with the Raising Children Brief.</p></div><div><div class="m">Month 9</div><h3>The money talk</h3><p>Talk about money with your spouse without a fight, with the Marriage Money Brief.</p></div><div><div class="m">Month 10</div><h3>Giving with a plan</h3><p>Decide your giving before others decide it for you.</p></div><div><div class="m">Month 11</div><h3>The year in review</h3><p>Look back at what grew and what lasted.</p></div><div><div class="m">Month 12</div><h3>Goals with names</h3><p>Hajj, a home, education: give each one a number and a date.</p></div></div>
+    <p class="small" style="margin-top:16px">Planned focuses. The order may change as new Briefs are released.</p>
+  </div>
+</section>
+
+<section class="emerald">
+  <div class="wrap">
+    <h2>How a month works.</h2>
+    <ol class="flow">
+      <li><div><b>The first of the month</b><span>The month's focus arrives: a short audio and a four-week checklist.</span></div></li>
+      <li><div><b>Weeks one to three</b><span>One small task a week. Most take less than half an hour.</span></div></li>
+      <li><div><b>Week four</b><span>A check-in, and your chance to send questions for the Ask.</span></div></li>
+      <li><div><b>The Ask</b><span>Answers to members' most common questions, in one audio.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="white" id="plans">
+  <div class="wrap">
+    <h2>Choose how you pay.</h2>
+    <div class="plans">
+      <div class="plan"><div class="tag"></div><h3>Monthly</h3><div class="amt">$9<span> a month</span></div><ul><li>Everything in the Circle</li><li>Your whole household</li><li>Cancel anytime</li></ul><a class="btn btn-line js-buy" data-plan="monthly" href="#join">Join monthly</a></div>
+      <div class="plan best"><div class="tag">Best value: save $29</div><h3>Yearly</h3><div class="amt">$79<span> a year</span></div><ul><li>Everything in the Circle</li><li>The Rizq Code included, yours to keep ($39 on its own)</li><li>Your whole household</li></ul><a class="btn btn-act js-buy" data-plan="yearly" href="#join">Join yearly</a></div>
+    </div>
+    <p class="small" style="margin-top:16px">Paid securely through PayPal. Not for you? Email us within 14 days of your first payment for a full refund. Already bought a Brief? Your first month is free.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <div class="faq">
+      <details><summary>Can I cancel?</summary><p>Yes, at any time, from your PayPal account or by emailing salaam@ummahbrief.com. You keep access until the end of the period you paid for.</p></details>
+      <details><summary>What happens to the Briefs if I leave?</summary><p>Briefs are part of the membership, so access ends when it ends. If you joined yearly, The Rizq Code is yours to keep.</p></details>
+      <details><summary>Is this financial advice?</summary><p>No. Everything in the Circle is general education for Muslim households. It is not personal financial advice and it is not a fatwa. For your own situation, speak to a qualified adviser and a scholar you trust.</p></details>
+      <details><summary>Who answers the questions?</summary><p>The Ummah Brief team. Questions about rulings are checked with a scholar before we answer, and we never give a personal ruling.</p></details>
+      <details><summary>Is it private?</summary><p>Yes. Your questions are answered without your name, and we never share your details with anyone.</p></details>
+      <details><summary>I am not in debt. Is it for me?</summary><p>Yes. Debt is two months of the year. The rest is zakat, a cushion, your will, a second income, children, marriage and giving.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="join">
+  <div class="wrap">
+    <h2>Join the waiting list.</h2>
+    <p class="lede">The Circle opens soon. People on the list hear first, and get the first week to join.</p>
+    <div class="join">
+      <form data-ok="#joinOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Rizq Circle waiting list">
+        <input type="hidden" name="plan_interest" id="planInterest" value="">
+        <label for="j-email">Your email address</label>
+        <input id="j-email" type="email" name="email" autocomplete="email" required>
+        <label for="j-help">What would help you most this year?</label>
+        <select id="j-help" name="most_help" required><option value="">Choose one</option><option>Getting out of riba debt</option><option>Getting zakat right</option><option>A budget that works</option><option>Starting my Islamic will</option><option>A second halal income</option><option>Money and family</option></select>
+        <button type="submit" class="btn btn-act btn-block">Join the waiting list</button>
+        <p class="small" style="margin-top:12px">One email when the Circle opens, plus the Friday email. Unsubscribe anytime. <a href="../privacy/">Privacy</a></p>
+      </form>
+      <div class="ok" id="joinOk" role="status">You are on the list. You will hear first when the Circle opens, insha'Allah.</div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">
+  <div class="foot">
+    <a class="wordmark" href="../"><img class="mark" src="../brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
+    <div class="foot-links">
+      <a href="../#briefs">The Briefs</a><a href="../circle/">The Rizq Circle</a><a href="../rizq-code/">The Rizq Code</a><a href="../guide/">Free guide</a><a href="../riba-check/">Riba Check</a><a href="../ledger/">The Ledger</a><a href="../mediation/">Mediation</a><a href="../#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="../sponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms and refunds</a>
+    </div>
+  </div>
+  <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
+</div></footer>
+<script>
+// EDIT POINTS: paste the Systeme checkout links here when the Circle opens.
+var CIRCLE_MONTHLY_URL = '';
+var CIRCLE_YEARLY_URL = '';
+(function () {
+  var open = CIRCLE_MONTHLY_URL && CIRCLE_YEARLY_URL;
+  document.querySelectorAll('.js-buy').forEach(function (a) {
+    var url = a.dataset.plan === 'yearly' ? CIRCLE_YEARLY_URL : CIRCLE_MONTHLY_URL;
+    if (open) { a.href = url; }
+    else { a.addEventListener('click', function () { document.getElementById('planInterest').value = a.dataset.plan; }); }
+  });
+  if (open) {
+    document.querySelectorAll('.js-join').forEach(function (a) { a.href = '#plans'; a.textContent = a.classList.contains('btn-sm') ? 'Join' : 'Join the Circle'; });
+    var j = document.getElementById('join'); if (j) j.style.display = 'none';
+  }
+})();
+
+// Sends a form without leaving the page, then shows its confirmation message.
+document.querySelectorAll('form[data-ok]').forEach(function (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]'); var label = btn.textContent;
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    try {
+      var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (res.ok) {
+        if (form.dataset.next) { window.location.href = form.dataset.next; return; }
+        form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return;
+      }
+    } catch (err) {}
+    btn.textContent = 'That did not send. Try again'; btn.disabled = false;
+    setTimeout(function () { btn.textContent = label; }, 4000);
+  });
+});
+// Highlighter: draw the yellow marker when the words come into view.
+(function () {
+  var marks = document.querySelectorAll('mark.hl');
+  if (!marks.length || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, { threshold: 0.9, rootMargin: '0px 0px -12% 0px' });
+  marks.forEach(function (m) { io.observe(m); });
+})();
+// Close the phone menu after a link is tapped.
+document.querySelectorAll('.menu-list a').forEach(function (a) { a.addEventListener('click', function () { a.closest('details').removeAttribute('open'); }); });
+</script>
+</body>
+</html>

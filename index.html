@@ -171,6 +171,18 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 .cobalt .lede { color: #EEF1FF; }
 .cobalt .small { color: #C9D3FF; }
 .cobalt .rc li { border-color: rgba(255,255,255,0.28); color: #fff; }
+.emerald { background: #0E6B4F; color: #fff; }
+.emerald .lede { color: #E6F5EE; }
+.emerald .small { color: #BFE3D2; }
+.circ { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+.circ ul { list-style: none; margin: 22px 0 26px; }
+.circ li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.28); }
+.circ li:first-child { border-top: 1px solid rgba(255,255,255,0.28); }
+.circ-sleeve { width: 100%; transform: rotate(-2deg); }
+.circ-sleeve .ti { font-size: 40px; }
+.circ-sleeve .ar { font-size: 96px; top: 54px; right: 24px; }
+.price .per { font-size: 22px; letter-spacing: -0.02em; margin-left: 4px; }
+@media (max-width: 820px) { .circ { grid-template-columns: 1fr; gap: 30px; } .circ-sleeve { max-width: 260px; } .circ-sleeve .ti { font-size: 28px; } .circ-sleeve .ar { font-size: 64px; top: 46px; } }
 .rc ul { list-style: none; margin: 22px 0 26px; }
 .rc li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .rc li:first-child { border-top: 1px solid var(--rule); }
@@ -195,10 +207,10 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
 -->
 <nav class="nav"><div class="wrap nav-in">
   <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
-  <div class="nav-links"><a class="t" href="#briefs">The Briefs</a><a class="t" href="rizq-code/">The Rizq Code</a><a class="t" href="riba-check/">Riba Check</a><a class="t" href="mediation/">Mediation</a><a class="t" href="#newsletter">Newsletter</a></div>
+  <div class="nav-links"><a class="t" href="#briefs">The Briefs</a><a class="t" href="circle/">The Circle</a><a class="t" href="rizq-code/">The Rizq Code</a><a class="t" href="riba-check/">Riba Check</a><a class="t" href="mediation/">Mediation</a><a class="t" href="#newsletter">Newsletter</a></div>
   <div class="nav-right">
     <a class="btn btn-act btn-sm js-guide" href="guide/">Free guide</a>
-    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="#briefs">The Briefs</a><a href="rizq-code/">The Rizq Code</a><a href="riba-check/">Riba Check</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a></div></details>
+    <details class="menu"><summary>Menu</summary><div class="menu-list"><a href="#briefs">The Briefs</a><a href="circle/">The Circle</a><a href="rizq-code/">The Rizq Code</a><a href="riba-check/">Riba Check</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a></div></details>
   </div>
 </div></nav>
 
@@ -278,6 +290,26 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
   </div>
 </section>
 
+<section class="emerald" id="circle">
+  <div class="wrap circ">
+    <a class="sleeve circ-sleeve" style="--c:#0A5640;--t:#FFFFFF" href="circle/" aria-label="The Rizq Circle"><span class="no">Membership <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></a>
+    <div>
+      <h2>The Rizq Circle</h2>
+      <p class="lede">For the price of one Brief, every Brief. A money plan every month, an answer to your questions every month, and a circle of Muslim households working through it with you.</p>
+      <ul>
+        <li>Every Brief, and each new one as it comes out</li>
+        <li>One focus, one checklist and one short audio every month</li>
+        <li>One membership covers your whole household</li>
+      </ul>
+      <div class="buy">
+        <div class="price">$9<span class="per">/month</span></div>
+        <a class="btn btn-act" href="circle/">See the Circle</a>
+      </div>
+      <p class="small" style="margin-top:16px">Or $79 a year, with The Rizq Code included. Cancel anytime. Opening soon: join the waiting list.</p>
+    </div>
+  </div>
+</section>
+
 <section class="cobalt" id="product">
   <div class="wrap rc">
     <img src="rizq-code/rizq-code-cover.png" alt="The Rizq Code framework with its three companion tools" width="742" height="728">
@@ -323,7 +355,7 @@ footer { background: var(--deep); color: var(--on-navy-dim); padding: 46px 0 104
   <div class="foot">
     <a class="wordmark" href="./"><img class="mark" src="brand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
     <div class="foot-links">
-      <a href="#briefs">The Briefs</a><a href="rizq-code/">The Rizq Code</a><a href="guide/">Free guide</a><a href="riba-check/">Riba Check</a><a href="ledger/">The Ledger</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms and refunds</a>
+      <a href="#briefs">The Briefs</a><a href="circle/">The Rizq Circle</a><a href="rizq-code/">The Rizq Code</a><a href="guide/">Free guide</a><a href="riba-check/">Riba Check</a><a href="ledger/">The Ledger</a><a href="mediation/">Mediation</a><a href="#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="sponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="privacy/">Privacy</a><a href="terms/">Terms and refunds</a>
     </div>
   </div>
   <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
