@@ -4,12 +4,12 @@ import os, sys
 SITE = sys.argv[1]
 
 BRIEFS = [
-    ("01", "The Riba Exit Brief", "A clear order of steps for leaving interest-bearing debt.", "#C92F3A", "#FFFFFF"),
-    ("02", "The Zakat Brief", "Work out your zakat correctly in one sitting.", "#F2B632", "#0E1630"),
-    ("03", "The Halal Investing Brief", "Know what to check before you put money anywhere.", "#17837C", "#FFFFFF"),
-    ("04", "The Wasiyyah Brief", "Get your Islamic will started this week.", "#5B2A6E", "#FFFFFF"),
-    ("05", "The Marriage Money Brief", "Talk about money with your spouse without a fight.", "#D9577B", "#FFFFFF"),
-    ("06", "The Raising Children Brief", "Teach children money, giving and contentment.", "#2F7FD1", "#FFFFFF"),
+    ("01", "The Riba Exit Brief", "A clear order of steps for leaving interest-bearing debt.", "#C92F3A", "#FFFFFF", "ربا"),
+    ("02", "The Zakat Brief", "Work out your zakat correctly in one sitting.", "#F2B632", "#0E1630", "زكاة"),
+    ("03", "The Halal Investing Brief", "Know what to check before you put money anywhere.", "#17837C", "#FFFFFF", "حلال"),
+    ("04", "The Wasiyyah Brief", "Get your Islamic will started this week.", "#5B2A6E", "#FFFFFF", "وصية"),
+    ("05", "The Marriage Money Brief", "Talk about money with your spouse without a fight.", "#D9577B", "#FFFFFF", "زواج"),
+    ("06", "The Raising Children Brief", "Teach children money, giving and contentment.", "#2F7FD1", "#FFFFFF", "تربية"),
 ]
 
 
@@ -17,6 +17,7 @@ def base_css(root):
     return """
 @font-face { font-family: 'Bricolage Grotesque'; src: url('%(r)sfonts/bricolage-grotesque.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
 @font-face { font-family: 'Newsreader'; src: url('%(r)sfonts/newsreader.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: 'Amiri Words'; src: url('%(r)sfonts/amiri-words.woff2') format('woff2'); font-display: block; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --navy: #0F1B3D; --deep: #0A1330; --chalk: #F3F5F8; --white: #FFFFFF;
@@ -91,6 +92,7 @@ section { padding: 76px 0; }
 /* sleeves: the square covers of the Briefs */
 .sleeve { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1; border-radius: 6px; padding: 16px; text-decoration: none; background: var(--c); color: var(--t); box-shadow: 0 14px 30px rgba(4,9,26,0.28); }
 .sleeve .no { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; opacity: 0.92; display: flex; justify-content: space-between; align-items: center; }
+.sleeve .ar { position: absolute; right: 16px; top: 36px; font-family: 'Amiri Words', serif; font-size: clamp(30px, 3.1vw, 42px); line-height: 1.25; direction: rtl; }
 .sleeve .ti { font-family: var(--display); font-weight: 800; font-size: clamp(21px, 2.3vw, 27px); line-height: 0.98; letter-spacing: -0.035em; }
 .sleeve .play { width: 26px; height: 26px; border-radius: 50%%; border: 2px solid currentColor; position: relative; }
 .sleeve .soon { font-size: 12px; font-weight: 700; border: 1.5px solid currentColor; border-radius: 40px; padding: 1px 9px; }
@@ -248,7 +250,7 @@ home_css = """
   .shelf { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-left: -22px; margin-right: -22px; padding: 0 22px 26px; scrollbar-width: none; }
   .shelf::-webkit-scrollbar { display: none; }
   .shelf .sleeve { flex: 0 0 min(58vw, 230px); scroll-snap-align: center; }
-  .shelf .sleeve .ti { font-size: 27px; }
+  .shelf .sleeve .ti { font-size: 27px; } .shelf .sleeve .ar { font-size: 60px; top: 48px; right: 18px; }
 }
 .briefs-intro { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; margin-top: 56px; }
 .first-out { background: var(--white); border: 2px solid var(--ink); border-radius: 16px; padding: 26px; scroll-margin-top: 84px; border-top: 10px solid var(--pick, #C92F3A); }
@@ -271,13 +273,18 @@ home_css = """
 @media (max-width: 760px) { .cover-list li { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
 
 .rc { display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: center; }
-.rc img { border-radius: 10px; box-shadow: 0 26px 60px rgba(4,9,26,0.3); width: 100%; height: auto; }
+.rc { grid-template-columns: 420px 1fr; }
+.rc img { width: 100%; height: auto; }
+.cobalt { background: #1D3FCB; color: #fff; }
+.cobalt .lede { color: #EEF1FF; }
+.cobalt .small { color: #C9D3FF; }
+.cobalt .rc li { border-color: rgba(255,255,255,0.28); color: #fff; }
 .rc ul { list-style: none; margin: 22px 0 26px; }
 .rc li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .rc li:first-child { border-top: 1px solid var(--rule); }
 .buy { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 26px; }
 .price { font-family: var(--display); font-weight: 800; font-size: 60px; letter-spacing: -0.05em; line-height: 1; }
-@media (max-width: 820px) { .rc { grid-template-columns: 1fr; gap: 30px; } .rc img { max-width: 250px; } .buy .btn { flex: 1 1 100%; } }
+@media (max-width: 820px) { .rc { grid-template-columns: 1fr; gap: 30px; } .rc img { max-width: 340px; } .buy .btn { flex: 1 1 100%; } }
 
 .med h2 { font-size: clamp(40px, 9vw, 92px); line-height: 0.95; letter-spacing: -0.045em; max-width: 10em; }
 .med .lede { margin: 24px 0 30px; max-width: 32em; }
@@ -287,12 +294,12 @@ home_css = """
 """
 
 sleeves = ""
-for i, (no, title, promise, c, t) in enumerate(BRIEFS):
-    short = title.replace("The ", "", 1)
+for i, (no, title, promise, c, t, ar) in enumerate(BRIEFS):
+    short = title.replace("The ", "", 1).replace(" Brief", "")
     if i == 0:
-        sleeves += '<a class="sleeve" style="--c:%s;--t:%s" href="briefs/riba-exit/" aria-label="%s"><span class="no">Brief %s <span class="play" aria-hidden="true"></span></span><span class="ti">%s</span></a>\n      ' % (c, t, title, no, short)
+        sleeves += '<a class="sleeve" style="--c:%s;--t:%s" href="briefs/riba-exit/" aria-label="%s"><span class="no">Brief %s <span class="play" aria-hidden="true"></span></span><span class="ar" lang="ar" aria-hidden="true">%s</span><span class="ti">%s</span></a>\n      ' % (c, t, title, no, ar, short)
     else:
-        sleeves += '<a class="sleeve js-pick" style="--c:%s;--t:%s" href="#waitlist" data-brief="%s" data-promise="%s" aria-label="%s, coming soon. Join the waiting list"><span class="no">Brief %s <span class="soon">Soon</span></span><span class="ti">%s</span></a>\n      ' % (c, t, title, promise, title, no, short)
+        sleeves += '<a class="sleeve js-pick" style="--c:%s;--t:%s" href="#waitlist" data-brief="%s" data-promise="%s" aria-label="%s, coming soon. Join the waiting list"><span class="no">Brief %s <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">%s</span><span class="ti">%s</span></a>\n      ' % (c, t, title, promise, title, no, ar, short)
 
 home = head("", "The Ummah Brief | Halal wealth, family and unity for the Muslim household",
             "You earn halal. So why is nothing left at the end of the month? Get the free guide, and see the Briefs: short audio guides for Muslim households.",
@@ -377,7 +384,7 @@ home += """
   </div>
 </section>
 
-<section class="white" id="product">
+<section class="cobalt" id="product">
   <div class="wrap rc">
     <img src="rizq-code/rizq-code-cover.png" alt="The Rizq Code framework with its three companion tools" width="742" height="728">
     <div>
@@ -553,7 +560,7 @@ med += """<div class="sticky" id="sticky"><a class="btn btn-act btn-block" href=
 write("mediation/index.html", med)
 
 # ───────────────────────── RIBA EXIT BRIEF ─────────────────────────
-no, title, promise, c, t = BRIEFS[0]
+no, title, promise, c, t, ar = BRIEFS[0]
 brief_css = """
 .hero { padding: 46px 0 64px; }
 .hero-grid { display: grid; grid-template-columns: 1fr 290px; gap: 56px; align-items: center; }
@@ -562,8 +569,9 @@ brief_css = """
 .hero .facts { font-family: var(--display); font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 26px; }
 .hero .sleeve { transform: rotate(3deg); }
 .hero .sleeve .ti { font-size: 42px; }
+.hero .sleeve .ar { font-size: 88px; right: 26px; top: 54px; }
 .hero .small { margin-top: 14px; }
-@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 26px; } .hero-grid .sleeve { order: -1; width: 150px; padding: 12px; } .hero .sleeve .ti { font-size: 23px; } .hero .btn { display: block; width: 100%%; } }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 26px; } .hero-grid .sleeve { order: -1; width: 150px; padding: 12px; } .hero .sleeve .ti { font-size: 23px; } .hero .sleeve .ar { font-size: 44px; right: 12px; top: 34px; } .hero .btn { display: block; width: 100%%; } }
 .pull { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 5.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04; max-width: 18em; margin: 30px 0; }
 .pull mark { color: inherit; padding: 0 0.14em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .rows { border-top: 3px solid var(--ink); margin-top: 30px; max-width: 820px; }
@@ -621,7 +629,7 @@ brief += """
         <p class="small">One payment. Instant access. Pay securely with PayPal.</p>
       </div>
     </div>
-    <div class="sleeve" style="--c:%(c)s;--t:%(t)s" aria-hidden="true"><span class="no">Brief 01 <span class="play"></span></span><span class="ti">Riba Exit Brief</span></div>
+    <div class="sleeve" style="--c:%(c)s;--t:%(t)s" aria-hidden="true"><span class="no">Brief 01 <span class="play"></span></span><span class="ar" lang="ar">ربا</span><span class="ti">Riba Exit Brief</span></div>
   </div>
 </header>
 
