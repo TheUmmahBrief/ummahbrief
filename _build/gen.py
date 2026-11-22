@@ -3,6 +3,9 @@ import os, sys
 
 SITE = sys.argv[1]
 
+# EDIT POINT: True from early January to Eid al-Fitr. Shows the Ramadan Money Pack in the menu and on the homepage.
+RAMADAN_SEASON = True
+
 BRIEFS = [
     ("01", "The Riba Exit Brief", "A clear order of steps for leaving interest-bearing debt.", "#C92F3A", "#FFFFFF", "ربا"),
     ("02", "The Zakat Brief", "Work out your zakat correctly in one sitting.", "#F2B632", "#0E1630", "زكاة"),
@@ -147,7 +150,7 @@ def head(root, title, desc, url, extra_css):
 
 
 def nav(root, cta_html):
-    links = [("The Briefs", root + "#briefs"), ("The Circle", root + "circle/"), ("The Rizq Code", root + "rizq-code/"), ("Riba Check", root + "riba-check/"), ("Mediation", root + "mediation/"), ("Newsletter", root + "#newsletter")]
+    links = [("The Briefs", root + "#briefs"), ("The Circle", root + "circle/"), ("The Rizq Code", root + "rizq-code/"), ("Riba Check", root + "riba-check/"), ("Mediation", root + "mediation/")] + ([("Ramadan", root + "ramadan/")] if RAMADAN_SEASON else [("Newsletter", root + "#newsletter")])
     t = "".join('<a class="t" href="%s">%s</a>' % (h, n) for n, h in links)
     m = "".join('<a href="%s">%s</a>' % (h, n) for n, h in links)
     return """<nav class="nav"><div class="wrap nav-in">
@@ -166,7 +169,7 @@ def footer(root):
   <div class="foot">
     <a class="wordmark" href="%(home)s"><img class="mark" src="%(r)sbrand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
     <div class="foot-links">
-      <a href="%(r)s#briefs">The Briefs</a><a href="%(r)scircle/">The Rizq Circle</a><a href="%(r)srizq-code/">The Rizq Code</a><a href="%(r)sguide/">Free guide</a><a href="%(r)sriba-check/">Riba Check</a><a href="%(r)sledger/">The Ledger</a><a href="%(r)smediation/">Mediation</a><a href="%(r)s#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="%(r)ssponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="%(r)sprivacy/">Privacy</a><a href="%(r)sterms/">Terms and refunds</a>
+      <a href="%(r)s#briefs">The Briefs</a><a href="%(r)scircle/">The Rizq Circle</a><a href="%(r)srizq-code/">The Rizq Code</a><a href="%(r)sguide/">Free guide</a><a href="%(r)sriba-check/">Riba Check</a><a href="%(r)sledger/">The Ledger</a><a href="%(r)smediation/">Mediation</a><a href="%(r)s#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="%(r)sramadan/">The Ramadan Money Pack</a><a href="%(r)slibrary/">The Library</a><a href="%(r)spartners/">Become a partner</a><a href="%(r)ssponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="%(r)sprivacy/">Privacy</a><a href="%(r)sterms/">Terms and refunds</a>
     </div>
   </div>
   <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
@@ -298,6 +301,22 @@ home_css = """
 .price { font-family: var(--display); font-weight: 800; font-size: 60px; letter-spacing: -0.05em; line-height: 1; }
 @media (max-width: 820px) { .rc { grid-template-columns: 1fr; gap: 30px; } .rc img { max-width: 340px; } .buy .btn { flex: 1 1 100%; } }
 
+
+/* the Ramadan Money Pack: four product sleeves fanned together under the season word */
+.rmd { display: grid; grid-template-columns: 420px 1fr; gap: 60px; align-items: center; }
+.fan { position: relative; aspect-ratio: 1 / 1.02; }
+.fan .sleeve { position: absolute; width: 50%; }
+.fan .sleeve .ti { font-size: clamp(17px, 1.9vw, 23px); }
+.fan .sleeve .ar { font-size: clamp(32px, 3.6vw, 48px); top: 32px; right: 12px; }
+.fan .s1 { left: 0; top: 0; transform: rotate(-5deg); }
+.fan .s2 { left: 52%; top: 3%; transform: rotate(4deg); }
+.fan .s3 { left: 1%; top: 51%; transform: rotate(3deg); }
+.fan .s4 { left: 53%; top: 52%; transform: rotate(-4deg); }
+.season { font-family: 'Amiri Words', serif; color: #FFD84D; font-size: clamp(64px, 9vw, 110px); line-height: 1.1; direction: rtl; display: block; margin-bottom: 6px; }
+.rmd ul { list-style: none; margin: 22px 0 26px; }
+.rmd li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.22); }
+.rmd li:first-child { border-top: 1px solid rgba(255,255,255,0.22); }
+@media (max-width: 820px) { .rmd { grid-template-columns: 1fr; gap: 26px; } .fan { max-width: 360px; } }
 .med h2 { font-size: clamp(40px, 9vw, 92px); line-height: 0.95; letter-spacing: -0.045em; max-width: 10em; }
 .med .lede { margin: 24px 0 30px; max-width: 32em; }
 .news h2 { max-width: 12em; }
@@ -312,6 +331,36 @@ for i, (no, title, promise, c, t, ar) in enumerate(BRIEFS):
         sleeves += '<a class="sleeve" style="--c:%s;--t:%s" href="briefs/riba-exit/" aria-label="%s"><span class="no">Brief %s <span class="play" aria-hidden="true"></span></span><span class="ar" lang="ar" aria-hidden="true">%s</span><span class="ti">%s</span></a>\n      ' % (c, t, title, no, ar, short)
     else:
         sleeves += '<a class="sleeve js-pick" style="--c:%s;--t:%s" href="#waitlist" data-brief="%s" data-promise="%s" aria-label="%s, coming soon. Join the waiting list"><span class="no">Brief %s <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true">%s</span><span class="ti">%s</span></a>\n      ' % (c, t, title, promise, title, no, ar, short)
+
+
+RAMADAN_HOME = """
+<section class="navy" id="ramadan">
+  <div class="wrap rmd">
+    <div class="fan" aria-hidden="true">
+      <div class="sleeve s1" style="--c:#C92F3A;--t:#FFFFFF"><span class="no">Brief 01</span><span class="ar" lang="ar">ربا</span><span class="ti">Riba Exit</span></div>
+      <div class="sleeve s2" style="--c:#EDE3D1;--t:#0E1630"><span class="no">Planner</span><span class="ar" lang="ar">زاد</span><span class="ti">Ramadan Money Planner</span></div>
+      <div class="sleeve s3" style="--c:#1D3FCB;--t:#FFFFFF"><span class="no">Framework</span><span class="ar" lang="ar" style="color:#FFD84D">رزق</span><span class="ti">The Rizq Code</span></div>
+      <div class="sleeve s4" style="--c:#0A5640;--t:#FFFFFF"><span class="no">1 month</span><span class="ar" lang="ar" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></div>
+    </div>
+    <div>
+      <span class="season" lang="ar" aria-hidden="true">رمضان</span>
+      <h2>The Ramadan Money Pack</h2>
+      <p class="lede">Enter Ramadan with your money in order: your zakat worked out, your sadaqah planned, your riba on its way out, and an Eid budget decided before Eid.</p>
+      <ul>
+        <li>The Rizq Code, with its three tools</li>
+        <li>The Riba Exit Brief, audio and action sheet</li>
+        <li>The Ramadan Money Planner, to print or fill in</li>
+        <li>Your first month of The Rizq Circle, free</li>
+      </ul>
+      <div class="buy">
+        <div class="price">$49</div>
+        <a class="btn btn-act" href="ramadan/">See the pack</a>
+      </div>
+      <p class="small" style="margin-top:16px">The Rizq Code alone is $39. The pack is available until Eid al-Fitr.</p>
+    </div>
+  </div>
+</section>
+"""
 
 home = head("", "The Ummah Brief | Halal wealth, family and unity for the Muslim household",
             "You earn halal. So why is nothing left at the end of the month? Get the free guide, and see the Briefs: short audio guides for Muslim households.",
@@ -396,6 +445,7 @@ home += """
   </div>
 </section>
 
+""" + (RAMADAN_HOME if RAMADAN_SEASON else "") + """
 <section class="emerald" id="circle">
   <div class="wrap circ">
     <a class="sleeve circ-sleeve" style="--c:#0A5640;--t:#FFFFFF" href="circle/" aria-label="The Rizq Circle"><span class="no">Membership <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></a>
@@ -819,6 +869,12 @@ terms = """
 <p>Briefs can be refunded within 14 days of purchase in the same way.</p>
 <h2>The Rizq Circle (subscription)</h2>
 <p>The Rizq Circle is a subscription, billed through PayPal every month or every year until you cancel. You can cancel at any time from your PayPal account or by emailing us, and you keep access until the end of the period you have paid for. If the Circle is not for you, email us within 14 days of your first payment and we will refund it in full. Later payments are not refunded, but you can cancel before the next one. Briefs are available to members for as long as they stay members. The Rizq Code included with a yearly membership is yours to keep.</p>
+<h2>The Ramadan Money Pack</h2>
+<p>The Ramadan Money Pack is a one-off purchase that bundles products we also sell separately. It includes The Rizq Code, so it carries The Rizq Code's 30-day money-back guarantee. The free first month of The Rizq Circle that comes with it is optional: you choose whether to start it, and if you do, the Circle's own terms apply from the second month.</p>
+<h2>Books sold on Amazon</h2>
+<p>Printed and Kindle books from The Ummah Brief Library are sold by Amazon, so Amazon's own terms, delivery and returns apply to them.</p>
+<h2>Partners (affiliates)</h2>
+<p>Partners are individual online creators who recommend our products for a commission. Every partner must say clearly that they earn from the link, make no promise of income or results, and give no religious rulings. Commissions are paid after the refund period ends. We may end a partnership that breaks these rules.</p>
 <h2>Education, not advice</h2>
 <p>Everything we publish is general education. It is not personal financial, investment, tax or legal advice, and it is not a fatwa. We do not know your circumstances. Before making a financial decision, speak to a qualified adviser, and take religious questions to a scholar you trust. We make no promise about the income or results you will achieve.</p>
 <h2>Your licence</h2>
@@ -1607,5 +1663,305 @@ spg += """
 spg += footer("../")
 spg += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
 write("sponsor/index.html", spg)
+
+
+# ───────────────────────── THE RAMADAN MONEY PACK ─────────────────────────
+rp_css = circle_css + """
+html, body { overflow-x: clip; }
+.navy .kick { color: #FFD84D; }
+.hero.navy .season { font-size: clamp(80px, 13vw, 150px); }
+.inside { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 28px; }
+.inside > div { background: var(--white); border-radius: 16px; padding: 14px 14px 18px; border: 2px solid var(--ink); }
+.inside .sleeve { box-shadow: none; margin-bottom: 14px; }
+.inside .sleeve .ti { font-size: 21px; } .inside .sleeve .ar { font-size: 44px; top: 34px; right: 14px; }
+.inside h3 { font-size: 20px; letter-spacing: -0.02em; line-height: 1.1; }
+.inside p { font-size: 16px; color: var(--slate); margin: 6px 0 0; }
+.weeks { list-style: none; margin-top: 26px; max-width: 820px; border-top: 3px solid var(--ink); }
+.weeks li { display: grid; grid-template-columns: 200px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.weeks b { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+.weeks span { color: var(--slate); }
+.pack-buy { color: var(--ink); background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 30px; max-width: 620px; margin-top: 26px; }
+.pack-buy .amt { font-family: var(--display); font-weight: 800; font-size: 64px; letter-spacing: -0.05em; line-height: 1; }
+@media (max-width: 980px) { .inside { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .inside { grid-template-columns: 1fr; } .weeks li { grid-template-columns: 1fr; gap: 4px; } .pack-buy { padding: 22px 18px; } }
+"""
+INSIDE = [
+    ("#1D3FCB", "#FFFFFF", "Framework", "رزق", "The Rizq Code", "The complete halal wealth framework: 60 pages, with the Audit Checklist, the Pathway Workbook and the 30-Day Action Plan.", True),
+    ("#C92F3A", "#FFFFFF", "Brief 01", "ربا", "Riba Exit", "The Riba Exit Brief: about 18 minutes of audio with a clear order of steps for leaving interest-bearing debt, and its action sheet.", False),
+    ("#EDE3D1", "#0E1630", "Planner", "زاد", "Ramadan Money Planner", "Thirty days on one page each: your zakat questions, a sadaqah plan for the last ten nights, iftar spending and an Eid budget.", False),
+    ("#0A5640", "#FFFFFF", "1 month", "حلقة", "The Rizq Circle", "Your first month of the membership, free. Month 1 is the Ramadan plan. Stay for $9 a month, or stop. Your choice.", True),
+]
+inside_html = "".join('<div><div class="sleeve" style="--c:%s;--t:%s" aria-hidden="true"><span class="no">%s</span><span class="ar" lang="ar"%s>%s</span><span class="ti">%s</span></div><h3>%s</h3><p>%s</p></div>' % (c, t, no, ' style="color:#FFD84D"' if y else '', ar, ti, ti if ti != "Riba Exit" else "The Riba Exit Brief", d) for c, t, no, ar, ti, d, y in INSIDE)
+
+rp = head("../", "The Ramadan Money Pack | The Ummah Brief",
+          "Enter Ramadan with your money in order: The Rizq Code, the Riba Exit Brief, the Ramadan Money Planner and a free month of The Rizq Circle. $49.",
+          "https://ummahbrief.com/ramadan/", rp_css)
+rp += """
+<!-- EDIT POINT: paste the Systeme checkout link for the pack into RAMADAN_PACK_URL at the bottom of this page.
+     While it is empty, the buttons send people to the waiting list. -->
+"""
+rp += nav("../", '<a class="btn btn-act btn-sm js-join" href="#join">Join the list</a>')
+rp += """
+<header class="hero navy" id="top">
+  <div class="wrap chero">
+    <div>
+      <span class="season" lang="ar" aria-hidden="true">رمضان</span>
+      <h1>Ramadan, with a plan.</h1>
+      <p class="lede">The Ramadan Money Pack puts your money in order before the month begins: your zakat worked out, your sadaqah planned, your riba on its way out, and an Eid budget decided before Eid.</p>
+      <a class="btn btn-act js-join" href="#join">Join the waiting list</a>
+      <p class="small" style="margin-top:14px">$49 once. Opens Monday 25 January, two weeks before Ramadan, insha'Allah.</p>
+    </div>
+    <div class="fan" aria-hidden="true">
+      <div class="sleeve s1" style="--c:#C92F3A;--t:#FFFFFF"><span class="no">Brief 01</span><span class="ar" lang="ar">ربا</span><span class="ti">Riba Exit</span></div>
+      <div class="sleeve s2" style="--c:#EDE3D1;--t:#0E1630"><span class="no">Planner</span><span class="ar" lang="ar">زاد</span><span class="ti">Ramadan Money Planner</span></div>
+      <div class="sleeve s3" style="--c:#1D3FCB;--t:#FFFFFF"><span class="no">Framework</span><span class="ar" lang="ar" style="color:#FFD84D">رزق</span><span class="ti">The Rizq Code</span></div>
+      <div class="sleeve s4" style="--c:#0A5640;--t:#FFFFFF"><span class="no">1 month</span><span class="ar" lang="ar" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Four things, one price.</h2>
+    <p class="lede">Each of these is sold on its own. For Ramadan, they come together.</p>
+    <div class="inside">""" + inside_html + """</div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>How the month goes.</h2>
+    <ul class="weeks">
+      <li><b>Before Ramadan</b><span>Take the Rizq Audit. Listen to the Riba Exit Brief and stop new riba coming in.</span></li>
+      <li><b>Days 1 to 10</b><span>Choose your zakat date and list what you own. Take your questions to a scholar you trust.</span></li>
+      <li><b>Days 11 to 20</b><span>Work out your zakat and plan your sadaqah, including the last ten nights.</span></li>
+      <li><b>The last ten nights</b><span>Give as you planned. Decide your Eid budget before Eid arrives.</span></li>
+      <li><b>After Eid</b><span>Start The Rizq Code's 30-Day Action Plan, with the Circle beside you if you stay.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="navy" id="buy">
+  <div class="wrap">
+    <h2>The Ramadan Money Pack.</h2>
+    <div class="pack-buy">
+      <div class="amt">$49</div>
+      <p style="color:var(--slate);margin:10px 0 18px">The Rizq Code, the Riba Exit Brief, the Ramadan Money Planner and a free first month of The Rizq Circle. The Rizq Code alone is $39.</p>
+      <a class="btn btn-act btn-block js-buy" href="#join">Get the pack</a>
+      <p class="small" style="margin-top:12px;color:var(--slate)">Paid securely through PayPal. 30-day money-back guarantee. Available until Eid al-Fitr.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <div class="faq">
+      <details><summary>I already have The Rizq Code or a Brief.</summary><p>Then you may not need the pack. Brief buyers can get The Rizq Code for $27 and their first Circle month free, from the email that came with the Brief.</p></details>
+      <details><summary>Do I have to stay in the Circle?</summary><p>No. The first month is free and optional. If you start it and do not want to continue, cancel before the second month and you pay nothing more.</p></details>
+      <details><summary>Will it tell me exactly how much zakat I owe?</summary><p>It walks you through the questions and the sums. Where scholars differ, such as on pensions, shares or the nisab, it tells you to ask a scholar you trust. It is general education, not a fatwa.</p></details>
+      <details><summary>Is there a printed planner?</summary><p>The planner in the pack is a PDF you can print or fill in on screen. A printed edition is sold on Amazon through The Ummah Brief Library.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="join">
+  <div class="wrap">
+    <h2>Join the waiting list.</h2>
+    <p class="lede">The pack opens on Monday 25 January. People on the list hear first.</p>
+    <div class="join">
+      <form data-ok="#joinOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Ramadan pack waiting list">
+        <label for="r-email">Your email address</label>
+        <input id="r-email" type="email" name="email" autocomplete="email" required>
+        <label for="r-help">What do you most want in order before Ramadan?</label>
+        <select id="r-help" name="most_help" required><option value="">Choose one</option><option>My zakat</option><option>Getting out of riba debt</option><option>A sadaqah plan</option><option>An Eid budget</option><option>All of it</option></select>
+        <button type="submit" class="btn btn-act btn-block">Join the waiting list</button>
+        <p class="small" style="margin-top:12px">One email when the pack opens, plus the Friday email. Unsubscribe anytime. <a href="../privacy/">Privacy</a></p>
+      </form>
+      <div class="ok" id="joinOk" role="status">You are on the list. You will hear first when the pack opens, insha'Allah.</div>
+    </div>
+  </div>
+</section>
+"""
+rp += footer("../")
+rp += """<script>
+// EDIT POINT: paste the Systeme checkout link for the Ramadan Money Pack here on opening day.
+var RAMADAN_PACK_URL = '';
+(function () {
+  if (!RAMADAN_PACK_URL) return;
+  document.querySelectorAll('.js-buy').forEach(function (a) { a.href = RAMADAN_PACK_URL; });
+  document.querySelectorAll('.js-join').forEach(function (a) { a.href = '#buy'; a.textContent = a.classList.contains('btn-sm') ? 'Get the pack' : 'Get the pack for $49'; });
+  var j = document.getElementById('join'); if (j) j.style.display = 'none';
+  document.querySelectorAll('.hero .small').forEach(function (p) { p.textContent = '$49 once. Available until Eid al-Fitr.'; });
+})();
+""" + FORM_JS + "</script>\n</body>\n</html>\n"
+# the fan styles live in home_css; reuse them here
+rp = rp.replace("</style>", """
+.fan { position: relative; aspect-ratio: 1 / 1.02; }
+.fan .sleeve { position: absolute; width: 50%; }
+.fan .sleeve .ti { font-size: clamp(17px, 1.9vw, 23px); }
+.fan .sleeve .ar { font-size: clamp(32px, 3.6vw, 48px); top: 32px; right: 12px; }
+.fan .s1 { left: 0; top: 0; transform: rotate(-5deg); }
+.fan .s2 { left: 52%; top: 3%; transform: rotate(4deg); }
+.fan .s3 { left: 1%; top: 51%; transform: rotate(3deg); }
+.fan .s4 { left: 53%; top: 52%; transform: rotate(-4deg); }
+.season { font-family: 'Amiri Words', serif; color: #FFD84D; line-height: 1.1; direction: rtl; display: block; margin-bottom: 4px; }
+@media (max-width: 860px) { .fan { max-width: 340px; order: -1; } }
+</style>""", 1)
+write("ramadan/index.html", rp)
+
+# ───────────────────────── PARTNERS (AFFILIATES) ─────────────────────────
+pa_css = lg_css + """
+.rates { list-style: none; margin-top: 26px; max-width: 820px; border-top: 3px solid var(--ink); }
+.rates li { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.rates b { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.rates em { font-style: normal; font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: -0.03em; }
+.rates span { display: block; color: var(--slate); font-size: 16px; margin-top: 2px; }
+.std { list-style: none; margin-top: 24px; max-width: 800px; border-top: 3px solid var(--ink); }
+.std li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.std li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; margin-top: 5px; background: #0E6B4F; }
+.std.no li::before { background: #C92F3A; }
+"""
+pa = head("../", "Become a partner | The Ummah Brief",
+          "Recommend The Ummah Brief to your audience and earn a commission. For individual Muslim creators online.",
+          "https://ummahbrief.com/partners/", pa_css)
+pa += "\n<!-- Partner applications arrive in Formspree labelled 'Partner application'. -->\n"
+pa += nav("../", '<a class="btn btn-act btn-sm" href="#apply">Apply</a>')
+pa += """
+<header class="hero navy" id="top">
+  <div class="wrap">
+    <h1>Become a partner.</h1>
+    <p class="lede">If your audience is Muslim and cares about getting money right, recommend what we make and earn from every sale. We give you the images, the captions and a free copy of everything, so you only recommend what you have seen.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>What you earn.</h2>
+    <ul class="rates">
+      <li><div><b>A single Brief</b><span>Our $9 audio Briefs</span></div><em>90%</em></li>
+      <li><div><b>The Ramadan Money Pack</b><span>$49, from 25 January to Eid al-Fitr</span></div><em>40%</em></li>
+      <li><div><b>The Rizq Code</b><span>$39</span></div><em>50%</em></li>
+      <li><div><b>The Rizq Circle</b><span>Of every payment, for as long as the member stays</span></div><em>30%</em></li>
+    </ul>
+    <p class="small" style="margin-top:16px">Commissions are paid through Systeme after each product's refund period ends.</p>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>Who this is for.</h2>
+    <ul class="std">
+      <li><span>Individual creators online: Instagram, TikTok, YouTube, podcasts and newsletters.</span></li>
+      <li><span>An audience that trusts you on money, family, productivity or deen. Size matters less than trust.</span></li>
+      <li><span>People who will use the product first and recommend it honestly.</span></li>
+    </ul>
+    <h2 style="margin-top:44px">The rules.</h2>
+    <ul class="std no">
+      <li><span>Always say you earn from the link.</span></li>
+      <li><span>No promises of income, savings or results.</span></li>
+      <li><span>No religious rulings. Where one is needed, point people to a scholar they trust.</span></li>
+      <li><span>No paid ads on our name, and no posting in groups or spaces where it is not welcome.</span></li>
+      <li><span>We work with individuals only, not masjids, schools, companies or organisations.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="wrap">
+    <h2>Apply.</h2>
+    <p class="lede">We reply to every application within five working days. If it is a fit, you get your link, a free copy of everything and the partner kit.</p>
+    <div class="form-card">
+      <form data-ok="#paOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Partner application">
+        <div class="two">
+          <div class="field"><label for="p-name">Your name or creator name</label><input id="p-name" type="text" name="name" required></div>
+          <div class="field"><label for="p-email">Email address</label><input id="p-email" type="email" name="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="p-link">Your main channel (link)</label><input id="p-link" type="text" name="channel" required></div>
+        <div class="field"><label for="p-size">Roughly how many people follow you there?</label><select id="p-size" name="audience" required><option value="">Choose one</option><option>Under 5,000</option><option>5,000 to 20,000</option><option>20,000 to 100,000</option><option>Over 100,000</option></select></div>
+        <div class="field"><label for="p-why">What does your audience come to you for?</label><textarea id="p-why" name="about" required></textarea></div>
+        <label class="check"><input type="checkbox" name="agrees_rules" value="yes" required><span>I will follow the rules above.</span></label>
+        <button type="submit" class="btn btn-act btn-block">Send application</button>
+        <p class="small" style="margin-top:12px"><a href="../privacy/">Privacy</a></p>
+      </form>
+      <div class="ok" id="paOk" role="status">Thank you. We reply to every application within five working days.</div>
+    </div>
+  </div>
+</section>
+"""
+pa += footer("../")
+pa += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
+write("partners/index.html", pa)
+
+# ───────────────────────── THE LIBRARY (books on Amazon) ─────────────────────────
+# EDIT POINT: add each book when it goes live. Leave url empty for "coming soon".
+LIBRARY = [
+    ("#EDE3D1", "#0E1630", "Planner", "زاد", "The Ramadan Money Planner", "Thirty days of zakat questions, a sadaqah plan, iftar spending and an Eid budget. Paperback.", ""),
+    ("#2F7FD1", "#FFFFFF", "For children", "صدقة", "My Ramadan Giving Journal", "A daily giving and good-deeds journal for children aged 6 to 10. Paperback.", ""),
+]
+li_css = lg_css + """
+html, body { overflow-x: clip; }
+.books { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; margin-top: 28px; }
+.books > div { background: var(--white); border: 2px solid var(--ink); border-radius: 16px; padding: 14px 14px 20px; display: flex; flex-direction: column; }
+.books .sleeve { box-shadow: none; aspect-ratio: 0.78; margin-bottom: 14px; }
+.books .sleeve .ti { font-size: 26px; } .books .sleeve .ar { font-size: 56px; top: 40px; right: 16px; }
+.books h3 { font-size: 21px; letter-spacing: -0.02em; line-height: 1.1; }
+.books p { font-size: 16px; color: var(--slate); margin: 6px 0 16px; flex: 1; }
+.books .soon-tag { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--slate); }
+@media (max-width: 900px) { .books { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .books { grid-template-columns: 1fr; } }
+"""
+books_html = ""
+for c, t, no, ar, ti, d, url in LIBRARY:
+    act = '<a class="btn btn-line" href="%s" rel="noopener">See it on Amazon</a>' % url if url else '<span class="soon-tag">Coming in January, insha\'Allah</span>'
+    books_html += '<div><div class="sleeve" style="--c:%s;--t:%s" aria-hidden="true"><span class="no">%s</span><span class="ar" lang="ar">%s</span><span class="ti">%s</span></div><h3>%s</h3><p>%s</p>%s</div>' % (c, t, no, ar, ti, ti, d, act)
+lib = head("../", "The Ummah Brief Library | Planners and journals for Muslim households",
+           "Printed planners and journals from The Ummah Brief, sold on Amazon. Each one comes with a free bonus.",
+           "https://ummahbrief.com/library/", li_css)
+lib += "\n<!-- EDIT POINT: the LIBRARY list in gen.py. Bonus signups arrive in Formspree labelled 'Library bonus'. -->\n"
+lib += nav("../", '<a class="btn btn-act btn-sm" href="#bonus">Free bonus</a>')
+lib += """
+<header class="hero navy" id="top">
+  <div class="wrap">
+    <h1>The Library.</h1>
+    <p class="lede">Printed planners and journals for Muslim households, to keep on the kitchen table rather than in a phone. Sold on Amazon. Every book comes with a free bonus from us.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The books.</h2>
+    <div class="books">""" + books_html + """</div>
+  </div>
+</section>
+
+<section class="white" id="bonus">
+  <div class="wrap">
+    <h2>Claim your free bonus.</h2>
+    <p class="lede">Bought one of our books? Enter your email and we will send the bonus pages that go with it: printable worksheets and the free guide.</p>
+    <div class="form-card">
+      <form data-ok="#bOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Library bonus">
+        <div class="field"><label for="b-book">Which book?</label><select id="b-book" name="book" required><option value="">Choose one</option>""" + "".join("<option>%s</option>" % b[4] for b in LIBRARY) + """</select></div>
+        <div class="field"><label for="b-email">Your email address</label><input id="b-email" type="email" name="email" autocomplete="email" required></div>
+        <button type="submit" class="btn btn-act btn-block">Send my bonus</button>
+        <p class="small" style="margin-top:12px">You will also get the Friday email. Unsubscribe anytime. <a href="../privacy/">Privacy</a></p>
+      </form>
+      <div class="ok" id="bOk" role="status">Done. Your bonus is on its way to your inbox.</div>
+    </div>
+  </div>
+</section>
+"""
+lib += footer("../")
+lib += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
+write("library/index.html", lib)
+
+# A short address to print inside every book: ummahbrief.com/bonus
+write("bonus/index.html", """<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Your free bonus | The Ummah Brief</title>
+<meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/library/#bonus"><link rel="canonical" href="https://ummahbrief.com/library/#bonus"></head>
+<body><p><a href="/library/#bonus">Claim your free bonus</a></p></body></html>
+""")
 
 print("pages written")
