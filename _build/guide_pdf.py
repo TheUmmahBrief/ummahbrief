@@ -173,7 +173,7 @@ html += """<div class="page">
 html += """<div class="page navy">
   <h2 style="font-size:29pt;margin-bottom:6mm">You found the leaks. Here is what to do next.</h2>
   <div class="next"><h3>If riba was your biggest number</h3><p>The Riba Exit Brief is a short audio with a clear order of steps for leaving interest-bearing debt. Join the list to hear when it is out.</p><p class="url">ummahbrief.com/briefs/riba-exit</p></div>
-  <div class="next"><h3>If you want the whole plan</h3><p>The Rizq Code is a 190-page halal wealth framework with a 30-day action plan, an audit checklist and a workbook. $39, with a 30-day money-back guarantee.</p><p class="url">ummahbrief.com/rizq-code</p></div>
+  <div class="next"><h3>If you want the whole plan</h3><p>The Rizq Code is a 60-page halal wealth framework with a 30-day action plan, an audit checklist and a pathway workbook. $39, with a 30-day money-back guarantee.</p><p class="url">ummahbrief.com/rizq-code</p></div>
   <div class="next" style="border-bottom:0.25mm solid rgba(255,255,255,0.25)"><h3>If a dispute over money is dividing your family</h3><p>We offer Islamic mediation. It is free, and it always will be.</p><p class="url">ummahbrief.com/mediation</p></div>
   <p class="fine">This guide is general education. It is not personal financial advice and it is not a fatwa. For a decision about your own money, speak to a qualified adviser. For a religious ruling, ask a scholar you trust.</p>
   <div class="foot"><span>The Ummah Brief</span><span>One Ummah. One Pulse. One Purpose.</span></div>
