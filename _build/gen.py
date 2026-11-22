@@ -147,7 +147,7 @@ def head(root, title, desc, url, extra_css):
 
 
 def nav(root, cta_html):
-    links = [("The Briefs", root + "#briefs"), ("The Rizq Code", root + "rizq-code/"), ("Riba Check", root + "riba-check/"), ("Mediation", root + "mediation/"), ("Newsletter", root + "#newsletter")]
+    links = [("The Briefs", root + "#briefs"), ("The Circle", root + "circle/"), ("The Rizq Code", root + "rizq-code/"), ("Riba Check", root + "riba-check/"), ("Mediation", root + "mediation/"), ("Newsletter", root + "#newsletter")]
     t = "".join('<a class="t" href="%s">%s</a>' % (h, n) for n, h in links)
     m = "".join('<a href="%s">%s</a>' % (h, n) for n, h in links)
     return """<nav class="nav"><div class="wrap nav-in">
@@ -166,7 +166,7 @@ def footer(root):
   <div class="foot">
     <a class="wordmark" href="%(home)s"><img class="mark" src="%(r)sbrand/logo-96.png" alt="" width="32" height="32">The Ummah Brief</a>
     <div class="foot-links">
-      <a href="%(r)s#briefs">The Briefs</a><a href="%(r)srizq-code/">The Rizq Code</a><a href="%(r)sguide/">Free guide</a><a href="%(r)sriba-check/">Riba Check</a><a href="%(r)sledger/">The Ledger</a><a href="%(r)smediation/">Mediation</a><a href="%(r)s#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="%(r)sprivacy/">Privacy</a><a href="%(r)sterms/">Terms and refunds</a>
+      <a href="%(r)s#briefs">The Briefs</a><a href="%(r)scircle/">The Rizq Circle</a><a href="%(r)srizq-code/">The Rizq Code</a><a href="%(r)sguide/">Free guide</a><a href="%(r)sriba-check/">Riba Check</a><a href="%(r)sledger/">The Ledger</a><a href="%(r)smediation/">Mediation</a><a href="%(r)s#newsletter">Newsletter</a><a href="https://instagram.com/the_ummah_brief" rel="noopener">Instagram</a><a href="%(r)ssponsor/">Sponsor the newsletter</a><a href="mailto:salaam@ummahbrief.com">Contact</a><a href="%(r)sprivacy/">Privacy</a><a href="%(r)sterms/">Terms and refunds</a>
     </div>
   </div>
   <div class="legal"><p>One Ummah. One Pulse. One Purpose.</p><p>&copy; 2026 The Ummah Brief. Everything here is general education. It is not personal financial advice and it is not a fatwa.</p></div>
@@ -279,6 +279,18 @@ home_css = """
 .cobalt .lede { color: #EEF1FF; }
 .cobalt .small { color: #C9D3FF; }
 .cobalt .rc li { border-color: rgba(255,255,255,0.28); color: #fff; }
+.emerald { background: #0E6B4F; color: #fff; }
+.emerald .lede { color: #E6F5EE; }
+.emerald .small { color: #BFE3D2; }
+.circ { display: grid; grid-template-columns: 340px 1fr; gap: 60px; align-items: center; }
+.circ ul { list-style: none; margin: 22px 0 26px; }
+.circ li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.28); }
+.circ li:first-child { border-top: 1px solid rgba(255,255,255,0.28); }
+.circ-sleeve { width: 100%; transform: rotate(-2deg); }
+.circ-sleeve .ti { font-size: 40px; }
+.circ-sleeve .ar { font-size: 96px; top: 54px; right: 24px; }
+.price .per { font-size: 22px; letter-spacing: -0.02em; margin-left: 4px; }
+@media (max-width: 820px) { .circ { grid-template-columns: 1fr; gap: 30px; } .circ-sleeve { max-width: 260px; } .circ-sleeve .ti { font-size: 28px; } .circ-sleeve .ar { font-size: 64px; top: 46px; } }
 .rc ul { list-style: none; margin: 22px 0 26px; }
 .rc li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .rc li:first-child { border-top: 1px solid var(--rule); }
@@ -381,6 +393,26 @@ home += """
       <li><b>Knowledge</b><span>One short email every Friday. Always free.</span><a class="link" href="#newsletter">Subscribe</a></li>
       <li><b>Unity</b><span>Free mediation for families, businesses and communities in dispute.</span><a class="link" href="mediation/">Request mediation</a></li>
     </ul>
+  </div>
+</section>
+
+<section class="emerald" id="circle">
+  <div class="wrap circ">
+    <a class="sleeve circ-sleeve" style="--c:#0A5640;--t:#FFFFFF" href="circle/" aria-label="The Rizq Circle"><span class="no">Membership <span class="soon">Soon</span></span><span class="ar" lang="ar" aria-hidden="true" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></a>
+    <div>
+      <h2>The Rizq Circle</h2>
+      <p class="lede">For the price of one Brief, every Brief. A money plan every month, an answer to your questions every month, and a circle of Muslim households working through it with you.</p>
+      <ul>
+        <li>Every Brief, and each new one as it comes out</li>
+        <li>One focus, one checklist and one short audio every month</li>
+        <li>One membership covers your whole household</li>
+      </ul>
+      <div class="buy">
+        <div class="price">$9<span class="per">/month</span></div>
+        <a class="btn btn-act" href="circle/">See the Circle</a>
+      </div>
+      <p class="small" style="margin-top:16px">Or $79 a year, with The Rizq Code included. Cancel anytime. Opening soon: join the waiting list.</p>
+    </div>
   </div>
 </section>
 
@@ -764,7 +796,7 @@ privacy = """
 <li>To reply to your mediation request or message.</li>
 <li>To tell you about our own products. Every email has an unsubscribe link.</li>
 </ul>
-<p>We do not sell your information, and we do not share it with other organisations for their marketing.</p>
+<p>We do not sell your information, and we do not share it with other organisations for their marketing. Newsletter sponsors never receive your details.</p>
 <h2>Mediation requests</h2>
 <p>What you share in a mediation request is treated as confidential. It is read only for the purpose of responding to you, it is never used for marketing, and it is never published.</p>
 <h2>Services we use</h2>
@@ -785,10 +817,14 @@ terms = """
 <h2>Refunds</h2>
 <p>The Rizq Code has a 30-day money-back guarantee. Email <a href="mailto:salaam@ummahbrief.com">salaam@ummahbrief.com</a> within 30 days of purchase and we will refund you in full to your original payment method. You do not need to give a reason.</p>
 <p>Briefs can be refunded within 14 days of purchase in the same way.</p>
+<h2>The Rizq Circle (subscription)</h2>
+<p>The Rizq Circle is a subscription, billed through PayPal every month or every year until you cancel. You can cancel at any time from your PayPal account or by emailing us, and you keep access until the end of the period you have paid for. If the Circle is not for you, email us within 14 days of your first payment and we will refund it in full. Later payments are not refunded, but you can cancel before the next one. Briefs are available to members for as long as they stay members. The Rizq Code included with a yearly membership is yours to keep.</p>
 <h2>Education, not advice</h2>
 <p>Everything we publish is general education. It is not personal financial, investment, tax or legal advice, and it is not a fatwa. We do not know your circumstances. Before making a financial decision, speak to a qualified adviser, and take religious questions to a scholar you trust. We make no promise about the income or results you will achieve.</p>
 <h2>Your licence</h2>
 <p>When you buy a product, it is for your own personal use. Please do not resell it, publish it or share your download with others. If someone you know would benefit, send them to the site.</p>
+<h2>Sponsored content</h2>
+<p>The Friday email may carry a clearly labelled sponsor. Sponsors never pay for our opinion, never see our readers' details, and are chosen against published standards (see ummahbrief.com/sponsor). A sponsor's offer is theirs, not ours, so check it as you would any other.</p>
 <h2>Mediation</h2>
 <p>Our mediation service is free and voluntary. It is not legal advice and does not replace a court, a lawyer or the authorities. If anyone is at risk of harm, contact your local emergency services.</p>
 <h2>Liability</h2>
@@ -1279,5 +1315,297 @@ lg += """
 lg += footer("../")
 lg += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
 write("ledger/index.html", lg)
+
+# ───────────────────────── THE RIZQ CIRCLE ─────────────────────────
+CIRCLE_MONTHS = [
+    ("Ramadan", "Purify and plan", "Work out your zakat, plan your sadaqah, and enter the month with your money in order."),
+    ("Shawwal", "The freeze", "Stop new riba coming in, and put every debt in the order you will clear it."),
+    ("Month 3", "A job for every rand, dollar or pound", "Give each part of your income a purpose before payday."),
+    ("Month 4", "The cushion", "Build one month of essentials, so the next surprise is not a crisis."),
+    ("Month 5", "Your wasiyyah", "Start your Islamic will, with the Wasiyyah Brief."),
+    ("Month 6", "A second door", "Choose one halal income pathway and take the first step."),
+    ("Month 7", "Before you invest", "Learn what to check before you put money anywhere, with the Halal Investing Brief."),
+    ("Month 8", "Children and money", "Teach giving, saving and contentment at home, with the Raising Children Brief."),
+    ("Month 9", "The money talk", "Talk about money with your spouse without a fight, with the Marriage Money Brief."),
+    ("Month 10", "Giving with a plan", "Decide your giving before others decide it for you."),
+    ("Month 11", "The year in review", "Look back at what grew and what lasted."),
+    ("Month 12", "Goals with names", "Hajj, a home, education: give each one a number and a date."),
+]
+circle_css = """
+.hero { padding: 54px 0 70px; overflow: hidden; }
+.chero { display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(50px, 10vw, 104px); line-height: 0.9; letter-spacing: -0.05em; }
+.hero .lede { margin: 22px 0 26px; max-width: 30em; }
+.kick { font-family: var(--display); font-weight: 700; color: #FFD84D; margin-bottom: 12px; }
+.emerald { background: #0E6B4F; color: #fff; }
+.emerald p, .emerald .lede { color: #E6F5EE; }
+.emerald .small { color: #BFE3D2; }
+.big-sleeve { width: 100%; transform: rotate(3deg); }
+.big-sleeve .ti { font-size: 44px; }
+.big-sleeve .ar { font-size: 120px; top: 64px; right: 28px; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+.compare > div { border: 2px solid var(--ink); border-radius: 18px; padding: 26px; background: var(--white); }
+.compare > div.best { border-color: #0E6B4F; box-shadow: 0 0 0 4px rgba(14,107,79,0.15); }
+.compare h3 { font-size: 24px; letter-spacing: -0.025em; }
+.compare .amt { font-family: var(--display); font-weight: 800; font-size: 44px; letter-spacing: -0.04em; margin: 8px 0 14px; }
+.compare ul { list-style: none; }
+.compare li { padding: 9px 0; border-top: 1px solid var(--rule); }
+.compare li.no { color: var(--slate); text-decoration: line-through; text-decoration-thickness: 1px; }
+.gets { list-style: none; margin-top: 26px; border-top: 3px solid var(--ink); }
+.gets li { display: grid; grid-template-columns: 240px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.gets b { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
+.gets span { color: var(--slate); }
+.year { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 28px; }
+.year > div { background: var(--white); border-radius: 14px; padding: 18px 18px 16px; border-top: 5px solid #0E6B4F; }
+.year .m { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--slate); }
+.year h3 { font-size: 20px; letter-spacing: -0.02em; margin: 4px 0 6px; line-height: 1.1; }
+.year p { font-size: 16px; color: var(--slate); margin: 0; }
+.flow { list-style: none; counter-reset: s; margin-top: 26px; max-width: 780px; border-top: 3px solid #fff; }
+.flow li { counter-increment: s; display: grid; grid-template-columns: 62px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.25); align-items: baseline; }
+.flow li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 0.9; color: #FFD84D; }
+.flow b { font-family: var(--display); font-weight: 700; font-size: 21px; display: block; color: #fff; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+.plan { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; }
+.plan.best { border-color: #0E6B4F; box-shadow: 0 0 0 4px rgba(14,107,79,0.15); }
+.plan .tag { font-family: var(--display); font-weight: 700; font-size: 14px; color: #0E6B4F; min-height: 20px; }
+.plan h3 { font-size: 26px; letter-spacing: -0.025em; margin-top: 4px; }
+.plan .amt { font-family: var(--display); font-weight: 800; font-size: 56px; letter-spacing: -0.05em; line-height: 1; margin: 12px 0 6px; }
+.plan .amt span { font-size: 20px; letter-spacing: -0.01em; color: var(--slate); }
+.plan ul { list-style: none; margin: 14px 0 22px; flex: 1; }
+.plan li { padding: 9px 0; border-top: 1px solid var(--rule); }
+.plan .btn { width: 100%; }
+.faq { margin-top: 26px; max-width: 800px; border-top: 3px solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--rule); padding: 16px 0; }
+.faq summary { font-family: var(--display); font-weight: 700; font-size: 20px; cursor: pointer; letter-spacing: -0.015em; }
+.faq details p { margin: 10px 0 0; color: var(--slate); max-width: 40em; }
+.join { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 30px; max-width: 760px; margin-top: 26px; }
+.join select, .join input[type=email] { width: 100%; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--chalk); border: 2px solid var(--ink); border-radius: 12px; padding: 13px 15px; margin-bottom: 14px; }
+.join label { display: block; font-family: var(--display); font-weight: 700; margin-bottom: 7px; }
+@media (max-width: 860px) {
+  .chero { grid-template-columns: 1fr; gap: 26px; } .big-sleeve { max-width: 250px; order: -1; } .big-sleeve .ti { font-size: 28px; } .big-sleeve .ar { font-size: 70px; top: 46px; right: 16px; }
+  .compare, .plans { grid-template-columns: 1fr; } .gets li { grid-template-columns: 1fr; gap: 6px; } .year { grid-template-columns: 1fr 1fr; } .join { padding: 22px 18px; }
+}
+@media (max-width: 520px) { .year { grid-template-columns: 1fr; } }
+footer { padding-bottom: 46px; }
+"""
+months_html = "".join('<div><div class="m">%s</div><h3>%s</h3><p>%s</p></div>' % m for m in CIRCLE_MONTHS)
+ci = head("../", "The Rizq Circle: every Brief, a money plan every month | The Ummah Brief",
+          "For the price of one Brief, every Brief. A money plan every month, answers to your questions, and one membership for your whole household. $9 a month.",
+          "https://ummahbrief.com/circle/", circle_css)
+ci += """
+<!-- EDIT POINTS: when the Circle opens, paste the two Systeme checkout links below.
+     While they are empty, every button sends people to the waiting list. -->
+"""
+ci += nav("../", '<a class="btn btn-act btn-sm js-join" href="#join">Join the list</a>')
+ci += """
+<header class="hero emerald" id="top">
+  <div class="wrap chero">
+    <div>
+      <p class="kick">Membership from The Ummah Brief</p>
+      <h1>The Rizq Circle.</h1>
+      <p class="lede">For the price of one Brief, every Brief. A money plan every month, an answer to your questions every month, and a circle of Muslim households working through it with you.</p>
+      <a class="btn btn-act js-join" href="#join">Join the waiting list</a>
+      <p class="small" style="margin-top:14px">$9 a month, or $79 a year with The Rizq Code included. Cancel anytime.</p>
+    </div>
+    <div class="sleeve big-sleeve" style="--c:#0A5640;--t:#FFFFFF" aria-hidden="true"><span class="no">Membership</span><span class="ar" lang="ar" style="color:#FFD84D">حلقة</span><span class="ti">The Rizq Circle</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>For the price of one Brief.</h2>
+    <p class="lede">A Brief solves one problem, once. The Circle keeps solving them, month after month.</p>
+    <div class="compare">
+      <div><h3>One Brief</h3><div class="amt">$9 once</div><ul><li>One audio Brief and its action sheet</li><li class="no">Every other Brief</li><li class="no">A plan every month</li><li class="no">Your questions answered</li><li class="no">Your whole household</li></ul></div>
+      <div class="best"><h3>The Rizq Circle</h3><div class="amt">$9 a month</div><ul><li>Every Brief, and each new one</li><li>A money plan every month</li><li>Your questions answered every month</li><li>The member tools</li><li>Your whole household</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>What members get.</h2>
+    <ul class="gets">
+      <li><b>Every Brief</b><span>The full library of audio Briefs, each with its action sheet and transcript, and every new Brief the day it comes out.</span></li>
+      <li><b>The monthly plan</b><span>On the first of each month: one focus, a short audio of about ten minutes, and a four-week checklist. Small enough to finish, big enough to matter.</span></li>
+      <li><b>The monthly Ask</b><span>Send us your money questions. Once a month we answer the most common ones in an audio for members. Faith questions are checked with a scholar first.</span></li>
+      <li><b>Member tools</b><span>The riba exit tracker, the zakat worksheet and the household budget sheet, ready to fill in.</span></li>
+      <li><b>One household, one price</b><span>Your spouse joins on the same membership. Money changes when the whole house is on the same plan.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>A year in the Circle.</h2>
+    <p class="lede">Twelve months, twelve focuses. Each one builds on the last, and new Briefs arrive alongside them.</p>
+    <div class="year">""" + months_html + """</div>
+    <p class="small" style="margin-top:16px">Planned focuses. The order may change as new Briefs are released.</p>
+  </div>
+</section>
+
+<section class="emerald">
+  <div class="wrap">
+    <h2>How a month works.</h2>
+    <ol class="flow">
+      <li><div><b>The first of the month</b><span>The month's focus arrives: a short audio and a four-week checklist.</span></div></li>
+      <li><div><b>Weeks one to three</b><span>One small task a week. Most take less than half an hour.</span></div></li>
+      <li><div><b>Week four</b><span>A check-in, and your chance to send questions for the Ask.</span></div></li>
+      <li><div><b>The Ask</b><span>Answers to members' most common questions, in one audio.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="white" id="plans">
+  <div class="wrap">
+    <h2>Choose how you pay.</h2>
+    <div class="plans">
+      <div class="plan"><div class="tag"></div><h3>Monthly</h3><div class="amt">$9<span> a month</span></div><ul><li>Everything in the Circle</li><li>Your whole household</li><li>Cancel anytime</li></ul><a class="btn btn-line js-buy" data-plan="monthly" href="#join">Join monthly</a></div>
+      <div class="plan best"><div class="tag">Best value: save $29</div><h3>Yearly</h3><div class="amt">$79<span> a year</span></div><ul><li>Everything in the Circle</li><li>The Rizq Code included, yours to keep ($39 on its own)</li><li>Your whole household</li></ul><a class="btn btn-act js-buy" data-plan="yearly" href="#join">Join yearly</a></div>
+    </div>
+    <p class="small" style="margin-top:16px">Paid securely through PayPal. Not for you? Email us within 14 days of your first payment for a full refund. Already bought a Brief? Your first month is free.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <div class="faq">
+      <details><summary>Can I cancel?</summary><p>Yes, at any time, from your PayPal account or by emailing salaam@ummahbrief.com. You keep access until the end of the period you paid for.</p></details>
+      <details><summary>What happens to the Briefs if I leave?</summary><p>Briefs are part of the membership, so access ends when it ends. If you joined yearly, The Rizq Code is yours to keep.</p></details>
+      <details><summary>Is this financial advice?</summary><p>No. Everything in the Circle is general education for Muslim households. It is not personal financial advice and it is not a fatwa. For your own situation, speak to a qualified adviser and a scholar you trust.</p></details>
+      <details><summary>Who answers the questions?</summary><p>The Ummah Brief team. Questions about rulings are checked with a scholar before we answer, and we never give a personal ruling.</p></details>
+      <details><summary>Is it private?</summary><p>Yes. Your questions are answered without your name, and we never share your details with anyone.</p></details>
+      <details><summary>I am not in debt. Is it for me?</summary><p>Yes. Debt is two months of the year. The rest is zakat, a cushion, your will, a second income, children, marriage and giving.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="join">
+  <div class="wrap">
+    <h2>Join the waiting list.</h2>
+    <p class="lede">The Circle opens soon. People on the list hear first, and get the first week to join.</p>
+    <div class="join">
+      <form data-ok="#joinOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Rizq Circle waiting list">
+        <input type="hidden" name="plan_interest" id="planInterest" value="">
+        <label for="j-email">Your email address</label>
+        <input id="j-email" type="email" name="email" autocomplete="email" required>
+        <label for="j-help">What would help you most this year?</label>
+        <select id="j-help" name="most_help" required><option value="">Choose one</option><option>Getting out of riba debt</option><option>Getting zakat right</option><option>A budget that works</option><option>Starting my Islamic will</option><option>A second halal income</option><option>Money and family</option></select>
+        <button type="submit" class="btn btn-act btn-block">Join the waiting list</button>
+        <p class="small" style="margin-top:12px">One email when the Circle opens, plus the Friday email. Unsubscribe anytime. <a href="../privacy/">Privacy</a></p>
+      </form>
+      <div class="ok" id="joinOk" role="status">You are on the list. You will hear first when the Circle opens, insha'Allah.</div>
+    </div>
+  </div>
+</section>
+"""
+ci += footer("../")
+ci += """<script>
+// EDIT POINTS: paste the Systeme checkout links here when the Circle opens.
+var CIRCLE_MONTHLY_URL = '';
+var CIRCLE_YEARLY_URL = '';
+(function () {
+  var open = CIRCLE_MONTHLY_URL && CIRCLE_YEARLY_URL;
+  document.querySelectorAll('.js-buy').forEach(function (a) {
+    var url = a.dataset.plan === 'yearly' ? CIRCLE_YEARLY_URL : CIRCLE_MONTHLY_URL;
+    if (open) { a.href = url; }
+    else { a.addEventListener('click', function () { document.getElementById('planInterest').value = a.dataset.plan; }); }
+  });
+  if (open) {
+    document.querySelectorAll('.js-join').forEach(function (a) { a.href = '#plans'; a.textContent = a.classList.contains('btn-sm') ? 'Join' : 'Join the Circle'; });
+    var j = document.getElementById('join'); if (j) j.style.display = 'none';
+  }
+})();
+""" + FORM_JS + "</script>\n</body>\n</html>\n"
+write("circle/index.html", ci)
+
+# ───────────────────────── SPONSOR THE NEWSLETTER ─────────────────────────
+sp_css = lg_css + """
+.std { list-style: none; margin-top: 24px; max-width: 800px; border-top: 3px solid var(--ink); }
+.std li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.std li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; margin-top: 5px; background: #0E6B4F; }
+.std.no li::before { background: #C92F3A; }
+.slots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; max-width: 900px; }
+.slots > div { background: var(--white); border: 2px solid var(--ink); border-radius: 18px; padding: 24px; }
+.slots h3 { font-size: 22px; letter-spacing: -0.02em; }
+.slots p { color: var(--slate); margin: 8px 0 0; }
+@media (max-width: 700px) { .slots { grid-template-columns: 1fr; } }
+"""
+spg = head("../", "Sponsor the Friday email | The Ummah Brief",
+           "Reach Muslim households who are working on their money, through one clearly labelled sponsor in The Ummah Brief's Friday email.",
+           "https://ummahbrief.com/sponsor/", sp_css)
+spg += "\n<!-- Sponsor enquiries arrive in Formspree labelled 'Sponsor enquiry'. -->\n"
+spg += nav("../", '<a class="btn btn-act btn-sm" href="#enquire">Enquire</a>')
+spg += """
+<header class="hero navy" id="top">
+  <div class="wrap">
+    <h1>Sponsor the Friday email.</h1>
+    <p class="lede">Every Friday, Muslim households open one short email from us: a reflection, a real money story and one link. Each issue carries at most one sponsor, clearly labelled, and only one we would be comfortable recommending to our own family.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Who reads it.</h2>
+    <p class="lede">Practising Muslims, mostly working adults with families, who want their money to be halal and in order. They found us through our free tools, our Briefs and The Ledger. We share current subscriber numbers, open rates and clicks with every serious enquiry.</p>
+    <p class="lede">Sponsorship opens once the list passes 2,500 readers. Register your interest now and we will contact you then.</p>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <h2>What we say yes to.</h2>
+    <ul class="std">
+      <li><span>Products and services a Muslim household can use with a clear conscience: books, courses, tools, food, clothing, travel, education.</span></li>
+      <li><span>Muslim-owned businesses, especially small ones.</span></li>
+      <li><span>Islamic will-writing, charities with transparent accounts, and halal services with independent shariah certification.</span></li>
+    </ul>
+    <h2 style="margin-top:44px">What we always say no to.</h2>
+    <ul class="std no">
+      <li><span>Anything built on riba: loans, credit cards, buy now pay later, interest-bearing accounts.</span></li>
+      <li><span>Speculation and gambling, including crypto trading schemes and "get rich" offers.</span></li>
+      <li><span>Multi-level marketing and income promises.</span></li>
+      <li><span>Anything we would not recommend to our own family.</span></li>
+    </ul>
+    <p class="small" style="margin-top:16px">Financial products are considered only with independent shariah certification and the right regulatory permissions, and may still be declined.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The two placements.</h2>
+    <div class="slots">
+      <div><h3>The main sponsor</h3><p>One per issue. A short paragraph in our voice, a link, and the label "Sponsor". Priced per issue, based on the current list size.</p></div>
+      <div><h3>The classified</h3><p>Up to two short lines near the end of the email, for small Muslim businesses. A lower price, the same standards.</p></div>
+    </div>
+    <p class="small" style="margin-top:16px">Rates start from about $25 for every 1,000 subscribers, per issue. We never share readers' details with sponsors, and a sponsor never buys our opinion.</p>
+  </div>
+</section>
+
+<section class="white" id="enquire">
+  <div class="wrap">
+    <h2>Enquire.</h2>
+    <div class="form-card">
+      <form data-ok="#spOk" action="https://formspree.io/f/xnjyanyb" method="POST">
+        <input type="hidden" name="source" value="Sponsor enquiry">
+        <div class="two">
+          <div class="field"><label for="s-name">Your name</label><input id="s-name" type="text" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="s-email">Email address</label><input id="s-email" type="email" name="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="s-biz">Business and website</label><input id="s-biz" type="text" name="business" required></div>
+        <div class="field"><label for="s-what">What you would like to promote</label><textarea id="s-what" name="offer" required></textarea></div>
+        <div class="field"><label for="s-cert">Shariah certification, if relevant (optional)</label><input id="s-cert" type="text" name="certification"></div>
+        <button type="submit" class="btn btn-act btn-block">Send enquiry</button>
+      </form>
+      <div class="ok" id="spOk" role="status">Thank you. We reply to every enquiry within five working days.</div>
+    </div>
+  </div>
+</section>
+"""
+spg += footer("../")
+spg += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
+write("sponsor/index.html", spg)
 
 print("pages written")
