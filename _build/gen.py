@@ -5,6 +5,12 @@ SITE = sys.argv[1]
 
 # EDIT POINT: True from early January to Eid al-Fitr. Shows the Ramadan Money Pack in the menu and on the homepage.
 RAMADAN_SEASON = True
+# The tick box on the free guide and Riba Check forms. A tick arrives in Formspree (later Systeme) as notify = this name,
+# which puts the person on that offer's waiting list (journey E). Change it when the next Brief is the one coming.
+TICK_OFFER = "the Riba Exit Brief"
+# The free five-minute audio sample on /guide/thanks/. Leave empty until the clip exists, then paste its address
+# (for example "../../audio/riba-exit-sample.mp3"). The card appears only when this is set.
+SAMPLE_URL = ""
 
 BRIEFS = [
     ("01", "The Riba Exit Brief", "A clear order of steps for leaving interest-bearing debt.", "#C92F3A", "#FFFFFF", "ربا"),
@@ -85,7 +91,9 @@ section { padding: 76px 0; }
 @media (max-width: 820px) { .nav-links a.t { display: none; } .menu { display: block; } }
 
 /* forms */
-.row-form { display: flex; gap: 10px; max-width: 540px; }
+.row-form { display: flex; flex-wrap: wrap; gap: 10px; max-width: 540px; }
+.row-form .tick { flex-basis: 100%%; display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; font-size: 16.5px; line-height: 1.4; margin-top: 4px; cursor: pointer; }
+.row-form .tick input { width: 20px; height: 20px; margin-top: 2px; accent-color: #F26B21; }
 .row-form input[type=email] { flex: 1; min-width: 0; font-family: var(--display); font-size: 17px; color: var(--ink); background: var(--white); border: 2px solid var(--ink); border-radius: 12px; padding: 14px 16px; }
 .navy .row-form input[type=email] { border-color: var(--white); }
 .row-form input:focus { outline: 3px solid var(--action); outline-offset: 2px; }
@@ -187,6 +195,7 @@ document.querySelectorAll('form[data-ok]').forEach(function (form) {
     try {
       var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
       if (res.ok) {
+        try { localStorage.setItem('ub_on_list', '1'); } catch (x) {}
         if (form.dataset.next) { window.location.href = form.dataset.next; return; }
         form.style.display = 'none'; document.querySelector(form.dataset.ok).style.display = 'block'; return;
       }
@@ -837,6 +846,7 @@ privacy = """
 <li><strong>Purchases:</strong> your name, email address and order details. Payment is handled by PayPal. We never see or store your card details.</li>
 <li><strong>Mediation requests:</strong> your name, email address and what you choose to tell us about the dispute.</li>
 <li><strong>The Riba Check:</strong> the debt figures you type are worked out inside your own browser. They are never sent to us or stored. Only your email address is sent, if you choose to enter it.</li>
+<li><strong>A note on your device:</strong> when you sign up, your browser remembers one setting saying so, so the Riba Check does not ask for your email again. It holds no name, email or figures, and you can clear it by clearing your browser's site data.</li>
 <li><strong>The Ledger:</strong> the story you submit and your email address. Stories are only ever published with identifying details removed.</li>
 <li><strong>Messages:</strong> whatever you send us by email.</li>
 </ul>
@@ -930,6 +940,7 @@ form_html = """<form class="row-form" data-ok="#%(ok)s" data-next="thanks/" acti
         <input type="email" name="email" placeholder="Your email address" aria-label="Your email address" autocomplete="email" required>
         <input type="hidden" name="source" value="Free guide: Where did it go? (%(where)s)">
         <button class="btn btn-act" type="submit">Send me the guide</button>
+        <label class="tick"><input type="checkbox" name="notify" value="%(tick)s"><span>Tell me when %(tick)s is out.</span></label>
       </form>
       <div class="ok" id="%(ok)s" role="status">Done. <a href="thanks/">Open your guide</a></div>"""
 g = head("../", "Where did it go? A free guide | The Ummah Brief",
@@ -979,7 +990,7 @@ g += """
     %(form2)s
   </div>
 </section>
-""" % {"form1": form_html % {"ok": "gOk1", "where": "top"}, "form2": form_html % {"ok": "gOk2", "where": "bottom"},
+""" % {"form1": form_html % {"ok": "gOk1", "where": "top", "tick": TICK_OFFER}, "form2": form_html % {"ok": "gOk2", "where": "bottom", "tick": TICK_OFFER},
        "rows": "\n      ".join('<li style="--c:%s"><div><b>%s</b><span>%s</span></div></li>' % r for r in LEAK_ROWS)}
 g += footer("../")
 g += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
@@ -997,6 +1008,14 @@ thanks_css = """
 .nexts span { color: var(--slate); }
 .nexts i { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
 @media (max-width: 600px) { .nexts a { grid-template-columns: 1fr; gap: 8px; } }
+.free { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; max-width: 860px; }
+.free a, .free div { display: block; border: 2px solid var(--ink); border-radius: 16px; padding: 24px; background: var(--chalk); text-decoration: none; }
+.free b { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: -0.03em; line-height: 1.05; display: block; margin-bottom: 8px; }
+.free span { color: var(--slate); display: block; margin-bottom: 14px; }
+.free i { font-family: var(--display); font-style: normal; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 4px; }
+.free .wide { grid-column: 1 / -1; }
+.free audio { width: 100%; margin-top: 4px; }
+@media (max-width: 700px) { .free { grid-template-columns: 1fr; } }
 footer { padding-bottom: 46px; }
 """
 t = head("../../", "Your guide is ready | The Ummah Brief", "Download Where did it go?, the free guide from The Ummah Brief.",
@@ -1012,6 +1031,16 @@ t += """
   </div>
 </header>
 
+<section class="white">
+  <div class="wrap">
+    <h2>Two more, free. No more forms.</h2>
+    <div class="free">
+      %(sample)s<a href="../../riba-check/"><b>The Riba Check</b><span>Put a number on leak one. Enter your debts and see the riba leaving your account each month, and the order to clear them in. Your figures stay on your phone.</span><i>Open the Riba Check</i></a>
+      <a href="../../ledger/"><b>The Ledger</b><span>Real money stories from Muslim households, published without names. Send yours, and we may answer it with the three steps we would take.</span><i>Read or send a story</i></a>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <h2>When you have found your leaks.</h2>
@@ -1023,6 +1052,7 @@ t += """
   </div>
 </section>
 """
+t = t.replace("%(sample)s", ('<div class="wide"><b>Hear the first five minutes of the Riba Exit Brief</b><span>The opening of our first audio Brief, free. Press play while you look at your statement.</span><audio controls preload="none" src="%s"></audio></div>\n      ' % SAMPLE_URL) if SAMPLE_URL else "")
 t += footer("../../")
 t += "<script>%s</script>\n</body>\n</html>\n" % FORM_JS
 write("guide/thanks/index.html", t)
@@ -1125,6 +1155,7 @@ rc += """
           <input type="email" name="email" placeholder="Your email address" aria-label="Your email address" autocomplete="email" required>
           <input type="hidden" name="source" value="Riba Check">
           <button class="btn btn-act" type="submit">Show my plan</button>
+        <label class="tick"><input type="checkbox" name="notify" value='""" + TICK_OFFER + """'><span>Tell me when """ + TICK_OFFER + """ is out.</span></label>
         </form>
         <p class="small" style="margin:12px 0 0">Free. You will also get one short email every Friday, and you can unsubscribe anytime. See our <a href="../privacy/">privacy notice</a>.</p>
       </div>
@@ -1240,7 +1271,9 @@ rc += """<script>
     var year = debts.reduce(function (a, d) { var b = d.bal, r = d.rate / 1200, t = 0; for (var k = 0; k < 12 && b > 0.005; k++) { var it = b * r; t += it; b = b + it - Math.min(d.pay, b + it); } return a + t; }, 0);
     document.getElementById('perYear').textContent = money(year);
     document.getElementById('out').classList.add('show');
-    if (document.getElementById('plan').classList.contains('show')) plan();
+    var known = false; try { known = localStorage.getItem('ub_on_list') === '1'; } catch (x) {}
+    if (known) document.getElementById('gate').style.display = 'none';
+    if (known || document.getElementById('plan').classList.contains('show')) plan();
     document.getElementById('out').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   function plan() {
@@ -1272,7 +1305,7 @@ rc += """<script>
     btn.textContent = 'Working it out...'; btn.disabled = true;
     try {
       var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-      if (res.ok) { document.getElementById('gate').style.display = 'none'; plan(); return; }
+      if (res.ok) { try { localStorage.setItem('ub_on_list', '1'); } catch (x) {} document.getElementById('gate').style.display = 'none'; plan(); return; }
     } catch (e) {}
     btn.textContent = 'That did not send. Try again'; btn.disabled = false;
     setTimeout(function () { btn.textContent = label; }, 4000);

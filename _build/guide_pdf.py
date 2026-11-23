@@ -6,6 +6,10 @@ SITE = sys.argv[1]
 OUT = os.path.join(SITE, "guide", "where-did-it-go.pdf")
 FONTS = os.path.join(SITE, "fonts")
 
+# Which offer the last page leads with. "brief" for most of the year.
+# Set to "ramadan" on 25 January, when the Ramadan Money Pack opens, and back to "brief" after Eid. Then run this script again.
+LEAD_OFFER = "brief"
+
 LEAKS = [
     ("#C92F3A", "#FFFFFF", "Interest you never see",
      "Riba is the leak most people have and fewest people measure. You know your monthly payments. You probably do not know how much of each payment is interest.",
@@ -102,6 +106,8 @@ tr.total td { border-bottom: none; font-size: 13pt; font-weight: 800; padding-to
 .next h3 { font-size: 16pt; letter-spacing: -0.03em; margin: 0 0 1.2mm; }
 .next p { color: #D4DBEC; margin: 0; }
 .next .url { font-family: 'Bricolage Grotesque'; font-weight: 700; color: #FFE066; font-size: 11pt; margin-top: 2mm; }
+.next .url a { color: #FFE066; text-decoration: none; }
+.reply { font-family: 'Bricolage Grotesque'; font-size: 10.5pt; font-weight: 600; color: #FFFFFF; margin: 4.4mm 0 0; }
 .fine { font-family: 'Bricolage Grotesque'; font-size: 8pt; line-height: 1.45; color: #9BA7C4; position: absolute; left: 14mm; right: 14mm; bottom: 15mm; }
 """ % {"f": FONTS}
 
@@ -169,15 +175,20 @@ html += """<div class="page">
   %s
 </div>""" % (rows, foot(8))
 
-# what next
+# what next: the first door changes with the season (LEAD_OFFER above)
+FIRST = {
+    "brief": '<div class="next"><h3>If riba was your biggest number</h3><p>The Riba Exit Brief is a short audio with a clear order of steps for leaving interest-bearing debt. Join the list to hear when it is out.</p><p class="url"><a href="https://ummahbrief.com/briefs/riba-exit/">ummahbrief.com/briefs/riba-exit</a></p></div>',
+    "ramadan": '<div class="next"><h3>If you want your money in order before Ramadan</h3><p>The Ramadan Money Pack brings together The Rizq Code, the Riba Exit Brief, the Ramadan Money Planner and a free month of The Rizq Circle. $49.</p><p class="url"><a href="https://ummahbrief.com/ramadan/">ummahbrief.com/ramadan</a></p></div>',
+}
 html += """<div class="page navy">
   <h2 style="font-size:29pt;margin-bottom:6mm">You found the leaks. Here is what to do next.</h2>
-  <div class="next"><h3>If riba was your biggest number</h3><p>The Riba Exit Brief is a short audio with a clear order of steps for leaving interest-bearing debt. Join the list to hear when it is out.</p><p class="url">ummahbrief.com/briefs/riba-exit</p></div>
-  <div class="next"><h3>If you want the whole plan</h3><p>The Rizq Code is a 60-page halal wealth framework with a 30-day action plan, an audit checklist and a pathway workbook. $39, with a 30-day money-back guarantee.</p><p class="url">ummahbrief.com/rizq-code</p></div>
-  <div class="next" style="border-bottom:0.25mm solid rgba(255,255,255,0.25)"><h3>If a dispute over money is dividing your family</h3><p>We offer Islamic mediation. It is free, and it always will be.</p><p class="url">ummahbrief.com/mediation</p></div>
+  %(first)s
+  <div class="next"><h3>If you want the whole plan</h3><p>The Rizq Code is a 60-page halal wealth framework with a 30-day action plan, an audit checklist and a pathway workbook. $39, with a 30-day money-back guarantee.</p><p class="url"><a href="https://ummahbrief.com/rizq-code/">ummahbrief.com/rizq-code</a></p></div>
+  <div class="next" style="border-bottom:0.25mm solid rgba(255,255,255,0.25)"><h3>If a dispute over money is dividing your family</h3><p>We offer Islamic mediation. It is free, and it always will be.</p><p class="url"><a href="https://ummahbrief.com/mediation/">ummahbrief.com/mediation</a></p></div>
+  <p class="reply">Tell us which leak surprised you most. Reply to the email this guide came in, and we will send you the monthly leak sheet to print and use again.</p>
   <p class="fine">This guide is general education. It is not personal financial advice and it is not a fatwa. For a decision about your own money, speak to a qualified adviser. For a religious ruling, ask a scholar you trust.</p>
   <div class="foot"><span>The Ummah Brief</span><span>One Ummah. One Pulse. One Purpose.</span></div>
-</div></body></html>"""
+</div></body></html>""" % {"first": FIRST[LEAD_OFFER]}
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 src = "/home/claude/build/guide_src.html"
